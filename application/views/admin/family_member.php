@@ -101,11 +101,11 @@
                   <i class="fa fa-users"></i> <span>Daftar Keluarga</span>
                 </a>
             </li>
-            <li class=" treeview">
+            <!-- <li class=" treeview">
                 <a href=<?php echo base_url()."Admin/daftar_risiko"; ?>
                   <i class="fa fa-book"></i> <span>Daftar Risiko</span>
                 </a>
-            </li>
+            </li> -->
             </li>
           </ul>
         </section>
@@ -123,7 +123,8 @@
           </h1>
 
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="<?php echo base_url("Data_keluarga"); ?>"><i class="fa fa-home"></i> Daftar Keluarga</a></li>
             <li class="active"> Data dan Anggota keluarga</li>
           </ol>
         </section>
@@ -200,15 +201,14 @@
                         <td><?php echo $f->hubungan_keluarga; ?></td>
                         <td>
                           <div class="btn-group">
-                            <button type="button" class="btn btn-danger">Action</button>
-                            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                            <a class="btn btn-warning btn-sm" href="<?php echo base_url()."Data_keluarga/edit_anggota_keluarga/".$idkk."/".$f->nik; ?>"><i class="fa fa-pencil"></i></a>
+                            <a onclick="return confirm('Hapus data??');" class="btn btn-danger btn-sm" href="<?php echo base_url()."Data_keluarga/edit_anggota_keluarga/".$idkk."/".$f->nik; ?>"><i class="fa fa-trash"></i></a>
+                            <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown">
                               <span class="caret"></span>
                               <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
-                              <li><a href="<?php echo base_url()."Data_keluarga/edit_anggota_keluarga/".$idkk."/".$f->nik; ?>">Edit</a></li>
                               <li><a href="<?php echo base_url()."Riwayat_pekerjaan/tabel/".$f->nik;  ?>">Riwayat Pekerjaan</a></li>
-                              <li><a href="<?php echo base_url()."Data_keuarga/hapus_anggota_keluarga/".$f->nik;  ?>">Hapus</a></li>
                             </ul>
                           </div>
                         </td>
@@ -328,9 +328,9 @@
                   <input type="button" class="btn btn-warning" onclick="parent.location='<?php echo base_url("")."Data_sosial/edit_data_perilaku/".$idkk; ?>'" value="Edit Data Perilaku Kesehatan">
                 </div>
                 <br></br>
-                <a href="<?php echo base_url("")."Data_sosial/kelola_data_kesehatan/".$idkk; ?>"><button type="submit" class="btn btn-success">kelola Data Sosial Kesehatan</button></a>
+                <a href="<?php echo base_url("")."Data_sosial/kelola_data_kesehatan/".$idkk; ?>"><button type="submit" class="btn btn-primary">kelola Data Sosial Kesehatan</button></a>
                 <br></br>
-                <a href="<?php echo base_url("")."Riwayat_penyakit/riwayat_sakit_keluarga/".$idkk; ?>"><button type="submit" class="btn btn-success ">kelola Riwayat Penyakit Keluarga</button></a>
+                <a href="<?php echo base_url("")."Riwayat_penyakit/riwayat_sakit_keluarga/".$idkk; ?>"><button type="submit" class="btn btn-primary ">kelola Riwayat Penyakit Keluarga</button></a>
                 <br></br>
                 <a href="<?php echo base_url("")."Klasifikasi/hitung/".$idkk; ?>"><button type="submit" class="btn btn-success ">hitung Klasifikasi</button></a>
                 <br></br>

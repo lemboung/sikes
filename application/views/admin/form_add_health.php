@@ -128,6 +128,7 @@
           <ol class="breadcrumb">
             <li><a href="<?php echo base_url()."Admin";?>"><i class="fa fa-home"></i> Home</a></li>
             <li><a href="<?php echo base_url()."Data_keluarga/daftar_keluarga";?>"><i class="fa fa-users"></i> Daftar Keluarga</a></li>
+            <li><a href="<?php echo base_url()."Data_keluarga/anggota_keluarga/".$idkk;?>"><i class="fa fa-users"></i> Anggota Keluarga</a></li>
             <li class="active">Pendataan Kesehatan Holistik</li>
           </ol>
         </section>
@@ -204,15 +205,8 @@
                         <td><?php echo $h->kosmetika_obat_luar; ?></td>
                         <td>
                           <div class="btn-group">
-                            <button type="button" class="btn btn-danger">Action</button>
-                            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-                              <span class="caret"></span>
-                              <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                              <li><a href="<?php echo base_url()."Data_sosial/edit_data_kesehatan/".$idkk; ?>">Edit</a></li>
-                              <li><a href="<?php echo base_url()."Data_sosial/hapus_data_kesehatan/".$idkk;  ?>">Hapus</a></li>
-                            </ul>
+                            <a class="btn btn-warning btn-sm"href="<?php echo base_url()."Data_sosial/edit_data_kesehatan/".$idkk; ?>"><i class="fa fa-pencil"></i></a>
+                            <a onclick="return confirm('Hapus data??');" class="btn btn-danger btn-sm"href="<?php echo base_url()."Data_sosial/hapus_data_kesehatan/".$idkk; ?>"><i class="fa fa-trash"></i></a>
                           </div>
                         </td>
                         </tr>

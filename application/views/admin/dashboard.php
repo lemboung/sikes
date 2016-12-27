@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" href="<?php echo base_url("/style/image/icon.png") ?>" />
-    <title>carterin Admin Panel</title>
+    <title>SIKES Admin Panel</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -84,7 +84,7 @@
               <img src="<?php echo base_url()."style/admin/" ?>dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>user fktp</p>
+              <p><?php echo $this->session->userdata('username'); ?></p>
             </div>
           </div>
           <!-- sidebar menu: : style can be found in sidebar.less -->

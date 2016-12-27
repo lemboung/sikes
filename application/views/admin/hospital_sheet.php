@@ -122,14 +122,15 @@
             Riwayat Penyakit Keluarga
             <small>Kelola Data Riwayat Penyakit Keluarga</small>
           </h1>
-
+<?php $idkk = $this->uri->segment(3); ?>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-            <li><a href="#"><i class="fa fa-home"></i> Data Keluarga</a></li>
+            <li><a href="<?php echo base_url()."Admin";?>"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="<?php echo base_url()."Data_keluarga/daftar_keluarga";?>"><i class="fa fa-users"></i> Daftar Keluarga</a></li>
+            <li><a href="<?php echo base_url()."Data_keluarga/anggota_keluarga/".$idkk;?>"><i class="fa fa-users"></i> Anggota Keluarga</a></li>
             <li class="active"> Riwayat Penyakit Keluarga</li>
           </ol>
         </section>
-<?php $idkk = $this->uri->segment(3); ?>
+
         <!-- Main content -->
         <section class="content">
           <div class="row">
@@ -171,15 +172,8 @@
                         <td><?php echo $fs->jenis_sakit; ?></td>
                         <td>
                           <div class="btn-group">
-                            <button type="button" class="btn btn-danger">Action</button>
-                            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-                              <span class="caret"></span>
-                              <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                              <li><a href="<?php echo base_url()."Admin/edit_riwayat_penyakit/".$idkk."/".$fs->dk_nik; ?>">edit</a></li>
-                              <li><a href="<?php echo base_url()."Admin/hapus_riwayat_penyakit/".$idkk."/".$fs->dk_nik;  ?>">hapus</a></li>
-                            </ul>
+                            <a class="btn btn-warning btn-sm" href="<?php echo base_url()."Admin/edit_riwayat_penyakit/".$idkk."/".$fs->dk_nik; ?>"><i class="fa fa-pencil"></i></a>
+                            <a onclick="return confirm('Hapus data??');" class="btn btn-danger btn-sm"href="<?php echo base_url()."Admin/hapus_riwayat_penyakit/".$idkk."/".$fs->dk_nik;  ?>"><i class="fa fa-trash"></i></a>
                           </div>
                         </td>
                         </tr>

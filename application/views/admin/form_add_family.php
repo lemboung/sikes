@@ -120,15 +120,24 @@
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-          <h1>
-            Pendaftaran Keluarga Baru
-            <small>Formulir pendaftaran keluarga baru</small>
-          </h1>
+          <?php if ($status == 'baru') {
+            echo "<h1>
+              Pendaftaran Keluarga Baru
+              <small>Formulir pendaftaran keluarga baru</small>
+            </h1>";
+          } else {
+            echo "<h1>Edit Data Keluarga</h1>";
+          }?>
 
+          <?php $idkk = $this->uri->segment(3); ?>
           <ol class="breadcrumb">
             <li><a href="<?php echo base_url()."Admin";?>"><i class="fa fa-home"></i> Home</a></li>
             <li><a href="<?php echo base_url()."Data_keluarga/daftar_keluarga";?>"><i class="fa fa-users"></i> Daftar Keluarga</a></li>
-            <li class="active">Pendaftaran Keluarga Baru</li>
+            <?php if ($status == 'baru') {
+              echo "<li class=\"active\">Pendaftaran Keluarga Baru</li>";
+            } else {
+              echo "<li><a href=\"".base_url("Data_keluarga/anggota_keluarga/").$idkk."\"><i class=\"fa fa-users\"></i> Anggota Keluarga</a></li>";
+            }?>
           </ol>
         </section>
 
@@ -162,7 +171,7 @@
               } ?>
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Keluarga Baru</h3>
+                  <h3 class="box-title">Form Data Keluarga</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 <?php

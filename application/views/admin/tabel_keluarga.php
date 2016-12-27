@@ -20,13 +20,6 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?php echo base_url()."style/admin/" ?>dist/css/skins/_all-skins.min.css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
@@ -101,11 +94,11 @@
                   <i class="fa fa-users"></i> <span>Daftar Keluarga</span>
                 </a>
             </li>
-            <li class=" treeview">
+            <!-- <li class=" treeview">
                 <a href=<?php echo base_url()."Admin/daftar_risiko"; ?>
                   <i class="fa fa-book"></i> <span>Daftar Risiko</span>
                 </a>
-            </li>
+            </li> -->
             </li>
           </ul>
         </section>
@@ -122,7 +115,7 @@
           </h1>
 
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i> Home</a></li>
             <li class="active"> Daftar Keluarga</li>
           </ol>
         </section>
@@ -169,8 +162,8 @@
                         <td><?php echo $p->status_kes_primer; ?></td>
                         <td>
                           <div class="btn-group">
-                            <button type="button" class="btn btn-danger">Action</button>
-                            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                            <button type="button" class="btn btn-danger btn-sm">Action</button>
+                            <button type="button" class="btn btn-danger dropdown-toggle btn-sm" data-toggle="dropdown">
                               <span class="caret"></span>
                               <span class="sr-only">Toggle Dropdown</span>
                             </button>

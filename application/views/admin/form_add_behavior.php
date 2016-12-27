@@ -122,12 +122,12 @@
         <section class="content-header">
           <h1>
             Pendataan Perilaku Kesehatan Keluarga
-
           </h1>
 
           <ol class="breadcrumb">
             <li><a href="<?php echo base_url()."Admin";?>"><i class="fa fa-home"></i> Home</a></li>
             <li><a href="<?php echo base_url()."Data_keluarga/daftar_keluarga";?>"><i class="fa fa-users"></i> Daftar Keluarga</a></li>
+            <li><a href="<?php echo base_url()."Data_keluarga/anggota_keluarga/".$idkk;?>"><i class="fa fa-users"></i> Anggota Keluarga</a></li>
             <li class="active">Pendataan Perilaku Kesehatan Keluarga</li>
           </ol>
         </section>
@@ -183,7 +183,7 @@
                     </div>
                     <div class="form-group">
                       <label>Sumber Air Minum</label></br>
-                      <select class="select2" multiple="multiple" style="width:50%;" data-placeholder="pilih sumber Air Minum"  name="sumber_air_minum">
+                      <select class="select2" multiple="multiple" style="width:50%;" data-placeholder="pilih sumber Air Minum"  name="sumber_air_minum[]">
                           <option value='PDAM'>PDAM</option>";
                           <option value='Sumur gali'>Sumur gali</option>";
                           <option value='Sumur Pompa'>Sumur Pompa</option>";

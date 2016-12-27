@@ -122,12 +122,12 @@
         <section class="content-header">
           <h1>
             Pendataan Ekonomi Keluarga
-            <small>Formulir pendataan Ekonomi keluarga</small>
           </h1>
 
           <ol class="breadcrumb">
             <li><a href="<?php echo base_url()."Admin";?>"><i class="fa fa-home"></i> Home</a></li>
             <li><a href="<?php echo base_url()."Data_keluarga/daftar_keluarga";?>"><i class="fa fa-users"></i> Daftar Keluarga</a></li>
+            <li><a href="<?php echo base_url()."Data_keluarga/anggota_keluarga/".$idkk;?>"><i class="fa fa-users"></i> Anggota Keluarga</a></li>
             <li class="active">Pendataan Ekonomi Keluarga</li>
           </ol>
         </section>
@@ -137,7 +137,7 @@
             <!-- left column -->
             <div class="col-md-push-3 col-md-6">
               <!-- general form elements -->
-              <?php if ($economic_data==null) {
+              <?php if (empty($economic_data)) {
                   $luas = "";
                   $status_kep = "";
                   $daya = "";
@@ -266,6 +266,7 @@
           "info": true,
           "autoWidth": false
         });
+        $(".select2").select2();
         var selectedValues = $("#sourceValues").val().split(',');
         $(".select2").val(selectedValues).trigger("change");
       });

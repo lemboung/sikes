@@ -21,11 +21,6 @@ class Login extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
-		$this->load->model('ModelUser');
-		$this->load->helper('url');
-		$this->load->helper('form');
-		$this->load->library('form_validation');
-		// $this->load->library('input');
 	}
 
 	public function index()
@@ -65,46 +60,4 @@ class Login extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect(site_url('Admin'));
 	}
-
-	public function register(){
-
-		 $config['upload_path'] = './images/member/';
-		 $config['allowed_types'] = 'gif|jpg|png';
-		 $config['max_size'] = '2000';
-		 //  $config['max_width'] = '1024';
-		//  $config['max_height'] = '768';
-
-		 $this->load->library('upload', $config);
-
-		 if (!$this->upload->do_upload('foto')){
-			 $error = array('error'=>$this->upload->display_errors());
-			 $this->load->view('Index', $error);
-		 	// echo "error";
-		 }
-		 else {
-			 $upload_data = $this->upload->data();
-			 $data['foto'] = $upload_data['file_name'];
-			 $data['username'] = $this->input->post('username');
-			 $p = $this->input->post('pass');
-			 $data['pass'] = md5($p);
-			 $data['email'] = $this->input->post('email');
-			 $data['nama'] = $this->input->post('nama');
-			 $data['alamat'] = $this->input->post('alamat');
-			 $data['kota'] = $this->input->post('kota');
-			 $data['no_telp'] = $this->input->post('no_telp');
-			 $data['noktp'] = $this->input->post('noktp');
-			 $data['level'] = 1;
-			 // $upload_data['username'] = $judul;
-			 // $data = array('upload_data' => $upload_data);
-
-			 // $this->load->view('tes', $data);
-			 $this->ModelUser->insert_user($data);
-		 	 redirect(site_url('Welcome'));
-
-		 }
-
-
-		 // echo $data['username'];
-	 }
-
 }
