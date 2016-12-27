@@ -52,9 +52,7 @@ class Data_sosial extends CI_Controller {
 
 	public function tambah_data_perilaku($idkk){
 		if ($this->session->userdata('logged_in')) {
-			$id = $this->session->userdata('id_user');
 			$data['idkk'] = $idkk;
-			$data['user'] = $this->ModelUser->get_user($id)->result();
 			$this->load->view('Admin/form_add_behavior',$data);
 		}
 		else {
@@ -76,10 +74,8 @@ class Data_sosial extends CI_Controller {
 
 	public function edit_data_kesehatan($idkk){
 		if ($this->session->userdata('logged_in')) {
-			$id = $this->session->userdata('id_user');
 			$data['idkk'] = $idkk;
 			$data['family'] = $this->Model->select_family_member($idkk)->result();
-			$data['user'] = $this->ModelUser->get_user($id)->result();
 			$this->load->view('Admin/form_add_health',$data);
 		}
 		else {

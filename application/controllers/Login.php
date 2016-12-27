@@ -42,10 +42,6 @@ class Login extends CI_Controller {
 		$account = $this->ModelUser->check_user_account($username, $password)->row();
 
 		if (empty($account)){
-
-			// $this->session->set_flashdata('notification', 'Peringatan : Username dan Password
-			// tidak cocok');
-			// $this->load->view('admin/viewlogin');
 			$info='<div style="color:red">PERIKSA KEMBALI NAMA PENGGUNA DAN PASSWORD ANDA!</div>';
 			$this->session->set_userdata('info',$info);
 
@@ -55,10 +51,10 @@ class Login extends CI_Controller {
 		else {
 
 		$array_items = array(
-		'id_user' => $temp_account->id_user,
-		'username' => $temp_account->username,
+		'id_user' => $account->id_user,
+		'username' => $account->username,
 		'logged_in' => true,
-		'tipe' => $temp_account->tipe
+		'tipe' => $account->tipe
 		);
 		$this->session->set_userdata($array_items);
 		redirect(site_url('Admin'));

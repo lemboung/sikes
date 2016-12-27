@@ -34,7 +34,6 @@ class Data_keluarga extends CI_Controller {
 
 	public function daftar_keluarga(){
 		if ($this->session->userdata('logged_in')) {
-			$id = $this->session->userdata('id_user');
 			$data['pasien'] = $this->Model->tabel_kepala_keluarga()->result();
 			$this->load->view('admin/tabel_keluarga',$data);
 		}
@@ -45,9 +44,7 @@ class Data_keluarga extends CI_Controller {
 
 	public function daftar_pasien(){
 		if ($this->session->userdata('logged_in')) {
-			$id = $this->session->userdata('id_user');
 			$data['pasien'] = $this->Model->select_all_patient()->result();
-			$data['user'] = $this->ModelUser->get_user($id)->result();
 			$this->load->view('admin/tabel_pasien',$data);
 		}
 		else {
@@ -73,14 +70,12 @@ class Data_keluarga extends CI_Controller {
 
 	public function edit_anggota_keluarga($idkk, $nik){
 		if ($this->session->userdata('logged_in')) {
-			$id = $this->session->userdata('id_user');
 			$data['family_data'] = $this->Model->select_family_data($idkk)->result();
 			$data['health_data'] = $this->Model->select_helath_data($idkk)->result();
 			$data['behav_data'] = $this->Model->select_behav_data($idkk)->result();
 			$data['economic_data'] = $this->Model->select_economic_data($idkk)->result();
 			$data['family'] = $this->Model->select_family_member($idkk)->result();
 			$data['person'] = $this->Model->select_person($nik)->result();
-			$data['user'] = $this->ModelUser->get_user($id)->result();
 			$data['status'] = 'edit';
 			$this->load->view('admin/family_member',$data);
 		}

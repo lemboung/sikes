@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Halaman Login | OLSHOP</title>
+    <title>Halaman Login | SIKES</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <!-- Bootstrap 3.3.2 -->
@@ -20,7 +20,7 @@
   <body class="login-page">
     <div class="login-box">
       <div class="login-logo">
-        <b>WELCOME!!!</b>
+        <b>Sistem Informasi Kesehatan</b>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
       <!-- <span><?php echo $id_user; ?></span> -->

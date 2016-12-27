@@ -29,10 +29,8 @@ class Riwayat_penyakit extends CI_Controller {
 
 	public function riwayat_sakit_keluarga($idkk){
 		if ($this->session->userdata('logged_in')) {
-			$id = $this->session->userdata('id_user');
 			$data['family'] = $this->Model->select_family_member($idkk)->result();
 			$data['family_sick'] = $this->Model->select_riwayat_sakit_keluarga($idkk)->result();
-			$data['user'] = $this->ModelUser->get_user($id)->result();
 			$data['status'] = 'baru';
 			$this->load->view('Admin/hospital_sheet',$data);
 		}
@@ -43,11 +41,9 @@ class Riwayat_penyakit extends CI_Controller {
 
 	public function edit($idkk, $id){
 		if ($this->session->userdata('logged_in')) {
-			$id = $this->session->userdata('id_user');
 			$data['family'] = $this->Model->select_family_member($idkk)->result();
 			$data['family_sick'] = $this->Model->select_riwayat_sakit_keluarga($idkk)->result();
 			$data['sick'] = $this->Model->select_riwayat_sakit($idkk)->result();
-			$data['user'] = $this->ModelUser->get_user($id)->result();
 			$data['status'] = 'edit';
 			$this->load->view('Admin/hospital_sheet',$data);
 		}
