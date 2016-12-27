@@ -79,7 +79,7 @@ $db['default'] = array(
 	'username' => 'bc75ffaa58372a',
 	'password' => 'a50ecc6f',
 	'database' => 'sikes',
-	'dbdriver' => 'mysqli',
+	'dbdriver' => 'mysql',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
