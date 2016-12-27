@@ -101,7 +101,7 @@
             </li>
             <li >
             <li class="active treeview">
-                <a href=<?php echo base_url()."Admin/daftar_keluarga";?>
+                <a href=<?php echo base_url()."Data_keluarga/daftar_keluarga";?>
                   <i class="fa fa-users"></i> <span>Daftar Keluarga</span>
                 </a>
             </li>
@@ -127,7 +127,7 @@
 
           <ol class="breadcrumb">
             <li><a href="<?php echo base_url()."Admin";?>"><i class="fa fa-home"></i> Home</a></li>
-            <li><a href="<?php echo base_url()."Admin/daftar_keluarga";?>"><i class="fa fa-users"></i> Daftar Keluarga</a></li>
+            <li><a href="<?php echo base_url()."Data_keluarga/daftar_keluarga";?>"><i class="fa fa-users"></i> Daftar Keluarga</a></li>
             <li class="active">Pendataan Kesehatan Holistik</li>
           </ol>
         </section>
@@ -135,21 +135,108 @@
         <!-- Main content -->
         <section class="content">
           <div class="row">
+            <div class="col-xs-12">
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Data Kesehatan Keluarga</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <table id="example2" class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>Tanggal</th>
+                        <th>Mengalami Batuk</th>
+                        <th>Mengalami Asma</th>
+                        <th>Mengalami Masalah Kes</th>
+                        <th>Masalah Kesehatan</th>
+                        <th>Mengalami Penyakit Khs</th>
+                        <th>Penyakit Khusus</th>
+                        <th>Mulai Merokok</th>
+                        <th>Berhenti Merokok</th>
+                        <th>Jumlah Rokok 1 H</th>
+                        <th>Jenis Rokok</th>
+                        <th>Jumlah Jamu 1 M</th>
+                        <th>Jenis Jamu</th>
+                        <th>Alkohol</th>
+                        <th>Jumlah Kopi 1 M</th>
+                        <th>Jenis Obat-obatan</th>
+                        <th>Minum Dingin</th>
+                        <th>Pelihara Hewan</th>
+                        <th>Jumlah Olahraga 1 M</th>
+                        <th>Jenis Olahraga</th>
+                        <th>Olahraga Keluarga</th>
+                        <th>Kasur Busa</th>
+                        <th>Naik Sepeda Motor</th>
+                        <th>Alergi Obat</th>
+                        <th>Kosmetika</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php foreach ($health as $h) {
+                        # code...
+                       ?>
+                      <tr>
+                        <td><?php echo $h->tanggal; ?></td>
+                        <td><?php echo $h->org_batuk; ?></td>
+                        <td><?php echo $h->org_asma; ?></td>
+                        <td><?php echo $h->org_masalah_kes; ?></td>
+                        <td><?php echo $h->masalah_kes; ?></td>
+                        <td><?php echo $h->org_penyakit_khusus; ?></td>
+                        <td><?php echo $h->penyakit_khusus; ?></td>
+                        <td><?php echo $h->mulai_merokok; ?></td>
+                        <td><?php echo $h->berhenti_merokok; ?></td>
+                        <td><?php echo $h->jml_rokok; ?></td>
+                        <td><?php echo $h->jenis_rokok; ?></td>
+                        <td><?php echo $h->jamu; ?></td>
+                        <td><?php echo $h->jenis_jamu; ?></td>
+                        <td><?php echo $h->alkohol; ?></td>
+                        <td><?php echo $h->kopi; ?></td>
+                        <td><?php echo $h->jenis_obat; ?></td>
+                        <td><?php echo $h->minum_dingin; ?></td>
+                        <td><?php echo $h->pelihara_hewan; ?></td>
+                        <td><?php echo $h->olahraga; ?></td>
+                        <td><?php echo $h->jenis_olahraga; ?></td>
+                        <td><?php echo $h->olahraga_keluarga; ?></td>
+                        <td><?php echo $h->tidur_kasur_busa; ?></td>
+                        <td><?php echo $h->sepeda_motor; ?></td>
+                        <td><?php echo $h->alergi_obat; ?></td>
+                        <td><?php echo $h->kosmetika_obat_luar; ?></td>
+                        <td>
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-danger">Action</button>
+                            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                              <span class="caret"></span>
+                              <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                              <li><a href="<?php echo base_url()."Data_sosial/edit_data_kesehatan/".$idkk; ?>">Edit</a></li>
+                              <li><a href="<?php echo base_url()."Data_sosial/hapus_data_kesehatan/".$idkk;  ?>">Hapus</a></li>
+                            </ul>
+                          </div>
+                        </td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                  </table>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div>
             <!-- left column -->
-            <div class="col-md-push-3 col-md-6">
+            <div class="col-md-6">
               <!-- general form elements -->
 
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Form Data Ekonomi keluarga</h3>
+                  <h3 class="box-title">Form Data Kesehatan keluarga</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <?php echo form_open_multipart('Admin/insert_data_kesehatan');?>
+                <?php echo form_open_multipart('Data_sosial/insert_data_kesehatan');?>
                   <input type="hidden" name="idkk" value="<?php echo $idkk; ?>" />
                   <div class="box-body">
                     <div class="form-group">
                       <label>Anggota Keluarga yang Mengalami Batuk</label></br>
-                      <select class="select2" multiple="multiple" style="width:100%;" data-placeholder="Masukkan Anggota Keluarga"  name="org_batuk">
+                      <select class="select2" multiple="multiple" style="width:100%;" data-placeholder="Masukkan Anggota Keluarga"  name="org_batuk[]">
                         <?php foreach ($family as $f) {
                           echo "<option value='$f->nama'>$f->nama</option>";
                         } ?>
@@ -157,7 +244,7 @@
                     </div>
                     <div class="form-group">
                       <label>Anggota Keluarga yang Mengalami Asma</label></br>
-                      <select class="select2" multiple="multiple" style="width:100%;" data-placeholder="Masukkan Anggota Keluarga"  name="org_asma">
+                      <select class="select2" multiple="multiple" style="width:100%;" data-placeholder="Masukkan Anggota Keluarga"  name="org_asma[]">
                         <?php foreach ($family as $f) {
                           echo "<option value='$f->nama'>$f->nama</option>";
                         } ?>
@@ -165,7 +252,7 @@
                     </div>
                     <div class="form-group">
                       <label>Anggota Keluarga yang Mengalami Masalah Kesehatan</label></br>
-                      <select class="select2" multiple="multiple" style="width:100%;" data-placeholder="Masukkan Anggota Keluarga"  name="org_masalah">
+                      <select class="select2" multiple="multiple" style="width:100%;" data-placeholder="Masukkan Anggota Keluarga"  name="org_masalah[]">
                         <?php foreach ($family as $f) {
                           echo "<option value='$f->nama'>$f->nama</option>";
                         } ?>
@@ -173,11 +260,11 @@
                     </div>
                     <div class="form-group">
                       <label>Sebutkan Masalah Kesehatan yang Dialami</label>
-                      <input type="text" class="form-control" placeholder="Masukkan masalah kesehatan" name="isi_masalah" required>
+                      <input type="text" class="form-control" placeholder="Masukkan masalah kesehatan" name="isi_masalah">
                     </div>
                     <div class="form-group">
                       <label>Anggota Keluarga yang Mengalami Penyakit Khusus</label></br>
-                      <select class="select2" multiple="multiple" style="width:100%;" data-placeholder="Masukkan Anggota Keluarga"  name="org_khusus">
+                      <select class="select2" multiple="multiple" style="width:100%;" data-placeholder="Masukkan Anggota Keluarga"  name="org_khusus[]">
                         <?php foreach ($family as $f) {
                           echo "<option value='$f->nama'>$f->nama</option>";
                         } ?>
@@ -185,11 +272,12 @@
                     </div>
                     <div class="form-group">
                       <label>Sebutkan Penyakit Khusus yang Dialami</label>
-                      <input type="text" class="form-control" placeholder="Masukkan Penyakit Khusus" name="isi_khusus" required>
+                      <input type="text" class="form-control" placeholder="Masukkan Penyakit Khusus" name="isi_khusus">
                     </div>
                     <div class="form-group">
                       <label>Mulai Merokok</label></br>
                       <select class="select2" style="width:40%;" data-placeholder="Tahun"  name="mulai_merokok">
+                        <option value=''>0</option>
                         <?php for ($i=1940; $i < 2016; $i++) {
                           echo "<option value='$i'>$i</option>";
                         } ?>
@@ -198,6 +286,7 @@
                     <div class="form-group">
                       <label>Berhenti Merokok</label></br>
                       <select class="select2" style="width:40%;" data-placeholder="Tahun"  name="berhenti_merokok">
+                        <option value=''>0</option>
                         <?php for ($i=1940; $i < 2016; $i++) {
                           echo "<option value='$i'>$i</option>";
                         } ?>
@@ -206,82 +295,84 @@
                     <div class="form-group">
                       <label>Jumlah Rokok dalam 1 hari</label></br>
                       <select class="select2" style="width:40%;" data-placeholder="pilih "  name="jumlah_rokok">
-                        <option value='1 batang'>< 1 batang</option>";
-                        <option value='1-5 batang'>1-6 batang</option>";
-                        <option value='5 batang - 1 bungkus'>7-12 batang</option>";
-                        <option value='> 1 bungkus'>> 1 bungkus</option>";
+                        <option value=''>0</option>
+                        <option value='1 batang'>< 1 batang</option>;
+                        <option value='1-5 batang'>1-6 batang</option>;
+                        <option value='5 batang - 1 bungkus'>7-12 batang</option>;
+                        <option value='> 1 bungkus'>> 1 bungkus</option>;
                       </select>
                     </div>
                     <div class="form-group">
                       <label>Jenis Rokok</label></br>
-                      <select class="form-control" style="width:40%;" placeholder="pilih jenis"  name="jenis_rokok">
-                        <option value='kretek'>kretek</option>";
-                        <option value='filter'>filter</option>";
+                      <select class="select2" style="width:40%;" data-placeholder="pilih "  name="jenis_rokok">
+                        <option value=''></option>
+                        <option value='kretek'>kretek</option>;
+                        <option value='filter'>filter</option>;
                       </select>
                     </div>
                     <div class="form-group">
                       <label>Jumlah jamu dalam 1 minggu</label></br>
-                      <input type="number" class="form-control" style="width:40%" placeholder="gelas" name="jamu" required>
+                      <input type="number" class="form-control" style="width:40%" placeholder="gelas" name="jamu">
                     </div>
                     <div class="form-group">
                       <label>Jenis jamu</label></br>
-                      <input type="text" class="form-control" placeholder="jenis jamu" name="jenis_jamu" required>
+                      <input type="text" class="form-control" placeholder="jenis jamu" name="jenis_jamu">
                     </div>
                     <div class="form-group">
                       <label>Minum Alkohol</label></br>
                       <select class="form-control" style="width:40%;" data-placeholder="jawaban"  name="alkohol">
-                        <option value='1'>Ya</option>";
-                        <option value='0'>tidak</option>";
+                        <option value='0'>tidak</option>;
+                        <option value='1'>Ya</option>;
                       </select>
                     </div>
                     <div class="form-group">
                       <label>Jumlah kopi dalam 1 minggu</label></br>
-                      <input type="number" class="form-control" style="width:40%" placeholder="gelas" name="kopi" required>
+                      <input type="number" class="form-control" style="width:40%" placeholder="gelas" name="kopi">
                     </div>
                     <div class="form-group">
                       <label>Jenis obat-obatan yang dikonsumsi</label></br>
-                      <input type="text" class="form-control" placeholder="jenis obat-obatan" name="jenis_obat" required>
+                      <input type="text" class="form-control" placeholder="jenis obat-obatan" name="jenis_obat">
                     </div>
                     <div class="form-group">
                       <label>Minum dingin</label></br>
                       <select class="form-control" style="width:40%;" data-placeholder="jawaban"  name="minum_dingin">
-                        <option value='1'>Ya</option>";
-                        <option value='0'>tidak</option>";
+                        <option value='0'>tidak</option>;
+                        <option value='1'>Ya</option>;
                       </select>
                     </div>
                     <div class="form-group">
                       <label>Hewan yang dipelihara</label></br>
-                      <input type="text" class="form-control" placeholder="hewan peliharaan" name="peilhara_hewan" required>
+                      <input type="text" class="form-control" placeholder="hewan peliharaan" name="peilhara_hewan">
                     </div>
                     <div class="form-group">
                       <label>Jumlah Olahraga dalam 1 minggu</label></br>
-                      <input type="number" class="form-control" style="width:40%" placeholder="jumlah" name="olahraga" required>
+                      <input type="number" class="form-control" style="width:40%" placeholder="jumlah" name="olahraga">
                     </div>
                     <div class="form-group">
                       <label>Jenis Olahraga</label></br>
-                      <input type="text" class="form-control" style="width:40%" placeholder="jumlah" name="jenis_olahraga" required>
+                      <input type="text" class="form-control" style="width:40%" placeholder="jumlah" name="jenis_olahraga">
                     </div>
                     <div class="form-group">
                       <label>Tidur kasur busa</label></br>
                       <select class="form-control" style="width:40%;" data-placeholder="jawaban"  name="tidur_kasur_busa">
-                        <option value='1'>Ya</option>";
-                        <option value='0'>tidak</option>";
+                        <option value='0'>tidak</option>;
+                        <option value='1'>Ya</option>;
                       </select>
                     </div>
                     <div class="form-group">
                       <label>Naik Sepeda motor</label></br>
                       <select class="form-control" style="width:40%;" data-placeholder="jawaban"  name="sepeda_motor">
-                        <option value='1'>Ya</option>";
-                        <option value='0'>tidak</option>";
+                        <option value='0'>tidak</option>;
+                        <option value='1'>Ya</option>;
                       </select>
                     </div>
                     <div class="form-group">
                       <label>Alergi Obat</label></br>
-                      <input type="text" class="form-control" placeholder="Masukkan Alergi obat" name="alergi_obat" required>
+                      <input type="text" class="form-control" placeholder="Masukkan Alergi obat" name="alergi_obat">
                     </div>
                     <div class="form-group">
                       <label>Kosmetika dan obat luar yang digunakan</label></br>
-                      <input type="text" class="form-control" placeholder="Masukkan kosmetika/obat luar" name="kosmetika_obat_luar" required>
+                      <input type="text" class="form-control" placeholder="Masukkan kosmetika/obat luar" name="kosmetika_obat_luar">
                     </div>
                   </div><!-- /.box-body -->
 
@@ -339,7 +430,8 @@
           "searching": false,
           "ordering": true,
           "info": true,
-          "autoWidth": false
+          "scrollX": true
+
         });
         $(".select2").select2();
       });

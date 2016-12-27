@@ -101,7 +101,7 @@
             </li>
             <li >
             <li class="active treeview">
-                <a href=<?php echo base_url()."Admin/daftar_keluarga";?>
+                <a href=<?php echo base_url()."Data_keluarga/daftar_keluarga";?>
                   <i class="fa fa-users"></i> <span>Daftar Keluarga</span>
                 </a>
             </li>
@@ -127,7 +127,7 @@
 
           <ol class="breadcrumb">
             <li><a href="<?php echo base_url()."Admin";?>"><i class="fa fa-home"></i> Home</a></li>
-            <li><a href="<?php echo base_url()."Admin/daftar_keluarga";?>"><i class="fa fa-users"></i> Daftar Keluarga</a></li>
+            <li><a href="<?php echo base_url()."Data_keluarga/daftar_keluarga";?>"><i class="fa fa-users"></i> Daftar Keluarga</a></li>
             <li class="active">Pendataan Ekonomi Keluarga</li>
           </ol>
         </section>
@@ -137,22 +137,42 @@
             <!-- left column -->
             <div class="col-md-push-3 col-md-6">
               <!-- general form elements -->
-
+              <?php if ($economic_data==null) {
+                  $luas = "";
+                  $status_kep = "";
+                  $daya = "";
+                  $sumber = "";
+                  $penopang = "";
+              } else {
+                foreach ($economic_data as $ed) {
+                  $luas = $ed->luas_bangunan_lahan;
+                  $status_kep = $ed->status_kepemilikan_rumah;
+                  $daya[] = $ed->daya_listrik;
+                  $sumber = $ed->sumber_ekonomi;
+                  $penopang = $ed->penopang_ekonomi;
+                }
+              }?>
               <div class="box box-primary">
                 <div class="box-header with-border">
                   <h3 class="box-title">Form Data Ekonomi keluarga<?php echo $idkk; ?></h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <?php echo form_open_multipart('Admin/insert_data_ekonomi');?>
+                <?php
+                if ($status == "baru") {
+                  echo form_open_multipart('Data_sosial/insert_data_ekonomi');
+                } elseif ($status == "edit") {
+                  echo form_open_multipart('Data_sosial/update_data_ekonomi');
+                }
+                ?>
                   <input type="hidden" name="idkk" value="<?php echo $idkk; ?>" />
                   <div class="box-body">
                     <div class="form-group">
                       <label>luas bangunan / lahan</label>
-                      <input type="text" class="form-control" placeholder="Masukkan luas bangunan" style="width:50%;" name="luas_bangunan_lahan" required>
+                      <input type="text" class="form-control" value="<?php echo $luas; ?>" placeholder="Masukkan luas bangunan" style="width:50%;" name="luas_bangunan_lahan" required>
                     </div>
                     <div class="form-group">
                       <label>Status Kepemilikan</label></br>
-                      <select class="select2"  style="width:50%;" data-placeholder="pilih kepemilikan"  name="status_kepemilikan">
+                      <select class="select2" style="width:50%;" value="<?php echo $status_kep; ?>" data-placeholder="pilih kepemilikan"  name="status_kepemilikan">
                           <option value='Milik Sendiri'>Milik Sendiri</option>";
                           <option value='Milik Orang tua'>Milik Orang tua</option>";
                           <option value='Sewa'>Sewa</option>";
@@ -162,7 +182,7 @@
                     </div>
                     <div class="form-group">
                       <label>Daya Listrik</label></br>
-                      <select class="select2" style="width:50%;" data-placeholder="pilih daya listrik"  name="daya_listrik">
+                      <select class="select2" value="<?php echo $daya; ?>" style="width:50%;" data-placeholder="pilih daya listrik"  name="daya_listrik">
                           <option value='450 VA'>450 VA</option>";
                           <option value='900 VA'>900 VA</option>";
                           <option value='1300 VA'>1300 VA</option>";
@@ -172,7 +192,7 @@
                     </div>
                     <div class="form-group">
                       <label>Sumber Ekonomi</label></br>
-                      <select class="select2" id="sourceValues" style="width:50%;" multiple="multiple"  data-placeholder="pilih sumber ekonomi"  name="sumber_ekonomi">
+                      <select class="select2" value="<?php echo $sumber; ?>" id="sourceValues" style="width:50%;" multiple="multiple"  data-placeholder="pilih sumber ekonomi"  name="sumber_ekonomi[]">
                           <option id="sourceValues" value='Pegawai'>Pegawai</option>";
                           <option id="sourceValues" value='Wirausaha'>Wirausaha</option>";
                           <option value='Bantuan Keluarga'>Bantuan Keluarga</option>";
@@ -181,7 +201,7 @@
                     </div>
                     <div class="form-group">
                       <label>Penopang Ekonomi</label></br>
-                      <select class="select2" style="width:50%;" multiple="multiple"  data-placeholder="pilih penopang ekonomi"  name="penopang_ekonomi">
+                      <select class="select2" value="<?php echo $penopang; ?>" style="width:50%;" multiple="multiple"  data-placeholder="pilih penopang ekonomi"  name="penopang_ekonomi[]">
                           <option value='Suami'>Suami</option>";
                           <option value='Istri'>Istri</option>";
                           <option value='Anak'>Anak</option>";
@@ -246,9 +266,8 @@
           "info": true,
           "autoWidth": false
         });
-        $(".select2").select2();
         var selectedValues = $("#sourceValues").val().split(',');
-        $(".select2").select2('val',selectedValues);
+        $(".select2").val(selectedValues).trigger("change");
       });
 
     </script>

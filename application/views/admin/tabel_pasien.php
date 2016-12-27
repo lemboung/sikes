@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" href="<?php echo base_url("/style/image/icon.png") ?>" />
-    <title>Sikes Admin Panel</title>
+    <title>SIKES Admin Panel</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -14,16 +14,12 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="<?php echo base_url()."style/"?>css/ionicons.min.css">
     <!-- DataTables -->
-    <link rel="stylesheet" href="<?php echo base_url()."style/admin/"?>plugins/datatables/dataTables.bootstrap.css">
-    <!-- select2 plugins -->
-    <link rel="stylesheet" href="<?php echo base_url()."style/"?>css/select2.min.css">
+    <link rel="stylesheet" href="<?php echo base_url()."style/admin/" ?>plugins/datatables/dataTables.bootstrap.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="<?php echo base_url()."style/admin/"?>dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="<?php echo base_url()."style/admin/" ?>dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="<?php echo base_url()."style/admin/"?>dist/css/skins/_all-skins.min.css">
-
-
+    <link rel="stylesheet" href="<?php echo base_url()."style/admin/" ?>dist/css/skins/_all-skins.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -93,15 +89,15 @@
           </div>
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
-            <li class="header">MAIN NAVIGATION</li>
+            <li class="header">MENU NAVIGASI</li>
             <li class="treeview">
-              <a href=<?php echo base_url()."Admin";?>
+              <a href=<?php echo base_url()."Admin/dashboard";?>
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
               </a>
             </li>
             <li >
             <li class="active treeview">
-                <a href=<?php echo base_url()."Data_keluarga/daftar_keluarga";?>
+                <a href=<?php echo base_url()."Admin/daftar_keluarga";?>
                   <i class="fa fa-users"></i> <span>Daftar Keluarga</span>
                 </a>
             </li>
@@ -121,99 +117,86 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Pendaftaran Keluarga Baru
-            <small>Formulir pendaftaran keluarga baru</small>
+            Daftar Keluarga
+            <small>Kelola Daftar Keluarga</small>
           </h1>
 
           <ol class="breadcrumb">
-            <li><a href="<?php echo base_url()."Admin";?>"><i class="fa fa-home"></i> Home</a></li>
-            <li><a href="<?php echo base_url()."Data_keluarga/daftar_keluarga";?>"><i class="fa fa-users"></i> Daftar Keluarga</a></li>
-            <li class="active">Pendaftaran Keluarga Baru</li>
+            <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+            <li class="active"> Daftar Pasien</li>
           </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
-          <div class="row">
-            <!-- left column -->
-            <div class="col-md-push-3 col-md-6">
-              <!-- general form elements -->
-              <?php if(empty($family_data)){
-                $idkk = '';
-                $alamat = '';
-                $RT = '';
-                $RW = '';
-                $kelurahan = '';
-                $kecamatan = '';
-                $kota = '';
-                $pembayaran = '';
-              }
-              else {
-                foreach ($family_data as $fd) {
-                  $idkk = $fd->id_kepala_keluarga;
-                  $alamat = $fd->alamat;
-                  $RT = $fd->RT;
-                  $RW = $fd->RW;
-                  $kelurahan = $fd->kelurahan;
-                  $kecamatan = $fd->kecamatan;
-                  $kota = $fd->kota;
-                  $pembayaran = $fd->pembayaran;
-                }
-              } ?>
-              <div class="box box-primary">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Keluarga Baru</h3>
-                </div><!-- /.box-header -->
-                <!-- form start -->
-                <?php
-                if ($status == 'baru') {
-                  echo form_open_multipart('Data_keluarga/insert_keluarga');
-                } elseif ($status == 'edit') {
-                  echo form_open_multipart('Data_keluarga/update_keluarga');
-                }
-                ?>
-                <input type="hidden" class="form-control"  value="<?php echo $idkk; ?>" name="idkk">
-                  <div class="box-body">
-                    <div class="form-group">
-                      <label>alamat</label>
-                      <input type="text" class="form-control" value="<?php echo $alamat; ?>" placeholder="Masukkan alamat" name="alamat" required>
-                    </div>
-                    <div class="form-group">
-                      <label>RT</label>
-                      <input type="number" class="form-control"  value="<?php echo $RT; ?>" placeholder="00" name="rt" required>
-                    </div>
-                    <div class="form-group">
-                      <label>RW</label>
-                      <input type="number" class="form-control" value="<?php echo $RW; ?>" placeholder="00" name="rw" required>
-                    </div>
-                    <div class="form-group">
-                      <label>Desa/Kelurahan</label>
-                      <input type="text" class="form-control"  value="<?php echo $kelurahan; ?>" placeholder="Masukkan Desa/Kelurahan" name="kelurahan" required>
-                    </div>
-                    <div class="form-group">
-                      <label>Kecamatan</label>
-                      <input type="text" class="form-control" value="<?php echo $kecamatan; ?>" placeholder="Masukkan Kecamatan" name="kecamatan" required>
-                    </div>
-                    <div class="form-group">
-                      <label>Kota/Kabupaten</label>
-                      <input type="text" class="form-control" value="<?php echo $kota; ?>" placeholder="Masukkan Kota/Kabupaten" name="kota" required>
-                    </div>
-                    <div class="form-group">
-                      <label>Pembayaran</label>
-                      <input type="text" class="form-control"  value="<?php echo $pembayaran; ?>"placeholder="Masukkan Pembayaran" name="pembayaran" required>
-                    </div>
-                  </div><!-- /.box-body -->
 
-                  <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                  </div>
-                </form>
+          <div class="row">
+            <span id="pesan-flash"><?php echo $this->session->flashdata('sukses'); ?></span>
+            <span id="pesan-error-flash"><?php echo $this->session->flashdata('alert'); ?></span>
+            <div class="col-xs-12">
+              <a href="<?php echo base_url("")."Admin/tambah_keluarga"; ?>"><button type="submit" class="btn btn-primary"> + Data Keluarga baru</button></a>
+              <br><br>
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Daftar Pasien</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>Nama</th>
+                        <th>Alamat</th>
+                        <th>Umur</th>
+                        <th>Pekerjaan</th>
+                        <th>Status Kes Primer</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php foreach ($pasien as $p) {
+                        # code...
+                       ?>
+                      <tr>
+                        <td><?php echo $p->nama; ?></td>
+                        <td><?php echo $p->alamat; ?></td>
+                        <td><?php $bday = new DateTime ($p->tanggal_lahir);
+                                  $today = new DateTime();
+                                  $umur = $today->diff($bday);
+                                  echo $umur->y." Th"; ?></td>
+                        <td><?php echo $p->pekerjaan; ?></td>
+                        <td><?php echo $p->status_kes_primer; ?></td>
+                        <td>
+                          <div class="btn-group">
+                            <?php if ($this->session->userdata('tipe')=="perawat") {
+                              echo "<a href=\"".base_url()."Admin/input_status/".$p->nik.\"><button type=\"button\" class=\"btn btn-danger\">input status</button></a>";
+                            } elseif ($this->session->userdata('tipe')=="dokter") {
+                              echo "<a href=\"".base_url()."Admin/periksa/".$p->nik.\"><button type=\"button\" class=\"btn btn-danger\">periksa</button></a>";
+                            } else {
+                              echo "<a href=\"".base_url()."Admin/input_status/".$p->nik.\"><button type=\"button\" class=\"btn btn-danger\">input status</button></a>";
+                              echo "<a href=\"".base_url()."Admin/periksa/".$p->nik.\"><button type=\"button\" class=\"btn btn-danger\">periksa</button></a>";
+                            }?>
+                          </div>
+                        </td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <tr>
+                          <th>Nama</th>
+                          <th>Alamat</th>
+                          <th>Umur</th>
+                          <th>Pekerjaan</th>
+                          <th>Status Kes Primer</th>
+                          <th>Action</th>
+                        </tr>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div><!-- /.box-body -->
               </div><!-- /.box -->
-            </div><!--/.col (left) -->
-            <!-- right column -->
-            <div class="col-md-6">
-            </div><!--/.col (right) -->
-          </div>   <!-- /.row -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
@@ -241,11 +224,9 @@
     <!-- SlimScroll -->
     <script src="<?php echo base_url()."style/admin/" ?>plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <!-- FastClick -->
-    <script src="<?php echo base_url()."style/admin/" ?>plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+    <script src="<?php echo base_url()."style/admin/" ?>plugins/fastclick/fastclick.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo base_url()."style/admin/" ?>dist/js/app.min.js"></script>
-    <!-- select2 js -->
-    <script src="<?php echo base_url()."style/" ?>js/select2.full.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="<?php echo base_url()."style/admin/" ?>dist/js/demo.js"></script>
     <!-- page script -->
@@ -260,7 +241,6 @@
           "info": true,
           "autoWidth": false
         });
-        $(".select2").select2();
       });
     </script>
   </body>

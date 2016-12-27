@@ -97,7 +97,7 @@
             </li>
             <li >
             <li class="active treeview">
-                <a href=<?php echo base_url()."Admin/daftar_keluarga";?>
+                <a href=<?php echo base_url()."Data_keluarga";?>
                   <i class="fa fa-users"></i> <span>Daftar Keluarga</span>
                 </a>
             </li>
@@ -134,7 +134,7 @@
             <span id="pesan-flash"><?php echo $this->session->flashdata('sukses'); ?></span>
             <span id="pesan-error-flash"><?php echo $this->session->flashdata('alert'); ?></span>
             <div class="col-xs-12">
-              <a href="<?php echo base_url("")."Admin/tambah_keluarga"; ?>"><button type="submit" class="btn btn-primary"> + Data Keluarga baru</button></a>
+              <a href="<?php echo base_url("")."Data_keluarga/tambah_keluarga"; ?>"><button type="submit" class="btn btn-primary"> + Data Keluarga baru</button></a>
               <br><br>
               <div class="box">
                 <div class="box-header">
@@ -175,9 +175,8 @@
                               <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
-                              <li><a href="<?php echo base_url()."Admin/anggota_keluarga/".$p->id_kepala_keluarga; ?>">anggota keluarga</a></li>
-                              <li><a href="<?php echo base_url()."Admin/update_pasien/".$p->nik;  ?>">update data diri</a></li>
-                              <li><a href="<?php echo base_url()."Admin/deleteBlog/".$p->nik;  ?>">update risiko</a></li>
+                              <li><a href="<?php echo base_url()."Data_keluarga/anggota_keluarga/".$p->id_kepala_keluarga; ?>">anggota keluarga</a></li>
+                              <li><a href="<?php echo base_url()."Data_keluarga/edit_data/".$p->id_kepala_keluarga;  ?>">edit data keluarga</a></li>
                             </ul>
                           </div>
                         </td>

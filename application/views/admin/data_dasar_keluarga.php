@@ -97,7 +97,7 @@
             </li>
             <li >
             <li class="active treeview">
-                <a href=<?php echo base_url()."Data_keluarga";?>
+                <a href=<?php echo base_url()."Admin/daftar_keluarga";?>
                   <i class="fa fa-users"></i> <span>Daftar Keluarga</span>
                 </a>
             </li>
@@ -119,64 +119,219 @@
         <section class="content-header">
           <h1>
             Data Keluarga
-            <small>Kelola Data dan Anggota Keluarga</small>
+            <small>Kelola Data Keluarga</small>
           </h1>
 
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-            <li class="active"> Data dan Anggota keluarga</li>
+            <li class="active"> Data Keluarga</li>
           </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
-          <div class="row">
-            <span id="pesan-flash"><?php echo $this->session->flashdata('sukses'); ?></span>
-            <span id="pesan-error-flash"><?php echo $this->session->flashdata('alert'); ?></span>
-            <div class="col-lg-6">
-              <div class="box box-primary">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Data Keluarga</h3>
-                  <br><br>
-                  <table id="example" class="table table-bordered table-striped">
-                    <tbody>
-                      <tr>
-                        <th>Alamat</th> <td>  <?php echo $alamat; ?></td>
-                      </tr>
-                      <tr>
-                        <th>RT</th> <td> <?php echo $rt; ?></td>
-                      </tr>
-                      <tr>
-                        <th>RW</th> <td> <?php echo $rw; ?></td>
-                      </tr>
-                      <tr>
-                        <th>Desa/Kelurahan</th> <td> <?php echo $kelurahan; ?></td>
-                      </tr>
-                      <tr>
-                        <th>Kecamatan</th> <td> <?php echo $kecamatan; ?></td>
-                      </tr>
-                      <tr>
-                        <th>Kota/Kabupaten</th> <td> <?php echo $kota; ?></td>
-                      </tr>
-                      <tr>
-                        <th>Status Kes Primer</th> <td> <?php echo $status_kes; ?></td>
-                      </tr>
-                      <tr>
-                        <th>Pembayaran</th> <td> <?php echo $pembayaran; ?></td>
-                      </tr>
-                    </tbody>
-                  </table><br>
-                  <a href="<?php echo base_url("")."Data_keluarga/edit_data/".$idkk; ?>"><button type="submit" class="btn btn-warning"> Edit Data Keluarga</button></a></br></br>
-                </div>
+          <div class="col-lg-6">
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                <h3 class="box-title">Data Keluarga</h3>
+                <br><br>
+                <table id="example" class="table table-bordered table-striped">
+                  <tbody>
+                    <tr>
+                      <th>Alamat</th> <td>  <?php echo $alamat; ?></td>
+                    </tr>
+                    <tr>
+                      <th>RT</th> <td> <?php echo $rt; ?></td>
+                    </tr>
+                    <tr>
+                      <th>RW</th> <td> <?php echo $rw; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Desa/Kelurahan</th> <td> <?php echo $kelurahan; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Kecamatan</th> <td> <?php echo $kecamatan; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Kota/Kabupaten</th> <td> <?php echo $kota; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Status Kes Primer</th> <td> <?php echo $status_kes; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Pembayaran</th> <td> <?php echo $pembayaran; ?></td>
+                    </tr>
+                  </tbody>
+                </table><br>
+                <a href="<?php echo base_url("")."Admin/edit_data_keluarga/".$idkk; ?>"><button type="submit" class="btn btn-warning"> Edit Data Keluarga</button></a></br></br>
               </div>
             </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                <h3 class="box-title">Data Ekonomi</h3>
+                <br><br>
+                <table id="example" class="table table-bordered table-striped">
+                  <tbody>
+                    <tr>
+                      <th>Luas Bangunan / lahan</th> <td>  <?php echo $luas; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Status Kepemilikan Rumah</th> <td> <?php echo $status_kep; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Daya Listrik</th> <td> <?php echo $daya; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Sumber Ekonomi</th> <td> <?php echo $sumber; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Penopang Ekonomi</th> <td> <?php echo $penopang; ?></td>
+                    </tr>
+                  </tbody>
+                </table><br>
+                <a href="<?php echo base_url("")."Admin/tambah_data_ekonomi/".$idkk; ?>"><button type="submit" class="btn btn-primary"> + Data Ekonomi Keluarga</button></a>
+                <a href="<?php echo base_url("")."Admin/edit_data_ekonomi/".$idkk; ?>"><button type="submit" class="btn btn-warning"> Edit Data Ekonomi Keluarga</button></a></br></br>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                <h3 class="box-title">Data Kesehatan Keluarga</h3>
+                <br><br>
+                <table id="example" class="table table-bordered table-striped">
+                  <tbody>
+                    <tr>
+                      <th>Tanggal Pemeriksaan</th> <td>  <?php echo $tanggal; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Keluarga yang mengalami batuk</th> <td> <?php echo $org_batuk; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Keluarga yang mengalami asma</th> <td> <?php echo $org_asma; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Keluarga yang mengalami masalah kes</th> <td> <?php echo $org_masalah_kes; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Masalah kesehatan</th> <td> <?php echo $masalah_kes; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Keluarga yang mengalami penyakit khusus</th> <td> <?php echo $org_penyakit_khusus; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Penyakit khusus</th> <td> <?php echo $penyakit_khusus; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Mulai merokok</th> <td> <?php echo $mulai_merokok; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Berhenti merokok</th> <td> <?php echo $berhenti_merokok; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Jumlah rokok</th> <td> <?php echo $jml_rokok; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Konsumsi jamu per minggu</th> <td> <?php echo $jamu; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Jenis jamu</th> <td> <?php echo $jenis_jamu; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Konsumsi alkohol</th> <td> <?php echo $alkohol; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Konsumsi kopi per minggu</th> <td> <?php echo $kopi; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Jenis Obat-obatan yang dikonsumsi</th> <td> <?php echo $jenis_obat; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Pelihara hewan</th> <td> <?php echo $pelihara_hewan; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Frekuensi olahraga per minggu</th> <td> <?php echo $olahraga; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Jenis olahraga</th> <td> <?php echo $jenis_olahraga; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Olahraga bersama keluarga</th> <td> <?php echo $olahraga_keluarga; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Tidur kasur busa</th> <td> <?php echo $tidur_kasur_busa; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Terbiasa menggunakan sepeda motor</th> <td> <?php echo $sepeda_motor; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Alergi obat</th> <td> <?php echo $alergi_obat; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Kosmetika/obat luar yang digunakan</th> <td> <?php echo $kosmetika_obat_luar; ?></td>
+                    </tr>
+                  </tbody>
+                </table><br>
+                <a href="<?php echo base_url("")."Admin/tambah_data_kesehatan/".$idkk; ?>"><button type="submit" class="btn btn-primary"> + Data Sosial Kesehatan</button></a>
+                <a href="<?php echo base_url("")."Admin/riwayat_data_kesehatan/".$idkk; ?>"><button type="submit" class="btn btn-primary"> Riwayat Data Sosial Kesehatan</button></a></br></br>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                <h3 class="box-title">Data Perilaku Kesehatan</h3>
+                <br><br>
+                <table id="example" class="table table-bordered table-striped">
+                  <tbody>
+                    <tr>
+                      <th>Pelayanan Preventif Balita</th> <td>  <?php echo $pel_prev; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Pemeliharaan Kes Keluarga</th> <td> <?php echo $pemeliharaan; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Pelayanan Pengobatan Diri</th> <td> <?php echo $pel_diri; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Jaminan Kesehatan</th> <td> <?php echo $jamkes; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Sumber Air Minum</th> <td> <?php echo $sumber_minum; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Saluran Pembuangan Air Limbah</th> <td> <?php echo $spal; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Kamar Mandi</th> <td> <?php echo $km; ?></td>
+                    </tr>
+                    <tr>
+                      <th>WC kloset</th> <td> <?php echo $wc; ?></td>
+                    </tr>
+                    <tr>
+                      <th>Tempat cuci tersendiri</th> <td> <?php echo $tc; ?></td>
+                    </tr>
+                  </tbody>
+                </table><br>
+                <a href="<?php echo base_url("")."Admin/tambah_data_Perilaku/".$idkk; ?>"><button type="submit" class="btn btn-primary"> + Data Perilaku Kesehatan</button></a>
+                <a href="<?php echo base_url("")."Admin/edit_data_perilaku/".$idkk; ?>"><button type="submit" class="btn btn-warning"> Edit Data Perilaku Kesehatan</button></a></br></br>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
                   <h3 class="box-title">Anggota Keluarga</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <table id="example2" class="table table-bordered table-striped">
+                  <table id="example1" class="table table-bordered table-striped">
                     <thead>
                       <tr>
                         <th>Nama</th>
@@ -206,9 +361,9 @@
                               <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
-                              <li><a href="<?php echo base_url()."Data_keluarga/edit_anggota_keluarga/".$idkk."/".$f->nik; ?>">Edit</a></li>
-                              <li><a href="<?php echo base_url()."Riwayat_pekerjaan/tabel/".$f->nik;  ?>">Riwayat Pekerjaan</a></li>
-                              <li><a href="<?php echo base_url()."Data_keuarga/hapus_anggota_keluarga/".$f->nik;  ?>">Hapus</a></li>
+                              <li><a href="<?php echo base_url()."Admin/edit_anggota_keluarga/".$idkk."/".$f->nik; ?>">edit</a></li>
+                              <li><a href="<?php echo base_url()."Admin/update_pasien/".$f->nik;  ?>">update data diri</a></li>
+                              <li><a href="<?php echo base_url()."Admin/deleteBlog/".$f->nik;  ?>">update risiko</a></li>
                             </ul>
                           </div>
                         </td>
@@ -232,9 +387,8 @@
             </div><!-- /.col -->
           </div><!-- /.row -->
           <div class="row">
-
           <!-- Left col -->
-          <div class="col-md-6">
+          <section class="col-lg-6">
             <!-- Chat box -->
             <?php if(empty($person)){
               $nik = '';
@@ -256,7 +410,6 @@
                 $umur_kawin = $p->umur_kawin;
               }
             } ?>
-
             <div class="box">
               <div class="box-header">
                 <i class="fa fa-plus"></i>
@@ -265,12 +418,7 @@
               <div class="box-body chat" id="chat-box">
                 <!-- chat item -->
                 <div class="item">
-                  <?php if ($status == 'baru') {
-                    echo "<form action=\"".base_url()."Data_keluarga/insert_anggota_keluarga\" method=\"post\">";
-                  } elseif ($status == 'edit') {
-                    echo "<form action=\"".base_url()."Data_keluarga/update_anggota_keluarga/".$nik."\" method=\"post\">";
-                  }?>
-
+                  <form action="<?php echo base_url(); ?>Admin/insert_anggota_keluarga" method="post">
                     <div class="form-group">
                       <label>NIK</label>
                       <input type="number" class="form-control" value="<?php echo $nik; ?>" placeholder="Masukkan NIK" name="nik" required>
@@ -304,39 +452,15 @@
                       <button type="submit" class="btn btn-primary btn-block btn-flat">Simpan</button>
                       <?php if($status == "baru"){ echo '<button type="reset" class="btn btn-warning btn-block btn-flat">Batal</button>';?>
                       <?php } else { ?>
-                      <a href="<?php echo base_url()."Data_keluarga/anggota_keluarga/".$idkk; ?>" class="btn btn-warning btn-block btn-flat">Kembali</a>
+                      <a href="<?php echo base_url()."admin/anggota_keluarga/".$idkk; ?>" class="btn btn-warning btn-block btn-flat">Kembali</a>
                       <?php } ?>
                     </div><!-- /.col -->
                   </form>
                 </div><!-- /.item -->
+
               </div><!-- /.chat -->
             </div><!-- /.box (chat box) -->
-          </div><!-- /.Left col -->
-          <div class="col-md-6">
-            <div class="box">
-              <div class="box-header">
-                <h3 class="box-title">Kelola Data Keluarga</h3>
-              </div>
-              <div class="box-body">
-                <div class="btn-group">
-                  <input type="button" class="btn btn-primary" onclick="parent.location='<?php echo base_url("")."Data_sosial/tambah_data_ekonomi/".$idkk; ?>'" value=" + Data Ekonomi">
-                  <input type="button" class="btn btn-warning" onclick="parent.location='<?php echo base_url("")."Data_sosial/edit_data_ekonomi/".$idkk; ?>'" value="Edit Data Ekonomi">
-                </div>
-                <br></br>
-                <div class="btn-group">
-                  <input type="button" class="btn btn-primary" onclick="parent.location='<?php echo base_url("")."Data_sosial/tambah_data_perilaku/".$idkk; ?>'" value=" + Data Perilaku Kesehatan">
-                  <input type="button" class="btn btn-warning" onclick="parent.location='<?php echo base_url("")."Data_sosial/edit_data_perilaku/".$idkk; ?>'" value="Edit Data Perilaku Kesehatan">
-                </div>
-                <br></br>
-                <a href="<?php echo base_url("")."Data_sosial/kelola_data_kesehatan/".$idkk; ?>"><button type="submit" class="btn btn-success">kelola Data Sosial Kesehatan</button></a>
-                <br></br>
-                <a href="<?php echo base_url("")."Riwayat_penyakit/riwayat_sakit_keluarga/".$idkk; ?>"><button type="submit" class="btn btn-success ">kelola Riwayat Penyakit Keluarga</button></a>
-                <br></br>
-                <a href="<?php echo base_url("")."Klasifikasi/hitung/".$idkk; ?>"><button type="submit" class="btn btn-success ">hitung Klasifikasi</button></a>
-                <br></br>
-              </div>
-            </div>
-          </div>
+          </section><!-- /.Left col -->
           <!-- right col (We are only adding the ID to make the widgets sortable)-->
           <section class="col-lg-5 connectedSortable">
 

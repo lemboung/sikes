@@ -15,6 +15,46 @@ class Model extends CI_Model {
 		 return $result;
 	 }
 
+	 function update_anggota($table, $data, $nik){
+		 $this->db->set($data);
+		 $this->db->where('nik', $nik);
+		 $result = $this->db->update($table);
+		 return $result;
+	 }
+
+	 function update_kk($table, $data, $idkk){
+		 $this->db->set($data);
+		 $this->db->where('id_kepala_keluarga', $idkk);
+		 $result = $this->db->update($table);
+		 return $result;
+	 }
+
+	 function update_risiko($idkk, $status){
+		 $this->db->where('id_kepala_keluarga', $idkk);
+		 $this->db->set('status_kes_primer', $status);
+		 $result = $this->db->update('data_kepala_keluarga', $data);
+		 return $result;
+	 }
+
+	 function get_kk_nik($idkk)
+	 {
+		 $this->db->select('nik');
+		 $this->db->from('data_kependudukan');
+		 $this->db->where('dkk_id_kepala_keluarga', $idkk);
+		 $this->db->where('kepala_keluarga', 1);
+		 $q = $this->db->get();
+		 $data = $q->result_array();
+		 return $data[0]['nik'];
+	 }
+
+	 function count_member($idkk)
+	 {
+		 $this->db->select('nik');
+		 $this->db->from('data_kependudukan');
+		 $this->db->where('dkk_id_kepala_keluarga', $idkk);
+		 return $this->db->count_all_results();
+	 }
+
 	 function select_all_patient(){
 	 	$this->db->select('*');
 		$this->db->from('pasien');
@@ -46,11 +86,71 @@ class Model extends CI_Model {
  		return $this->db->get();
 	 }
 
+	 function select_helath_data($id)
+	 {
+		$this->db->select('*');
+ 		$this->db->from('data_sosial_kesehatan');
+		$this->db->where('dkk_id', $id);
+ 		return $this->db->get();
+	 }
+
+	 function select_behav_data($id)
+	 {
+		$this->db->select('*');
+ 		$this->db->from('perilaku_kesehatan');
+		$this->db->where('dkk_id_kepala_keluarga', $id);
+ 		return $this->db->get();
+	 }
+
+	 function select_economic_data($id)
+	 {
+		$this->db->select('*');
+ 		$this->db->from('data_ekonomi_keluarga');
+		$this->db->where('dkk_id_kepala_keluarga', $id);
+ 		return $this->db->get();
+	 }
+
 	 function select_family_member($id)
 	 {
 		$this->db->select('*');
  		$this->db->from('data_kependudukan');
 		$this->db->where('dkk_id_kepala_keluarga', $id);
+ 		return $this->db->get();
+	 }
+
+	 function select_riwayat_sakit_keluarga($id)
+	 {
+		$this->db->select('*');
+ 		$this->db->from('data_kependudukan');
+		$this->db->join('riwayat_penyakit', 'nik = dk_nik');
+		$this->db->join('data_kepala_keluarga', 'id_kepala_keluarga = dkk_id_kepala_keluarga');
+		$this->db->where('dkk_id_kepala_keluarga', $id);
+ 		return $this->db->get();
+	 }
+
+	 function count_riwayat_sakit_keluarga($id)
+	 {
+		$this->db->select('*');
+ 		$this->db->from('data_kependudukan');
+		$this->db->join('riwayat_penyakit', 'nik = dk_nik');
+		$this->db->join('data_kepala_keluarga', 'id_kepala_keluarga = dkk_id_kepala_keluarga');
+		$this->db->where('dkk_id_kepala_keluarga', $id);
+ 		return $this->db->count_all_results();
+	 }
+
+	 function select_riwayat_sakit($id)
+	 {
+		$this->db->select('*');
+ 		$this->db->from('riwayat_penyakit');
+		$this->db->where('dk_nik', $id);
+ 		return $this->db->get();
+	 }
+
+	 function select_riwayat_pekerjaan($id)
+	 {
+		$this->db->select('*');
+ 		$this->db->from('riwayat_pekerjaan');
+		$this->db->where('dk_nik', $id);
  		return $this->db->get();
 	 }
 
@@ -62,34 +162,79 @@ class Model extends CI_Model {
  		return $this->db->get();
 	 }
 
-	 function select_all_risk(){
-	 	$this->db->select('*');
-		$this->db->from('daftar_risiko');
-		return $this->db->get();
+	 function count_pk($idkk)
+	 {
+		 $pk = 0;
+		 $this->db->select('*');
+		 $this->db->from('data_sosial_kesehatan');
+		 $this->db->where('dkk_id', $idkk);
+		 $this->db->like('penyakit_khusus', 'diabetes', 'both');
+		 $pk += $this->db->count_all_results();
+
+		 $this->db->select('*');
+		 $this->db->from('data_sosial_kesehatan');
+		 $this->db->where('dkk_id', $idkk);
+		 $this->db->like('penyakit_khusus', 'stroke', 'both');
+		 $pk += $this->db->count_all_results();
+
+		 $this->db->select('*');
+		 $this->db->from('data_sosial_kesehatan');
+		 $this->db->where('dkk_id', $idkk);
+		 $this->db->like('penyakit_khusus', 'jantung', 'both');
+		 $pk += $this->db->count_all_results();
+
+		 $this->db->select('*');
+		 $this->db->from('data_sosial_kesehatan');
+		 $this->db->where('dkk_id', $idkk);
+		 $this->db->like('penyakit_khusus', 'hipertensi', 'both');
+		 $pk += $this->db->count_all_results();
+
+		 $this->db->select('*');
+		 $this->db->from('data_sosial_kesehatan');
+		 $this->db->where('dkk_id', $idkk);
+		 $this->db->like('penyakit_khusus', 'rematik', 'both');
+		 $pk += $this->db->count_all_results();
+
+		 return $pk;
 	 }
 
-	 function select_all_rm_patient($id){
-	 	$this->db->select('*');
-		$this->db->from('rekam_medis');
-		$this->db->where('pasien_nik', $id);
-		return $this->db->get();
-	 }
+	 function count_rk($idkk, $nik)
+	 {
+	 	$rk = 0;
+		$this->db->select('*');
+		$this->db->from('data_sosial_kesehatan');
+		$this->db->where('dkk_id', $idkk);
+		$this->db->like('jenis_rokok', 'r', 'both');
+		$rk += $this->db->count_all_results();
 
-	 function select_patient_by_id($id){
-	 	$this->db->select('*');
-		$this->db->from('pasien');
-		$this->db->where('nik', $id);
-		return $this->db->get();
-	 }
+		$this->db->select('*');
+		$this->db->from('data_sosial_kesehatan');
+		$this->db->where('dkk_id', $idkk);
+		$this->db->where('jamu >', 0);
+		$rk += $this->db->count_all_results();
 
-	 function update_blog($id_blog, $data){
-		$this->db->where('id_blog', $id_blog);
-		$this->db->update('blog', $data);
-	}
 
-	 function delete_blog($id_blog){
-	 	$this->db->where('id_blog', $id_blog);
-		$this->db->delete('blog');
-	 }
+		$this->db->select('*');
+		$this->db->from('data_sosial_kesehatan');
+		$this->db->where('dkk_id', $idkk);
+		$this->db->where('tidur_kasur_busa', 1);
+		$rk += $this->db->count_all_results();
+
+		$this->db->select('*');
+		$this->db->from('data_sosial_kesehatan');
+		$this->db->where('dkk_id', $idkk);
+		$this->db->where('sepeda_motor', 1);
+		$rk += $this->db->count_all_results();
+
+		$this->db->select('*');
+		$this->db->from('riwayat_pekerjaan');
+		$this->db->where('dk_nik', $nik);
+		$this->db->like('bobot_aktivitas', 'berat', 'both');
+		$kp = $this->db->count_all_results();
+		if ($kp>0) {
+			$rk += 1;
+		}
+		return $rk;
+	 	}
 }
 ?>

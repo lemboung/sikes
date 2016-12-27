@@ -39,7 +39,7 @@
         <!-- Logo -->
         <a href="<?php echo base_url("")."admin"; ?>" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><center><b>S</b></center></span>
+          <span class="logo-mini"><center><b>G</b></center></span>
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><b>SIKES</b> Admin</span>
         </a>
@@ -101,7 +101,7 @@
             </li>
             <li >
             <li class="active treeview">
-                <a href=<?php echo base_url()."Data_keluarga/daftar_keluarga";?>
+                <a href=<?php echo base_url()."Admin/daftar_keluarga";?>
                   <i class="fa fa-users"></i> <span>Daftar Keluarga</span>
                 </a>
             </li>
@@ -121,87 +121,41 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Pendaftaran Keluarga Baru
-            <small>Formulir pendaftaran keluarga baru</small>
+            Pendataan Ekonomi Keluarga
+            <small>Formulir pendataan Ekonomi keluarga</small>
           </h1>
 
           <ol class="breadcrumb">
             <li><a href="<?php echo base_url()."Admin";?>"><i class="fa fa-home"></i> Home</a></li>
-            <li><a href="<?php echo base_url()."Data_keluarga/daftar_keluarga";?>"><i class="fa fa-users"></i> Daftar Keluarga</a></li>
-            <li class="active">Pendaftaran Keluarga Baru</li>
+            <li><a href="<?php echo base_url()."Admin/daftar_keluarga";?>"><i class="fa fa-users"></i> Daftar Keluarga</a></li>
+            <li class="active">Pendataan Ekonomi Keluarga</li>
           </ol>
         </section>
-
         <!-- Main content -->
         <section class="content">
           <div class="row">
             <!-- left column -->
             <div class="col-md-push-3 col-md-6">
               <!-- general form elements -->
-              <?php if(empty($family_data)){
-                $idkk = '';
-                $alamat = '';
-                $RT = '';
-                $RW = '';
-                $kelurahan = '';
-                $kecamatan = '';
-                $kota = '';
-                $pembayaran = '';
-              }
-              else {
-                foreach ($family_data as $fd) {
-                  $idkk = $fd->id_kepala_keluarga;
-                  $alamat = $fd->alamat;
-                  $RT = $fd->RT;
-                  $RW = $fd->RW;
-                  $kelurahan = $fd->kelurahan;
-                  $kecamatan = $fd->kecamatan;
-                  $kota = $fd->kota;
-                  $pembayaran = $fd->pembayaran;
-                }
-              } ?>
+
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Keluarga Baru</h3>
+                  <h3 class="box-title">Form Data Ekonomi keluarga<?php echo $idkk; ?></h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <?php
-                if ($status == 'baru') {
-                  echo form_open_multipart('Data_keluarga/insert_keluarga');
-                } elseif ($status == 'edit') {
-                  echo form_open_multipart('Data_keluarga/update_keluarga');
-                }
-                ?>
-                <input type="hidden" class="form-control"  value="<?php echo $idkk; ?>" name="idkk">
+                <?php echo form_open_multipart('Admin/insert_data_keluhan');?>
+                  <input type="hidden" name="idkk" value="<?php echo $idkk; ?>" />
                   <div class="box-body">
                     <div class="form-group">
-                      <label>alamat</label>
-                      <input type="text" class="form-control" value="<?php echo $alamat; ?>" placeholder="Masukkan alamat" name="alamat" required>
+                      <table>
+                        <th>No</th>
+                        <th>Skor</th>
+                      </table>
+                      <?php for ($i=0; $i < 15 ; $i++) {
+                        echo "<td><label>".$i."</label></td> <td><input type="text" class="form-control" placeholder="Masukkan luas bangunan" style="width:50%;" name="luas_bangunan_lahan" required></td>"
+                      } ?>
                     </div>
-                    <div class="form-group">
-                      <label>RT</label>
-                      <input type="number" class="form-control"  value="<?php echo $RT; ?>" placeholder="00" name="rt" required>
-                    </div>
-                    <div class="form-group">
-                      <label>RW</label>
-                      <input type="number" class="form-control" value="<?php echo $RW; ?>" placeholder="00" name="rw" required>
-                    </div>
-                    <div class="form-group">
-                      <label>Desa/Kelurahan</label>
-                      <input type="text" class="form-control"  value="<?php echo $kelurahan; ?>" placeholder="Masukkan Desa/Kelurahan" name="kelurahan" required>
-                    </div>
-                    <div class="form-group">
-                      <label>Kecamatan</label>
-                      <input type="text" class="form-control" value="<?php echo $kecamatan; ?>" placeholder="Masukkan Kecamatan" name="kecamatan" required>
-                    </div>
-                    <div class="form-group">
-                      <label>Kota/Kabupaten</label>
-                      <input type="text" class="form-control" value="<?php echo $kota; ?>" placeholder="Masukkan Kota/Kabupaten" name="kota" required>
-                    </div>
-                    <div class="form-group">
-                      <label>Pembayaran</label>
-                      <input type="text" class="form-control"  value="<?php echo $pembayaran; ?>"placeholder="Masukkan Pembayaran" name="pembayaran" required>
-                    </div>
+
                   </div><!-- /.box-body -->
 
                   <div class="box-footer">
@@ -261,7 +215,10 @@
           "autoWidth": false
         });
         $(".select2").select2();
+        var selectedValues = $("#sourceValues").val().split(',');
+        $(".select2").select2('val',selectedValues);
       });
+
     </script>
   </body>
 </html>

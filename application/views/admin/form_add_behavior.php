@@ -101,12 +101,12 @@
             </li>
             <li >
             <li class="active treeview">
-                <a href=<?php echo base_url()."Admin/daftar_keluarga";?>
+                <a href=<?php echo base_url()."Data_keluarga/daftar_keluarga";?>
                   <i class="fa fa-users"></i> <span>Daftar Keluarga</span>
                 </a>
             </li>
             <li class=" treeview">
-                <a href=<?php echo base_url()."Admin/daftar_risiko"; ?>
+                <a href=<?php echo base_url()."/daftar_risiko"; ?>
                   <i class="fa fa-book"></i> <span>Daftar Risiko</span>
                 </a>
             </li>
@@ -127,7 +127,7 @@
 
           <ol class="breadcrumb">
             <li><a href="<?php echo base_url()."Admin";?>"><i class="fa fa-home"></i> Home</a></li>
-            <li><a href="<?php echo base_url()."Admin/daftar_keluarga";?>"><i class="fa fa-users"></i> Daftar Keluarga</a></li>
+            <li><a href="<?php echo base_url()."Data_keluarga/daftar_keluarga";?>"><i class="fa fa-users"></i> Daftar Keluarga</a></li>
             <li class="active">Pendataan Perilaku Kesehatan Keluarga</li>
           </ol>
         </section>
@@ -144,7 +144,7 @@
                   <h3 class="box-title">Form Data Perilaku Kesehatan Keluarga</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <?php echo form_open_multipart('Admin/insert_data_perilaku');?>
+                <?php echo form_open_multipart('Data_sosial/insert_data_perilaku');?>
                   <input type="hidden" name="idkk" value="<?php echo $idkk; ?>" />
                   <div class="box-body">
                     <div class="form-group">
@@ -236,17 +236,10 @@
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
-        <!-- <div class="pull-right hidden-xs">
-          <b>Version</b> 2.3.0
-        </div> -->
-        <!-- <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved. -->
         <b>Information System Research Group Filkom 2016</b>
       </footer>
 
       <!-- Control Sidebar -->
-
-      <!-- Add the sidebar's background. This div must be placed
-           immediately after the control sidebar -->
       <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->
 

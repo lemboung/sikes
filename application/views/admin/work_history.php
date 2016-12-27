@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" href="<?php echo base_url("/style/image/icon.png") ?>" />
-    <title>Sikes Admin Panel</title>
+    <title>SIKES Admin Panel</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -22,8 +22,6 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?php echo base_url()."style/admin/"?>dist/css/skins/_all-skins.min.css">
-
-
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -93,15 +91,15 @@
           </div>
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
-            <li class="header">MAIN NAVIGATION</li>
+            <li class="header">MENU NAVIGASI</li>
             <li class="treeview">
-              <a href=<?php echo base_url()."Admin";?>
+              <a href=<?php echo base_url()."Admin/dashboard";?>
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
               </a>
             </li>
             <li >
             <li class="active treeview">
-                <a href=<?php echo base_url()."Data_keluarga/daftar_keluarga";?>
+                <a href=<?php echo base_url()."Admin/daftar_keluarga";?>
                   <i class="fa fa-users"></i> <span>Daftar Keluarga</span>
                 </a>
             </li>
@@ -121,99 +119,157 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Pendaftaran Keluarga Baru
-            <small>Formulir pendaftaran keluarga baru</small>
+            Riwayat Penyakit Keluarga
+            <small>Kelola Data Riwayat Penyakit Keluarga</small>
           </h1>
 
           <ol class="breadcrumb">
-            <li><a href="<?php echo base_url()."Admin";?>"><i class="fa fa-home"></i> Home</a></li>
-            <li><a href="<?php echo base_url()."Data_keluarga/daftar_keluarga";?>"><i class="fa fa-users"></i> Daftar Keluarga</a></li>
-            <li class="active">Pendaftaran Keluarga Baru</li>
+            <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="#"><i class="fa fa-home"></i> Data Keluarga</a></li>
+            <li class="active"> Riwayat Pekerjaan</li>
           </ol>
         </section>
-
+<?php $nik = $this->uri->segment(3); ?>
         <!-- Main content -->
         <section class="content">
           <div class="row">
-            <!-- left column -->
-            <div class="col-md-push-3 col-md-6">
-              <!-- general form elements -->
-              <?php if(empty($family_data)){
-                $idkk = '';
-                $alamat = '';
-                $RT = '';
-                $RW = '';
-                $kelurahan = '';
-                $kecamatan = '';
-                $kota = '';
-                $pembayaran = '';
-              }
-              else {
-                foreach ($family_data as $fd) {
-                  $idkk = $fd->id_kepala_keluarga;
-                  $alamat = $fd->alamat;
-                  $RT = $fd->RT;
-                  $RW = $fd->RW;
-                  $kelurahan = $fd->kelurahan;
-                  $kecamatan = $fd->kecamatan;
-                  $kota = $fd->kota;
-                  $pembayaran = $fd->pembayaran;
-                }
-              } ?>
-              <div class="box box-primary">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Keluarga Baru</h3>
+            <div class="col-xs-12">
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Riwayat Pekerjaan</h3>
                 </div><!-- /.box-header -->
-                <!-- form start -->
-                <?php
-                if ($status == 'baru') {
-                  echo form_open_multipart('Data_keluarga/insert_keluarga');
-                } elseif ($status == 'edit') {
-                  echo form_open_multipart('Data_keluarga/update_keluarga');
-                }
-                ?>
-                <input type="hidden" class="form-control"  value="<?php echo $idkk; ?>" name="idkk">
-                  <div class="box-body">
-                    <div class="form-group">
-                      <label>alamat</label>
-                      <input type="text" class="form-control" value="<?php echo $alamat; ?>" placeholder="Masukkan alamat" name="alamat" required>
-                    </div>
-                    <div class="form-group">
-                      <label>RT</label>
-                      <input type="number" class="form-control"  value="<?php echo $RT; ?>" placeholder="00" name="rt" required>
-                    </div>
-                    <div class="form-group">
-                      <label>RW</label>
-                      <input type="number" class="form-control" value="<?php echo $RW; ?>" placeholder="00" name="rw" required>
-                    </div>
-                    <div class="form-group">
-                      <label>Desa/Kelurahan</label>
-                      <input type="text" class="form-control"  value="<?php echo $kelurahan; ?>" placeholder="Masukkan Desa/Kelurahan" name="kelurahan" required>
-                    </div>
-                    <div class="form-group">
-                      <label>Kecamatan</label>
-                      <input type="text" class="form-control" value="<?php echo $kecamatan; ?>" placeholder="Masukkan Kecamatan" name="kecamatan" required>
-                    </div>
-                    <div class="form-group">
-                      <label>Kota/Kabupaten</label>
-                      <input type="text" class="form-control" value="<?php echo $kota; ?>" placeholder="Masukkan Kota/Kabupaten" name="kota" required>
-                    </div>
-                    <div class="form-group">
-                      <label>Pembayaran</label>
-                      <input type="text" class="form-control"  value="<?php echo $pembayaran; ?>"placeholder="Masukkan Pembayaran" name="pembayaran" required>
-                    </div>
-                  </div><!-- /.box-body -->
-
-                  <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                  </div>
-                </form>
+                <div class="box-body">
+                  <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>No</th>
+                        <th>Divisi</th>
+                        <th>Sub Divisi</th>
+                        <th>Lama Kerja</th>
+                        <th>Jenis Aktivitas</th>
+                        <th>Bobot Aktivitas</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php foreach ($work_history as $wh) {
+                        $i = 1;
+                       ?>
+                      <tr>
+                        <td><?php echo $i; ?></td>
+                        <td><?php echo $wh->divisi; ?></td>
+                        <td><?php echo $wh->sub_divisi; ?></td>
+                        <td><?php echo $wh->lama_kerja; ?></td>
+                        <td><?php echo $wh->jenis_aktivitas; ?></td>
+                        <td><?php echo $wh->bobot_aktivitas; ?></td>
+                        <td>
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-danger">Action</button>
+                            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                              <span class="caret"></span>
+                              <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                              <li><a href="<?php echo base_url()."Admin/edit_riwayat_pekerjaan/".$wh->dk_nik; ?>">edit</a></li>
+                              <li><a href="<?php echo base_url()."Admin/hapus_riwayat_pekerjaan/".$wh->dk_nik;  ?>">hapus</a></li>
+                            </ul>
+                          </div>
+                        </td>
+                        </tr>
+                        <?php $i++; } ?>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>No</th>
+                        <th>Divisi</th>
+                        <th>Sub Divisi</th>
+                        <th>Lama Kerja</th>
+                        <th>Jenis Aktivitas</th>
+                        <th>Bobot Aktivitas</th>
+                        <th>Action</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div><!-- /.box-body -->
               </div><!-- /.box -->
-            </div><!--/.col (left) -->
-            <!-- right column -->
-            <div class="col-md-6">
-            </div><!--/.col (right) -->
-          </div>   <!-- /.row -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+          <div class="row">
+          <!-- Left col -->
+          <section class="col-lg-6">
+            <!-- Chat box -->
+            <?php if(empty($edit_history)){
+              $divisi = '';
+              $sub_divisi = '';
+              $lama_kerja = '';
+              $jenis_aktivitas = '';
+              $bobot_aktivitas = '';
+            }
+            else {
+              foreach ($edit_history as $eh) {
+                $divisi = $eh->divisi;
+                $sub_divisi = $eh->sub_divisi;
+                $lama_kerja = $eh->lama_kerjat;
+                $jenis_aktivitas = $eh->jenis_aktivitas;
+                $bobot_aktivitas = $eh->bobot_aktivitas;
+              }
+            } ?>
+            <div class="box">
+              <div class="box-header">
+                <i class="fa fa-plus"></i>
+                <h3 class="box-title">Form Tambah/Edit Riwayat sakit</h3>
+              </div>
+              <div class="box-body chat" id="chat-box">
+                <!-- chat item -->
+                <div class="item">
+                  <?php if ($status == "baru") {
+                    echo "<form action=\"".base_url()."Riwayat_pekerjaan/insert\" method=\"post\">";
+                  } elseif ($status == "edit") {
+                    echo "<form action=\"".base_url()."Riwayat_pekerjaan/update\" method=\"post\">";
+                  }?>
+                    <input type="hidden" name="dk_nik" value="<?php echo $nik; ?>" />
+                    <div class="form-group">
+                      <label>Divisi</label></br>
+                      <input type="text" class="form-control" value="<?php echo $divisi; ?>" placeholder="divisi" name="divisi" required>
+                    </div>
+                    <div class="form-group">
+                      <label>Sub Divisi</label>
+                      <input type="text" class="form-control" value="<?php echo $sub_divisi; ?>" placeholder="sub divisi" name="sub_divisi">
+                    </div>
+                    <div class="form-group">
+                      <label>Lama Kerja</label>
+                      <input type="number" class="form-control" value="<?php echo $lama_kerja; ?>" placeholder="bulan" name="lama_kerja" required>
+                    </div>
+                    <div class="form-group">
+                      <label>Jenis Aktivitas</label>
+                      <input type="text" class="form-control" value="<?php echo $jenis_aktivitas; ?>" placeholder="jenis aktivitas" name="jenis_aktivitas">
+                    </div>
+                    <div class="form-group">
+                      <label>Bobot Aktivitas</label>
+                      <select class="select2" style="width:100%;" data-placeholder="Pilih Bobot" value="<?php echo $bobot_aktivitas; ?>"  name="bobot_aktivitas" required>
+                        <option value="Ringan">Ringan</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Berat">Berat</option>
+                      </select>
+                    </div>
+                    <div class>
+                      <button type="submit" class="btn btn-primary btn-block btn-flat">Simpan</button>
+                      <?php if($status == "baru"){ echo '<button type="reset" class="btn btn-warning btn-block btn-flat">Batal</button>';?>
+                      <?php } else { ?>
+                      <a href="<?php echo base_url()."admin/riwayat_pekerjaan/".$nik; ?>" class="btn btn-warning btn-block btn-flat">Kembali</a>
+                      <?php } ?>
+                    </div><!-- /.col -->
+                  </form>
+                </div><!-- /.item -->
+
+              </div><!-- /.chat -->
+            </div><!-- /.box (chat box) -->
+          </section><!-- /.Left col -->
+          <!-- right col (We are only adding the ID to make the widgets sortable)-->
+          <section class="col-lg-5 connectedSortable">
+
+          </section><!-- right col -->
+        </div><!-- /.row (main row) -->
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
@@ -241,7 +297,7 @@
     <!-- SlimScroll -->
     <script src="<?php echo base_url()."style/admin/" ?>plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <!-- FastClick -->
-    <script src="<?php echo base_url()."style/admin/" ?>plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+    <script src="<?php echo base_url()."style/admin/" ?>plugins/fastclick/fastclick.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo base_url()."style/admin/" ?>dist/js/app.min.js"></script>
     <!-- select2 js -->

@@ -63,10 +63,25 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	public function daftar_pasien(){
+		if ($this->session->userdata('logged_in')) {
+			$id = $this->session->userdata('id_user');
+			$data['pasien'] = $this->Model->select_all_patient()->result();
+			$data['user'] = $this->ModelUser->get_user($id)->result();
+			$this->load->view('Admin/tabel_pasien',$data);
+		}
+		else {
+			redirect(site_url('login'));
+		}
+	}
+
 	public function anggota_keluarga($idkk){
 		if ($this->session->userdata('logged_in')) {
 			$id = $this->session->userdata('id_user');
-			$data['fada'] = $this->Model->select_family_data($idkk)->result();
+			$data['family_data'] = $this->Model->select_family_data($idkk)->result();
+			$data['health_data'] = $this->Model->select_helath_data($idkk)->result();
+			$data['behav_data'] = $this->Model->select_behav_data($idkk)->result();
+			$data['economic_data'] = $this->Model->select_economic_data($idkk)->result();
 			$data['family'] = $this->Model->select_family_member($idkk)->result();
 			$data['user'] = $this->ModelUser->get_user($id)->result();
 			$data['status'] = 'baru';
@@ -80,12 +95,56 @@ class Admin extends CI_Controller {
 	public function edit_anggota_keluarga($idkk, $nik){
 		if ($this->session->userdata('logged_in')) {
 			$id = $this->session->userdata('id_user');
-			$data['fada'] = $this->Model->select_family_data($idkk)->result();
+			$data['family_data'] = $this->Model->select_family_data($idkk)->result();
+			$data['health_data'] = $this->Model->select_helath_data($idkk)->result();
+			$data['behav_data'] = $this->Model->select_behav_data($idkk)->result();
+			$data['economic_data'] = $this->Model->select_economic_data($idkk)->result();
 			$data['family'] = $this->Model->select_family_member($idkk)->result();
 			$data['person'] = $this->Model->select_person($nik)->result();
 			$data['user'] = $this->ModelUser->get_user($id)->result();
 			$data['status'] = 'edit';
 			$this->load->view('Admin/family_member',$data);
+		}
+		else {
+			redirect(site_url('login'));
+		}
+	}
+
+	public function riwayat_sakit_keluarga($idkk){
+		if ($this->session->userdata('logged_in')) {
+			$id = $this->session->userdata('id_user');
+			$data['family'] = $this->Model->select_family_member($idkk)->result();
+			$data['family_sick'] = $this->Model->select_riwayat_sakit_keluarga($idkk)->result();
+			$data['user'] = $this->ModelUser->get_user($id)->result();
+			$data['status'] = 'baru';
+			$this->load->view('Admin/hospital_sheet',$data);
+		}
+		else {
+			redirect(site_url('login'));
+		}
+	}
+
+	public function edit_riwayat_sakit_keluarga($idkk, $id){
+		if ($this->session->userdata('logged_in')) {
+			$id = $this->session->userdata('id_user');
+			$data['family'] = $this->Model->select_family_member($idkk)->result();
+			$data['family_sick'] = $this->Model->select_riwayat_sakit_keluarga($idkk)->result();
+			$data['sick'] = $this->Model->select_riwayat_sakit($idkk)->result();
+			$data['user'] = $this->ModelUser->get_user($id)->result();
+			$data['status'] = 'edit';
+			$this->load->view('Admin/hospital_sheet',$data);
+		}
+		else {
+			redirect(site_url('login'));
+		}
+	}
+
+	public function riwayat_pekerjaan($nik){
+		if ($this->session->userdata('logged_in')) {
+			$id = $this->session->userdata('id_user');
+			$data['work_history'] = $this->Model->select_riwayat_pekerjaan($nik)->result();
+			$data['status'] = 'baru';
+			$this->load->view('Admin/work_history',$data);
 		}
 		else {
 			redirect(site_url('login'));
@@ -302,7 +361,8 @@ class Admin extends CI_Controller {
 
 	public function insert_data_kesehatan(){
 		$idkk = $this->input->post('idkk');
-		$data['dkk_id_kepala_keluarga'] = $idkk;
+		$data['dkk_id'] = $idkk;
+		$data['tanggal'] = date("Y-m-d");
 		$data['org_batuk'] = $this->input->post('org_batuk');
 		$data['org_asma'] = $this->input->post('org_asma');
 		$data['org_masalah_kes'] = $this->input->post('org_masalah');
@@ -318,9 +378,10 @@ class Admin extends CI_Controller {
 		$data['kopi'] = $this->input->post('kopi');
 		$data['jenis_obat'] = $this->input->post('jenis_obat');
 		$data['minum_dingin'] = $this->input->post('minum_dingin');
-		$data['peilhara_hewan'] = $this->input->post('peilhara_hewan');
+		$data['pelihara_hewan'] = $this->input->post('peilhara_hewan');
 		$data['olahraga'] = $this->input->post('olahraga');
 		$data['jenis_olahraga'] = $this->input->post('jenis_olahraga');
+		$data['olahraga_keluarga'] = $this->input->post('olahraga_keluarga');
 		$data['tidur_kasur_busa'] = $this->input->post('tidur_kasur_busa');
 		$data['sepeda_motor'] = $this->input->post('sepeda_motor');
 		$data['alergi_obat'] = $this->input->post('alergi_obat');
@@ -332,6 +393,22 @@ class Admin extends CI_Controller {
 		}else{
 			$this->session->set_flashdata("alert", "<div class='alert alert-danger'><strong>Simpan data GAGAL di lakukan</strong></div>");
 			header('location:'.base_url().'Admin/anggota_keluarga/'.$idkk);
+		}
+	}
+
+	public function insert_data_penyakit(){
+		$idkk = $this->input->post('idkk');
+		$data['dk_nik'] = $this->input->post('dk_nik');
+		$data['tanggal'] = $this->input->post('tanggal');
+		$data['jenis_sakit'] = $this->input->post('jenis_sakit');
+
+		$result = $this->Model->insert('riwayat_penyakit', $data);
+		if($result != null){
+			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");
+			header('location:'.base_url().'Admin/riwayat_sakit_keluarga/'.$idkk);
+		}else{
+			$this->session->set_flashdata("alert", "<div class='alert alert-danger'><strong>Simpan data GAGAL di lakukan</strong></div>");
+			header('location:'.base_url().'Admin/riwayat_sakit_keluarga/'.$idkk);
 		}
 	}
 }
