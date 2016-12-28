@@ -147,7 +147,7 @@
                 foreach ($economic_data as $ed) {
                   $luas = $ed->luas_bangunan_lahan;
                   $status_kep = $ed->status_kepemilikan_rumah;
-                  $daya[] = $ed->daya_listrik;
+                  $daya = $ed->daya_listrik;
                   $sumber = $ed->sumber_ekonomi;
                   $penopang = $ed->penopang_ekonomi;
                 }

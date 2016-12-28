@@ -57,7 +57,8 @@ class Model extends CI_Model {
 
 	 function select_all_patient(){
 	 	$this->db->select('*');
-		$this->db->from('pasien');
+		$this->db->from('data_kependudukan');
+		$this->db->join('data_kepala_keluarga', 'id_kepala_keluarga = dkk_id_kepala_keluarga');
 		return $this->db->get();
 	 }
 
@@ -69,6 +70,7 @@ class Model extends CI_Model {
 		$this->db->where('data_kependudukan.kepala_keluarga = 1');
 		return $this->db->get();
 	 }
+
 	 function kepala_keluarga($idkk){
 		// 	$this->db->select('k.id_kepala_keluarga, p.nama, k.alamat, p.tanggal_lahir, p.pekerjaan, k.status_kes_primer');
 		$this->db->select('*');
@@ -86,11 +88,19 @@ class Model extends CI_Model {
  		return $this->db->get();
 	 }
 
-	 function select_helath_data($id)
+	 function select_health_data($id)
 	 {
 		$this->db->select('*');
  		$this->db->from('data_sosial_kesehatan');
 		$this->db->where('dkk_id', $id);
+ 		return $this->db->get();
+	 }
+
+	 function select_status_data($id)
+	 {
+		$this->db->select('*');
+ 		$this->db->from('status_pasien');
+		$this->db->where('dk_nik', $id);
  		return $this->db->get();
 	 }
 
@@ -160,6 +170,27 @@ class Model extends CI_Model {
  		$this->db->from('data_kependudukan');
 		$this->db->where('nik', $nik);
  		return $this->db->get();
+	 }
+
+	 function getIdKK($nik)
+	 {
+		$this->db->select('dkk_id_kepala_keluarga');
+ 		$this->db->from('data_kependudukan');
+		$this->db->where('nik', $nik);
+		$q = $this->db->get();
+		$data = $q->result_array();
+		return $data[0]['dkk_id_kepala_keluarga'];
+	 }
+
+	 function getNamaKK($idkk)
+	 {
+		$this->db->select('nama');
+ 		$this->db->from('data_kependudukan');
+		$this->db->where('dkk_id_kepala_keluarga', $idkk);
+		$this->db->where('kepala_keluarga', 1);
+		$q = $this->db->get();
+		$data = $q->result_array();
+		return $data[0]['nama'];
 	 }
 
 	 function count_pk($idkk)

@@ -56,7 +56,7 @@ class Data_keluarga extends CI_Controller {
 		if ($this->session->userdata('logged_in')) {
 			$id = $this->session->userdata('id_user');
 			$data['family_data'] = $this->Model->select_family_data($idkk)->result();
-			$data['health_data'] = $this->Model->select_helath_data($idkk)->result();
+			$data['health_data'] = $this->Model->select_health_data($idkk)->result();
 			$data['behav_data'] = $this->Model->select_behav_data($idkk)->result();
 			$data['economic_data'] = $this->Model->select_economic_data($idkk)->result();
 			$data['family'] = $this->Model->select_family_member($idkk)->result();
@@ -71,7 +71,7 @@ class Data_keluarga extends CI_Controller {
 	public function edit_anggota_keluarga($idkk, $nik){
 		if ($this->session->userdata('logged_in')) {
 			$data['family_data'] = $this->Model->select_family_data($idkk)->result();
-			$data['health_data'] = $this->Model->select_helath_data($idkk)->result();
+			$data['health_data'] = $this->Model->select_health_data($idkk)->result();
 			$data['behav_data'] = $this->Model->select_behav_data($idkk)->result();
 			$data['economic_data'] = $this->Model->select_economic_data($idkk)->result();
 			$data['family'] = $this->Model->select_family_member($idkk)->result();
