@@ -1,116 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" href="<?php echo base_url("/style/image/icon.png") ?>" />
-    <title>SIKES Admin Panel</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="<?php echo base_url()."style/admin/" ?>bootstrap/css/bootstrap.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="<?php echo base_url()."style/"?>css/font-awesome.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="<?php echo base_url()."style/"?>css/ionicons.min.css">
+    <?php include("head.php"); ?>
     <!-- DataTables -->
     <link rel="stylesheet" href="<?php echo base_url()."style/admin/" ?>plugins/datatables/dataTables.bootstrap.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="<?php echo base_url()."style/admin/" ?>dist/css/AdminLTE.min.css">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="<?php echo base_url()."style/admin/" ?>dist/css/skins/_all-skins.min.css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
 
-      <header class="main-header">
-        <!-- Logo -->
-        <a href="<?php echo base_url("")."admin"; ?>" class="logo">
-          <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><center><b>S</b></center></span>
-          <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>SIKES</b> Admin</span>
-        </a>
-        <!-- Header Navbar: style can be found in header.less -->
-        <nav class="navbar navbar-static-top" role="navigation">
-          <!-- Sidebar toggle button-->
-          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-            <span class="sr-only">Toggle navigation</span>
-          </a>
-          <div class="navbar-custom-menu">
-            <ul class="nav navbar-nav">
-              <!-- User Account: style can be found in dropdown.less -->
-              <li class="dropdown user user-menu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="<?php echo base_url()."style/admin/" ?>dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                  <span class="hidden-xs">Sikes Admin</span>
-                </a>
-                <ul class="dropdown-menu">
-                  <!-- User image -->
-                  <li class="user-header">
-                    <img src="<?php echo base_url()."style/admin/" ?>dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                    <p>
-                      SIKES
-                      <small>Admin</small>
-                    </p>
-                  </li>
-                  <!-- Menu Footer-->
-                  <li class="user-footer">
-                    <div class="pull-right">
-                      <a href="<?php echo base_url()."Login/logout"; ?>" class="btn btn-default btn-flat">Sign out</a>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </header>
-      <!-- Left side column. contains the logo and sidebar -->
-      <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-          <!-- Sidebar user panel -->
-          <div class="user-panel">
-            <div class="pull-left image">
-              <img src="<?php echo base_url()."style/admin/" ?>dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-            </div>
-            <div class="pull-left info">
-              <p>user fktp</p>
-            </div>
-          </div>
-          <!-- sidebar menu: : style can be found in sidebar.less -->
-          <ul class="sidebar-menu">
-            <li class="header">MENU NAVIGASI</li>
-            <li class="treeview">
-              <a href=<?php echo base_url()."Admin/dashboard";?>
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-              </a>
-            </li>
-            <li >
-            <li class="active treeview">
-                <a href=<?php echo base_url()."Data_keluarga";?>
-                  <i class="fa fa-users"></i> <span>Daftar Keluarga</span>
-                </a>
-            </li>
-            <!-- <li class=" treeview">
-                <a href=<?php echo base_url()."Admin/daftar_risiko"; ?>
-                  <i class="fa fa-book"></i> <span>Daftar Risiko</span>
-                </a>
-            </li> -->
-            </li>
-          </ul>
-        </section>
-        <!-- /.sidebar -->
-      </aside>
+          <?php include("header.php"); ?>
 
       <?php include('getDataFamily.php'); ?>
       <!-- Content Wrapper. Contains page content -->
@@ -284,16 +182,33 @@
                       <input type="date" class="form-control" value="<?php echo $tgl_lahir; ?>"  name="tgl" required>
                     </div>
                     <div class="form-group">
+                      <label>Jenis Kelamin</label>
+                      <select class="form-control" value="<?php echo $jenis_kelamin; ?>" name="jenis_kelamin">
+                        <option value="1">Laki-laki</option>
+                        <option value="2">Perempuan</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
                       <label>Pekerjaan</label>
                       <input type="text" class="form-control" value="<?php echo $pekerjaan; ?>" placeholder="Masukkan Pekerjaan" name="pekerjaan" required>
                     </div>
                     <div class="form-group">
                       <label>Hubungan Keluarga</label>
-                      <input type="text" class="form-control" value="<?php echo $hub_kel; ?>" placeholder="Hubungan Keluarga" name="hubungan_keluarga" required>
+                      <select class="form-control" value="<?php echo $hub_kel; ?>" placeholder="Hubungan Keluarga" name="hubungan_keluarga">
+                        <option value="Kepala keluarga">Kepala keluarga</option>
+                        <option value="Istri">Istri</option>
+                        <option value="Anak">Anak</option>
+                        <option value="Anak Angkat">Anak Angkat</option>
+                        <option value="Saudara">Saudara</option>
+                        <option value="lain">lain</option>
+                      </select>
                     </div>
                     <div class="form-group">
                       <label>Status Kawin</label>
-                      <input type="text" class="form-control" value="<?php echo $status_kawin; ?>" placeholder="Status Kawin" name="status_kawin" required>
+                      <select class="form-control" value="<?php echo $status_kawin; ?>" placeholder="Status Kawin" name="status_kawin">
+                        <option value="0">Belum Menikah</option>
+                        <option value="1">Menikah</option>
+                      </select>
                     </div>
                     <div class="form-group">
                       <label>Umur Kawin Pertama</label>

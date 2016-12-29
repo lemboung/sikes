@@ -53,6 +53,19 @@ class Data_sosial extends CI_Controller {
 	public function tambah_data_perilaku($idkk){
 		if ($this->session->userdata('logged_in')) {
 			$data['idkk'] = $idkk;
+			$data['status'] = "baru";
+			$this->load->view('Admin/form_add_behavior',$data);
+		}
+		else {
+			redirect(site_url('login'));
+		}
+	}
+
+	public function edit_data_perilaku($idkk){
+		if ($this->session->userdata('logged_in')) {
+			$data['idkk'] = $idkk;
+			$data['behavior_data'] = $this->Model->select_behav_data($idkk)->result();
+			$data['status'] = "baru";
 			$this->load->view('Admin/form_add_behavior',$data);
 		}
 		else {
@@ -64,7 +77,7 @@ class Data_sosial extends CI_Controller {
 		if ($this->session->userdata('logged_in')) {
 			$data['idkk'] = $idkk;
 			$data['family'] = $this->Model->select_family_member($idkk)->result();
-			$data['health'] = $this->Model->select_helath_data($idkk)->result();
+			$data['health'] = $this->Model->select_health_data($idkk)->result();
 			$this->load->view('Admin/form_add_health',$data);
 		}
 		else {
@@ -97,10 +110,10 @@ class Data_sosial extends CI_Controller {
 		$result = $this->Model->insert('data_ekonomi_keluarga', $data);
 		if($result != null){
 			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");
-			header('location:'.base_url().'Admin/anggota_keluarga/'.$idkk);
+			header('location:'.base_url().'Data_keluarga/anggota_keluarga/'.$idkk);
 		}else{
 			$this->session->set_flashdata("alert", "<div class='alert alert-danger'><strong>Simpan data GAGAL di lakukan</strong></div>");
-			header('location:'.base_url().'Admin/anggota_keluarga/'.$idkk);
+			header('location:'.base_url().'Data_keluarga/anggota_keluarga/'.$idkk);
 		}
 	}
 
@@ -120,10 +133,10 @@ class Data_sosial extends CI_Controller {
 		$result = $this->Model->insert('perilaku_kesehatan', $data);
 		if($result != null){
 			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");
-			header('location:'.base_url().'Admin/anggota_keluarga/'.$idkk);
+			header('location:'.base_url().'Data_keluarga/anggota_keluarga/'.$idkk);
 		}else{
 			$this->session->set_flashdata("alert", "<div class='alert alert-danger'><strong>Simpan data GAGAL di lakukan</strong></div>");
-			header('location:'.base_url().'Admin/anggota_keluarga/'.$idkk);
+			header('location:'.base_url().'Data_keluarga/anggota_keluarga/'.$idkk);
 		}
 	}
 
@@ -161,10 +174,10 @@ class Data_sosial extends CI_Controller {
 		$result = $this->Model->insert('data_sosial_kesehatan', $data);
 		if($result != null){
 			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");
-			header('location:'.base_url().'Admin/anggota_keluarga/'.$idkk);
+			header('location:'.base_url().'Data_keluarga/anggota_keluarga/'.$idkk);
 		}else{
 			$this->session->set_flashdata("alert", "<div class='alert alert-danger'><strong>Simpan data GAGAL di lakukan</strong></div>");
-			header('location:'.base_url().'Admin/anggota_keluarga/'.$idkk);
+			header('location:'.base_url().'Data_keluarga/anggota_keluarga/'.$idkk);
 		}
 	}
 }

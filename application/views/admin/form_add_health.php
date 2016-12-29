@@ -347,8 +347,15 @@
                       <input type="text" class="form-control" style="width:40%" placeholder="jumlah" name="jenis_olahraga">
                     </div>
                     <div class="form-group">
+                      <label>Olahraga Keluarga</label></br>
+                      <select class="form-control" style="width:40%;" name="olahraga_keluarga">
+                        <option value='0'>tidak</option>;
+                        <option value='1'>Ya</option>;
+                      </select>
+                    </div>
+                    <div class="form-group">
                       <label>Tidur kasur busa</label></br>
-                      <select class="form-control" style="width:40%;" data-placeholder="jawaban"  name="tidur_kasur_busa">
+                      <select class="form-control" style="width:40%;"  name="tidur_kasur_busa">
                         <option value='0'>tidak</option>;
                         <option value='1'>Ya</option>;
                       </select>

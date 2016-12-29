@@ -149,13 +149,15 @@ class Data_keluarga extends CI_Controller {
 		$data['nama'] = $this->input->post('nama');
 		$data['tanggal_lahir'] = $this->input->post('tgl');
 		$data['pekerjaan'] = $this->input->post('pekerjaan');
-		$data['hubungan_keluarga'] = $this->input->post('hubungan_keluarga');
+		$hub_kel = $this->input->post('hubungan_keluarga');
+		$data['hubungan_keluarga'] = $hub_kel;
+		if ($hub_kel == "Kepala keluarga") {
+			$data['kepala_keluarga'] = 1;
+		} else {
+			$data['kepala_keluarga'] = 0;
+		}
 		$data['status_kawin'] = $this->input->post('status_kawin');
 		$data['umur_kawin'] = $this->input->post('umur_kawin');
-		$kk = $this->Model->kepala_keluarga($idkk);
-		if ($kk == null) {
-			$data['kepala_keluarga'] = 1;
-		}
 		$result = $this->Model->insert('data_kependudukan', $data);
 		if($result != null){
 			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");

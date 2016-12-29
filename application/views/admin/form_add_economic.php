@@ -154,7 +154,7 @@
               }?>
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Form Data Ekonomi keluarga<?php echo $idkk; ?></h3>
+                  <h3 class="box-title">Form Data Ekonomi keluarga</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 <?php
@@ -172,40 +172,119 @@
                     </div>
                     <div class="form-group">
                       <label>Status Kepemilikan</label></br>
-                      <select class="select2" style="width:50%;" value="<?php echo $status_kep; ?>" data-placeholder="pilih kepemilikan"  name="status_kepemilikan">
-                          <option value='Milik Sendiri'>Milik Sendiri</option>";
-                          <option value='Milik Orang tua'>Milik Orang tua</option>";
-                          <option value='Sewa'>Sewa</option>";
-                          <option value='Milik Kerabat'>Milik Kerabat</option>";
-                          <option value='lain'>lain</option>";
+                      <select class="form-control" style="width:50%;" data-placeholder="pilih kepemilikan"  name="status_kepemilikan">
+                          <?php if ($status_kep == 'Milik Sendiri') {
+                            echo "<option value='Milik Sendiri' selected=''>Milik Sendiri</option>";
+                          } else {
+                            echo "<option value='Milik Sendiri'>Milik Sendiri</option>";
+                          }
+                          if ($status_kep == 'Milik Orang tua') {
+                            echo "<option value='Milik Orang tua' selected=''>Milik Orang tua</option>";
+                          } else {
+                            echo "<option value='Milik Orang tua'>Milik Orang tua</option>";
+                          }
+                          if ($status_kep == 'Sewa') {
+                            echo "<option value='Sewa' selected=''>Sewa</option>";
+                          } else {
+                            echo "<option value='Sewa'>Sewa</option>";
+                          }
+                          if ($status_kep == 'Milik Kerabat') {
+                            echo "<option value='Milik Kerabat' selected=''>Milik Kerabat</option>";
+                          } else {
+                            echo "<option value='Milik Kerabat'>Milik Kerabat</option>";
+                          }
+                          if ($status_kep == 'lain') {
+                            echo "<option value='lain' selected=''>lain</option>";
+                          } else {
+                            echo "<option value='lain'>lain</option>";
+                          }
+                          ?>
                       </select>
                     </div>
                     <div class="form-group">
                       <label>Daya Listrik</label></br>
-                      <select class="select2" value="<?php echo $daya; ?>" style="width:50%;" data-placeholder="pilih daya listrik"  name="daya_listrik">
-                          <option value='450 VA'>450 VA</option>";
-                          <option value='900 VA'>900 VA</option>";
-                          <option value='1300 VA'>1300 VA</option>";
-                          <option value='2200 VA'>2200 VA</option>";
-                          <option value='> 2200 VA'>> 2200 VA</option>";
+                      <select class="select2" style="width:50%;" data-placeholder="pilih daya listrik"  name="daya_listrik">
+                        <?php if ($daya == '450 VA') {
+                          echo "<option value='450 VA' selected=''>450 VA</option>";
+                        } else {
+                          echo "<option value='450 VA'>450 VA</option>";
+                        }
+                        if ($daya == '900 VA') {
+                          echo "<option value='900 VA' selected=''>900 VA</option>";
+                        } else {
+                          echo "<option value='900 VA'>900 VA</option>";
+                        }
+                        if ($daya == '1300 VA') {
+                          echo "<option value='1300 VA' selected=''>1300 VA</option>";
+                        } else {
+                          echo "<option value='1300 VA'>1300 VA</option>";
+                        }
+                        if ($daya == '2200 VA') {
+                          echo "<option value='2200 VA' selected=''>2200 VA</option>";
+                        } else {
+                          echo "<option value='2200 VA'>2200 VA</option>";
+                        }
+                        if ($daya == '>2200 VA') {
+                          echo "<option value='>2200 VA' selected=''>>2200 VA</option>";
+                        } else {
+                          echo "<option value='>2200 VA'>>2200 VA</option>";
+                        }
+                        ?>
                       </select>
                     </div>
                     <div class="form-group">
                       <label>Sumber Ekonomi</label></br>
-                      <select class="select2" value="<?php echo $sumber; ?>" id="sourceValues" style="width:50%;" multiple="multiple"  data-placeholder="pilih sumber ekonomi"  name="sumber_ekonomi[]">
-                          <option id="sourceValues" value='Pegawai'>Pegawai</option>";
-                          <option id="sourceValues" value='Wirausaha'>Wirausaha</option>";
+                      <select class="select2" style="width:50%;" multiple="multiple"  data-placeholder="pilih sumber ekonomi"  name="sumber_ekonomi[]">
+                          <?php if ($sumber == "pegawai") {
+                            echo "<option value='Pegawai' selected=''>Pegawai</option>";
+                          }else {
+                            echo "<option value='Pegawai'>Pegawai</option>";
+                          }
+                          if ($sumber == "Wirausaha") {
+                            echo "<option value='Wirausaha' selected=''>Wirausaha</option>";
+                          }else {
+                            echo "<option value='Wirausaha'>Wirausaha</option>";
+                          }
+                          if ($sumber == "Bantuan keluarga") {
+                            echo "<option value='Bantuan keluarga' selected=''>Bantuan keluarga</option>";
+                          }else {
+                            echo "<option value='Bantuan keluarga'>Bantuan keluarga</option>";
+                          }
+                          if ($sumber == "Lain") {
+                            echo "<option value='Lain' selected=''>Lain<option>";
+                          }else {
+                            echo "<option value='Lain'>Lain</option>";
+                          }
+                          ?>
+                          <option value='Wirausaha'>Wirausaha</option>";
                           <option value='Bantuan Keluarga'>Bantuan Keluarga</option>";
                           <option value='Lain'>Lain</option>";
                       </select>
                     </div>
                     <div class="form-group">
                       <label>Penopang Ekonomi</label></br>
-                      <select class="select2" value="<?php echo $penopang; ?>" style="width:50%;" multiple="multiple"  data-placeholder="pilih penopang ekonomi"  name="penopang_ekonomi[]">
-                          <option value='Suami'>Suami</option>";
-                          <option value='Istri'>Istri</option>";
-                          <option value='Anak'>Anak</option>";
-                          <option value='lain'>lain</option>";
+                      <select class="select2" style="width:50%;" multiple="multiple"  data-placeholder="pilih penopang ekonomi"  name="penopang_ekonomi[]">
+                        <?php if (strpos($penopang, 'Suami') !== false) {
+                          echo "<option value='Suami' selected=''>Suami</option>";
+                        } else {
+                          echo "<option value='Suami'>Suami</option>";
+                        }
+                        if (strpos($penopang, 'Istri') !== false) {
+                          echo "<option value='Istri' selected=''>Istri</option>";
+                        } else {
+                          echo "<option value='Istri'>Istri</option>";
+                        }
+                        if (strpos($penopang, 'Anak') !== false) {
+                          echo "<option value='Anak' selected=''>Anak</option>";
+                        } else {
+                          echo "<option value='Anak'>Anak</option>";
+                        }
+                        if (strpos($penopang == 'Lain') !== false) {
+                          echo "<option value='Lain' selected=''>Lain</option>";
+                        } else {
+                          echo "<option value='Lain'>Lain</option>";
+                        }
+                        ?>
                       </select>
                     </div>
                   </div><!-- /.box-body -->

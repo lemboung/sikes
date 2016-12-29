@@ -52,12 +52,12 @@ class Login extends CI_Controller {
 		'tipe' => $account->tipe
 		);
 		$this->session->set_userdata($array_items);
-		redirect(site_url('Admin'));
+		redirect(site_url('Home'));
 		}
 	}
 
 	public function logout(){
 		$this->session->sess_destroy();
-		redirect(site_url('Admin'));
+		redirect(site_url('login'));
 	}
 }
