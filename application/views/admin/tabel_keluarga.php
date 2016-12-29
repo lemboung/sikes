@@ -5,7 +5,7 @@
     <!-- DataTables -->
     <link rel="stylesheet" href="<?php echo base_url()."style/admin/" ?>plugins/datatables/dataTables.bootstrap.css">
   </head>
-  <body class="hold-transition skin-blue sidebar-mini">
+  <body class="hold-transition skin-green sidebar-mini">
         <div class="wrapper">
 
       <?php include("header.php"); ?>

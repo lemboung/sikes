@@ -27,7 +27,7 @@ class Riwayat_pekerjaan extends CI_Controller {
 
 	}
 
-	public function tabel($nik){
+	public function tabel($idkk, $nik){
 		if ($this->session->userdata('logged_in')) {
 			$data['work_history'] = $this->Model->select_riwayat_pekerjaan($nik)->result();
 			$data['status'] = 'baru';

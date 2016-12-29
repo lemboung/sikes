@@ -14,7 +14,7 @@
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-user"></i>
-            <span class="hidden-xs">Sikes Admin</span>
+            <span class="hidden-xs"><?php echo $this->session->userdata('username'); ?></span>
           </a>
           <ul class="dropdown-menu">
             <li class="user-header">

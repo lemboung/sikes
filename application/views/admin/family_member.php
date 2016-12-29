@@ -5,7 +5,7 @@
     <!-- DataTables -->
     <link rel="stylesheet" href="<?php echo base_url()."style/admin/" ?>plugins/datatables/dataTables.bootstrap.css">
   </head>
-  <body class="hold-transition skin-blue sidebar-mini">
+  <body class="hold-transition skin-green sidebar-mini">
         <div class="wrapper">
 
           <?php include("header.php"); ?>
@@ -106,7 +106,7 @@
                               <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
-                              <li><a href="<?php echo base_url()."Riwayat_pekerjaan/tabel/".$f->nik;  ?>">Riwayat Pekerjaan</a></li>
+                              <li><a href="<?php echo base_url()."Riwayat_pekerjaan/tabel/".$idkk."/".$f->nik;  ?>">Riwayat Pekerjaan</a></li>
                             </ul>
                           </div>
                         </td>

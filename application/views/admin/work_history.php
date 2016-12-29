@@ -1,118 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" href="<?php echo base_url("/style/image/icon.png") ?>" />
-    <title>SIKES Admin Panel</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="<?php echo base_url()."style/admin/" ?>bootstrap/css/bootstrap.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="<?php echo base_url()."style/"?>css/font-awesome.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="<?php echo base_url()."style/"?>css/ionicons.min.css">
-    <!-- DataTables -->
-    <link rel="stylesheet" href="<?php echo base_url()."style/admin/"?>plugins/datatables/dataTables.bootstrap.css">
     <!-- select2 plugins -->
     <link rel="stylesheet" href="<?php echo base_url()."style/"?>css/select2.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="<?php echo base_url()."style/admin/"?>dist/css/AdminLTE.min.css">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="<?php echo base_url()."style/admin/"?>dist/css/skins/_all-skins.min.css">
+    <?php include("head.php"); ?>
+    <!-- DataTables -->
+    <link rel="stylesheet" href="<?php echo base_url()."style/admin/"?>plugins/datatables/dataTables.bootstrap.css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
-  <body class="hold-transition skin-blue sidebar-mini">
+  <body class="hold-transition skin-green sidebar-mini">
         <div class="wrapper">
 
-      <header class="main-header">
-        <!-- Logo -->
-        <a href="<?php echo base_url("")."admin"; ?>" class="logo">
-          <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><center><b>S</b></center></span>
-          <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>SIKES</b> Admin</span>
-        </a>
-        <!-- Header Navbar: style can be found in header.less -->
-        <nav class="navbar navbar-static-top" role="navigation">
-          <!-- Sidebar toggle button-->
-          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-            <span class="sr-only">Toggle navigation</span>
-          </a>
-          <div class="navbar-custom-menu">
-            <ul class="nav navbar-nav">
-              <!-- User Account: style can be found in dropdown.less -->
-              <li class="dropdown user user-menu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="<?php echo base_url()."style/admin/" ?>dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                  <span class="hidden-xs">Sikes Admin</span>
-                </a>
-                <ul class="dropdown-menu">
-                  <!-- User image -->
-                  <li class="user-header">
-                    <img src="<?php echo base_url()."style/admin/" ?>dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                    <p>
-                      SIKES
-                      <small>Admin</small>
-                    </p>
-                  </li>
-                  <!-- Menu Footer-->
-                  <li class="user-footer">
-                    <div class="pull-right">
-                      <a href="<?php echo base_url()."Login/logout"; ?>" class="btn btn-default btn-flat">Sign out</a>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </header>
+      <?php include("header.php"); ?>
       <!-- Left side column. contains the logo and sidebar -->
-      <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-          <!-- Sidebar user panel -->
-          <div class="user-panel">
-            <div class="pull-left image">
-              <img src="<?php echo base_url()."style/admin/" ?>dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-            </div>
-            <div class="pull-left info">
-              <p>user fktp</p>
-            </div>
-          </div>
-          <!-- sidebar menu: : style can be found in sidebar.less -->
-          <ul class="sidebar-menu">
-            <li class="header">MENU NAVIGASI</li>
-            <li class="treeview">
-              <a href=<?php echo base_url()."Admin/dashboard";?>
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-              </a>
-            </li>
-            <li >
-            <li class="active treeview">
-                <a href=<?php echo base_url()."Admin/daftar_keluarga";?>
-                  <i class="fa fa-users"></i> <span>Daftar Keluarga</span>
-                </a>
-            </li>
-            <li class=" treeview">
-                <a href=<?php echo base_url()."Admin/daftar_risiko"; ?>
-                  <i class="fa fa-book"></i> <span>Daftar Risiko</span>
-                </a>
-            </li>
-            </li>
-          </ul>
-        </section>
-        <!-- /.sidebar -->
-      </aside>
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -122,14 +22,16 @@
             Riwayat Penyakit Keluarga
             <small>Kelola Data Riwayat Penyakit Keluarga</small>
           </h1>
-
+          <?php $nik = $this->uri->segment(4);
+            $idkk = $this->uri->segment(3);
+            ?>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-            <li><a href="#"><i class="fa fa-home"></i> Data Keluarga</a></li>
+            <li><a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="<?php echo base_url("Data_keluarga"); ?>"><i class="fa fa-home"></i> Daftar Keluarga</a></li>
+            <li><a href="<?php echo base_url("Data_keluarga/anggota_keluarga/").$idkk;?>"><i class="fa fa-users"></i> Anggota Keluarga</a></li>
             <li class="active"> Riwayat Pekerjaan</li>
           </ol>
         </section>
-<?php $nik = $this->uri->segment(3); ?>
         <!-- Main content -->
         <section class="content">
           <div class="row">

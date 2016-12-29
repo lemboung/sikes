@@ -3,7 +3,7 @@
   <head>
     <?php include("head.php"); ?>
   </head>
-  <body class="hold-transition skin-blue sidebar-mini">
+  <body class="hold-transition skin-green sidebar-mini">
         <div class="wrapper">
 
       <?php include("header.php"); ?>
@@ -24,11 +24,11 @@
           <?php $idkk = $this->uri->segment(3); ?>
           <ol class="breadcrumb">
             <li><a href="<?php echo base_url()."Admin";?>"><i class="fa fa-home"></i> Home</a></li>
-            <li><a href="<?php echo base_url()."Data_keluarga/daftar_keluarga";?>"><i class="fa fa-users"></i> Daftar Keluarga</a></li>
             <?php if ($status == 'baru') {
               echo "<li class=\"active\">Pendaftaran Keluarga Baru</li>";
             } else {
               echo "<li><a href=\"".base_url("Data_keluarga/anggota_keluarga/").$idkk."\"><i class=\"fa fa-users\"></i> Anggota Keluarga</a></li>";
+              echo "<li class=\"active\">Edit Keluarga</li>";
             }?>
           </ol>
         </section>
