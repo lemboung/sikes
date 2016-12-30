@@ -75,11 +75,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'ap-cdbr-azure-southeast-b.cloudapp.net',
-	'username' => 'b0b63e5e05b2df',
-	'password' => 'ecfea0d4',
+	'hostname' => 'tcp:sikes.database.windows.net,1433',
+	'username' => 'lemboung',
+	'password' => 'Admin123',
 	'database' => 'sikes',
-	'dbdriver' => 'mysqli',
+	'dbdriver' => 'sqlsrv',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
