@@ -46,14 +46,15 @@ class Riwayat_pekerjaan extends CI_Controller {
 		$data['lama_kerja'] = $this->input->post('lama_kerja');
 		$data['jenis_aktivitas'] = $this->input->post('jenis_aktivitas');
 		$data['bobot_aktivitas'] = $this->input->post('bobot_aktivitas');
+		$idkk = $this->input->post('idkk');
 
 		$result = $this->Model->insert('riwayat_pekerjaan', $data);
 		if($result != null){
 			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");
-			header('location:'.base_url().'Riwayat_pekerjaan/tabel/'.$nik);
+			header('location:'.base_url().'Riwayat_pekerjaan/tabel/'.$idkk.'/'.$nik);
 		}else{
 			$this->session->set_flashdata("alert", "<div class='alert alert-danger'><strong>Simpan data GAGAL di lakukan</strong></div>");
-			header('location:'.base_url().'Riwayat_pekerjaan/tabel/'.$nik);
+			header('location:'.base_url().'Riwayat_pekerjaan/tabel/'.$idkk.'/'.$nik);
 		}
 	}
 }

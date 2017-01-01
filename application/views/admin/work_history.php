@@ -41,7 +41,7 @@
                   <h3 class="box-title">Riwayat Pekerjaan</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <table id="example1" class="table table-bordered table-striped">
+                  <table id="example2" class="table table-bordered table-striped">
                     <thead>
                       <tr>
                         <th>No</th>
@@ -129,7 +129,8 @@
                   } elseif ($status == "edit") {
                     echo "<form action=\"".base_url()."Riwayat_pekerjaan/update\" method=\"post\">";
                   }?>
-                    <input type="hidden" name="dk_nik" value="<?php echo $nik; ?>" />
+                  <input type="hidden" name="dk_nik" value="<?php echo $nik; ?>" />
+                    <input type="hidden" name="idkk" value="<?php echo $idkk; ?>" />
                     <div class="form-group">
                       <label>Divisi</label></br>
                       <input type="text" class="form-control" value="<?php echo $divisi; ?>" placeholder="divisi" name="divisi" required>
@@ -158,7 +159,7 @@
                       <button type="submit" class="btn btn-primary btn-block btn-flat">Simpan</button>
                       <?php if($status == "baru"){ echo '<button type="reset" class="btn btn-warning btn-block btn-flat">Batal</button>';?>
                       <?php } else { ?>
-                      <a href="<?php echo base_url()."admin/riwayat_pekerjaan/".$nik; ?>" class="btn btn-warning btn-block btn-flat">Kembali</a>
+                      <a href="<?php echo base_url("admin/riwayat_pekerjaan/").$idkk."/".$nik; ?>" class="btn btn-warning btn-block btn-flat">Kembali</a>
                       <?php } ?>
                     </div><!-- /.col -->
                   </form>
@@ -212,11 +213,12 @@
         $("#example1").DataTable();
         $('#example2').DataTable({
           "paging": true,
-          "lengthChange": false,
+          "lengthChange": true,
           "searching": false,
           "ordering": true,
           "info": true,
-          "autoWidth": false
+          "autoWidth": false,
+          "scrollX":true
         });
         $(".select2").select2();
       });

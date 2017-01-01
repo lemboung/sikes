@@ -233,15 +233,18 @@
                 <h3 class="box-title">Kelola Data Keluarga</h3>
               </div>
               <div class="box-body">
-                <div class="btn-group">
-                  <input type="button" class="btn btn-primary" onclick="parent.location='<?php echo base_url("")."Data_sosial/tambah_data_ekonomi/".$idkk; ?>'" value=" + Data Ekonomi">
-                  <input type="button" class="btn btn-warning" onclick="parent.location='<?php echo base_url("")."Data_sosial/edit_data_ekonomi/".$idkk; ?>'" value="Edit Data Ekonomi">
-                </div>
+                <?php if (empty($economic_data)) {
+                  echo "<input type='button' class='btn btn-primary' onclick='parent.location='".base_url("Data_sosial/tambah_data_ekonomi/").$idkk."' value=' + Data Ekonomi'>";
+
+                } else {
+                  echo "<input type='button' class=\"btn btn-warning\" onclick=\"parent.location=\"".base_url("Data_sosial/edit_data_ekonomi/").$idkk."\" value=\"Edit Data Ekonomi\">";
+                }?>
                 <br></br>
-                <div class="btn-group">
-                  <input type="button" class="btn btn-primary" onclick="parent.location='<?php echo base_url("")."Data_sosial/tambah_data_perilaku/".$idkk; ?>'" value=" + Data Perilaku Kesehatan">
-                  <input type="button" class="btn btn-warning" onclick="parent.location='<?php echo base_url("")."Data_sosial/edit_data_perilaku/".$idkk; ?>'" value="Edit Data Perilaku Kesehatan">
-                </div>
+                <?php if (empty($behav_data)) {
+                  echo "<input type=\"button\" class=\"btn btn-primary\" onclick=\"parent.location=\"".base_url("Data_sosial/tambah_data_perilaku/").$idkk."\" value=\" + Data Perilaku Kesehatan\">";
+                } else {
+                  echo "<input type=\"button\" class=\"btn btn-warning\" onclick=\"parent.location=\"".base_url("Data_sosial/edit_data_perilaku/").$idkk."\" value=\"Edit Data Perilaku Kesehatan\">";
+                }?>
                 <br></br>
                 <a href="<?php echo base_url("")."Data_sosial/kelola_data_kesehatan/".$idkk; ?>"><button type="submit" class="btn btn-primary">kelola Data Sosial Kesehatan</button></a>
                 <br></br>
@@ -299,7 +302,8 @@
           "searching": false,
           "ordering": true,
           "info": true,
-          "autoWidth": false
+          "autoWidth": false,
+          "scrollX": true
         });
       });
     </script>

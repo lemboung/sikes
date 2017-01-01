@@ -39,7 +39,7 @@
                   <h3 class="box-title">Riwayat penyakit Keluarga</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <table id="example1" class="table table-bordered table-striped">
+                  <table id="example2" class="table table-bordered table-striped">
                     <thead>
                       <tr>
                         <th>No</th>
@@ -195,10 +195,11 @@
         $('#example2').DataTable({
           "paging": true,
           "lengthChange": false,
-          "searching": false,
+          "searching": true,
           "ordering": true,
           "info": true,
-          "autoWidth": false
+          "autoWidth": false,
+          "scrollX":true
         });
         $(".select2").select2();
       });
