@@ -113,8 +113,8 @@ class Data_keluarga extends CI_Controller {
 		$data['kecamatan'] = $this->input->post('kecamatan');
 		$data['kota'] = $this->input->post('kota');
 		$data['pembayaran'] = $this->input->post('pembayaran');
-		$result = $this->Model->insertkk('data_kepala_keluarga', $data);
-		if($result != null){
+		$error = $this->Model->insertkk('data_kepala_keluarga', $data);
+		if($error != null){
 			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");
 			header('location:'.base_url().'Data_keluarga/anggota_keluarga/'.$result);
 		}else{
@@ -148,18 +148,19 @@ class Data_keluarga extends CI_Controller {
 		$data['nik'] = $this->input->post('nik');
 		$data['nama'] = $this->input->post('nama');
 		$data['tanggal_lahir'] = $this->input->post('tgl');
+		$data['jenis_kelamin'] = $this->input->post('jenis_kelamin');
 		$data['pekerjaan'] = $this->input->post('pekerjaan');
 		$hub_kel = $this->input->post('hubungan_keluarga');
 		$data['hubungan_keluarga'] = $hub_kel;
+		$data['status_kawin'] = $this->input->post('status_kawin');
+		$data['umur_kawin'] = $this->input->post('umur_kawin');
 		if ($hub_kel == "Kepala keluarga") {
 			$data['kepala_keluarga'] = 1;
 		} else {
 			$data['kepala_keluarga'] = 0;
 		}
-		$data['status_kawin'] = $this->input->post('status_kawin');
-		$data['umur_kawin'] = $this->input->post('umur_kawin');
-		$result = $this->Model->insert('data_kependudukan', $data);
-		if($result != null){
+		$error = $this->Model->insert('data_kependudukan', $data);
+		if($error == null){
 			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");
 			header('location:'.base_url().'Data_keluarga/anggota_keluarga/'.$idkk);
 		}else{
@@ -174,13 +175,16 @@ class Data_keluarga extends CI_Controller {
 		$data['nik'] = $this->input->post('nik');
 		$data['nama'] = $this->input->post('nama');
 		$data['tanggal_lahir'] = $this->input->post('tgl');
+		$data['jenis_kelamin'] = $this->input->post('jenis_kelamin');
 		$data['pekerjaan'] = $this->input->post('pekerjaan');
-		$data['hubungan_keluarga'] = $this->input->post('hubungan_keluarga');
+		$hub_kel = $this->input->post('hubungan_keluarga');
+		$data['hubungan_keluarga'] = $hub_kel;
 		$data['status_kawin'] = $this->input->post('status_kawin');
 		$data['umur_kawin'] = $this->input->post('umur_kawin');
-		$kk = $this->Model->kepala_keluarga($idkk);
-		if ($kk == null) {
+		if ($hub_kel == "Kepala keluarga") {
 			$data['kepala_keluarga'] = 1;
+		} else {
+			$data['kepala_keluarga'] = 0;
 		}
 		$result = $this->Model->update_anggota('data_kependudukan', $data, $nik);
 		if($result != null){
@@ -191,4 +195,17 @@ class Data_keluarga extends CI_Controller {
 			header('location:'.base_url().'Data_keluarga/anggota_keluarga/'.$idkk);
 		}
 	}
+
+	public function hapus_anggota_keluarga($idkk, $nik){
+		$where = "nik";
+		$result = $this->Model->delete('data_kependudukan', $where, $nik);
+		if($result != null){
+			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");
+			header('location:'.base_url().'Data_keluarga/anggota_keluarga/'.$idkk);
+		}else{
+			$this->session->set_flashdata("alert", "<div class='alert alert-danger'><strong>Simpan data GAGAL di lakukan</strong></div>");
+			header('location:'.base_url().'Data_keluarga/anggota_keluarga/'.$idkk);
+		}
+	}
+
 }

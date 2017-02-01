@@ -80,8 +80,10 @@
                       <tr>
                         <th>Nama</th>
                         <th>Umur</th>
+                        <th>Jenis Kelamin</th>
                         <th>Pekerjaan</th>
                         <th>Hubungan Keluarga</th>
+                        <th>Domisili</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -95,12 +97,18 @@
                                   $today = new DateTime();
                                   $umur = $today->diff($bday);
                                   echo $umur->y." Th"; ?></td>
+                        <td><?php if($f->jenis_kelamin == 1){
+                          echo "Laki-laki";
+                        } elseif ($f->jenis_kelamin == 2) {
+                          echo "perempuan";
+                        }?></td>
                         <td><?php echo $f->pekerjaan; ?></td>
                         <td><?php echo $f->hubungan_keluarga; ?></td>
+                        <td><?php echo $f->ket_domisili ?></td>
                         <td>
                           <div class="btn-group">
-                            <a class="btn btn-warning btn-sm" href="<?php echo base_url()."Data_keluarga/edit_anggota_keluarga/".$idkk."/".$f->nik; ?>"><i class="fa fa-pencil"></i></a>
-                            <a onclick="return confirm('Hapus data??');" class="btn btn-danger btn-sm" href="<?php echo base_url()."Data_keluarga/edit_anggota_keluarga/".$idkk."/".$f->nik; ?>"><i class="fa fa-trash"></i></a>
+                            <a class="btn btn-warning btn-sm"  href="<?php echo base_url()."Data_keluarga/edit_anggota_keluarga/".$idkk."/".$f->nik; ?>"><i class="fa fa-pencil"></i></a>
+                            <a onclick="return confirm('Hapus data??');" class="btn btn-danger btn-sm" href="<?php echo base_url()."Data_keluarga/hapus_anggota_keluarga/".$idkk."/".$f->nik; ?>"><i class="fa fa-trash"></i></a>
                             <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown">
                               <span class="caret"></span>
                               <span class="sr-only">Toggle Dropdown</span>
@@ -118,8 +126,10 @@
                         <tr>
                           <th>Nama</th>
                           <th>Umur</th>
+                          <th>Jenis Kelamin</th>
                           <th>Pekerjaan</th>
                           <th>Hubungan Keluarga</th>
+                          <th>Domisili</th>
                           <th>Action</th>
                         </tr>
                       </tr>
@@ -183,9 +193,18 @@
                     </div>
                     <div class="form-group">
                       <label>Jenis Kelamin</label>
-                      <select class="form-control" value="<?php echo $jenis_kelamin; ?>" name="jenis_kelamin">
-                        <option value="1">Laki-laki</option>
-                        <option value="2">Perempuan</option>
+                      <select class="form-control" placeholder="jenis kelamin" name="jenis_kelamin" required>
+                        <?php if ($jenis_kelamin == 1) {
+                          echo "<option value='1' selected>Laki-laki</option>";
+                        } else {
+                          echo "<option value='1' >Laki-laki</option>";
+                        }
+                        if ($jenis_kelamin == 2) {
+                          echo "<option value='2' selected>Perempuan</option>";
+                        } else {
+                          echo "<option value='2' >Perempuan</option>";
+                        }
+                        ?>
                       </select>
                     </div>
                     <div class="form-group">
@@ -194,13 +213,38 @@
                     </div>
                     <div class="form-group">
                       <label>Hubungan Keluarga</label>
-                      <select class="form-control" value="<?php echo $hub_kel; ?>" placeholder="Hubungan Keluarga" name="hubungan_keluarga">
-                        <option value="Kepala keluarga">Kepala keluarga</option>
-                        <option value="Istri">Istri</option>
-                        <option value="Anak">Anak</option>
-                        <option value="Anak Angkat">Anak Angkat</option>
-                        <option value="Saudara">Saudara</option>
-                        <option value="lain">lain</option>
+                      <select class="form-control"  placeholder="Hubungan Keluarga" name="hubungan_keluarga" required>
+                        <?php if ($hub_kel == "Kepala Keluarga") {
+                          echo "<option value='Kepala keluarga' selected>Kepala keluarga</option>";
+                        } else {
+                          echo "<option value='Kepala keluarga'>Kepala keluarga</option>";
+                        }
+                        if ($hub_kel == "Istri") {
+                          echo "<option value='Istri' selected>Istri</option>";
+                        } else {
+                          echo "<option value='Istri'>Istri</option>";
+                        }
+                        if ($hub_kel == "Anak") {
+                          echo "<option value='Anak' selected>Anak</option>";
+                        } else {
+                          echo "<option value='Anak'>Anak</option>";
+                        }
+                        if ($hub_kel == "Anak Angkat") {
+                          echo "<option value='Anak Angkat' selected>Anak Angkat</option>";
+                        } else {
+                          echo "<option value='Anak Angkat'>Anak Angkat</option>";
+                        }
+                        if ($hub_kel == "Saudara") {
+                          echo "<option value='Saudara' selected>Saudara</option>";
+                        } else {
+                          echo "<option value='Saudara'>Saudara</option>";
+                        }
+                        if ($hub_kel == "Lain") {
+                          echo "<option value='Lain' selected>Lain</option>";
+                        } else {
+                          echo "<option value='Lain'>Lain</option>";
+                        }
+                        ?>
                       </select>
                     </div>
                     <div class="form-group">
@@ -234,16 +278,16 @@
               </div>
               <div class="box-body">
                 <?php if (empty($economic_data)) {
-                  echo "<input type='button' class='btn btn-primary' onclick='parent.location='".base_url("Data_sosial/tambah_data_ekonomi/").$idkk."' value=' + Data Ekonomi'>";
+                  echo "<input type='button' class='btn btn-primary' onClick=\"parent.location='".base_url("Data_sosial/tambah_data_ekonomi/").$idkk."'\" value=' + Data Ekonomi'>";
 
                 } else {
-                  echo "<input type='button' class=\"btn btn-warning\" onclick=\"parent.location=\"".base_url("Data_sosial/edit_data_ekonomi/").$idkk."\" value=\"Edit Data Ekonomi\">";
+                  echo "<input type='button' class='btn btn-warning' onClick=\"parent.location='".base_url("Data_sosial/edit_data_ekonomi/").$idkk."'\" value='Edit Data Ekonomi'>";
                 }?>
                 <br></br>
                 <?php if (empty($behav_data)) {
-                  echo "<input type=\"button\" class=\"btn btn-primary\" onclick=\"parent.location=\"".base_url("Data_sosial/tambah_data_perilaku/").$idkk."\" value=\" + Data Perilaku Kesehatan\">";
+                  echo "<input type=\"button\" class=\"btn btn-primary\" onclick=\"parent.location='".base_url("Data_sosial/tambah_data_perilaku/").$idkk."'\" value=\" + Data Perilaku Kesehatan\">";
                 } else {
-                  echo "<input type=\"button\" class=\"btn btn-warning\" onclick=\"parent.location=\"".base_url("Data_sosial/edit_data_perilaku/").$idkk."\" value=\"Edit Data Perilaku Kesehatan\">";
+                  echo "<input type=\"button\" class=\"btn btn-warning\" onclick=\"parent.location='".base_url("Data_sosial/edit_data_perilaku/").$idkk."'\" value=\"Edit Data Perilaku Kesehatan\">";
                 }?>
                 <br></br>
                 <a href="<?php echo base_url("")."Data_sosial/kelola_data_kesehatan/".$idkk; ?>"><button type="submit" class="btn btn-primary">kelola Data Sosial Kesehatan</button></a>
@@ -302,7 +346,7 @@
           "searching": false,
           "ordering": true,
           "info": true,
-          "autoWidth": false,
+          "autoWidth": true,
           "scrollX": true
         });
       });

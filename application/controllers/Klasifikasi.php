@@ -32,6 +32,13 @@ class Klasifikasi extends CI_Controller {
 		echo $rk;
 	}
 
+	public function pengukur_stress($idkk){
+
+		$data['status'] = 'baru';
+		$data['idkk'] = $idkk;
+		$this->load->view('admin/stress_meter', $data);
+	}
+
 	public function hitung($idkk){
 			// $idkk = $this->input->post('idkk');
 			$kk_nik = $this->Model->get_kk_nik($idkk);

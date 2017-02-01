@@ -10,19 +10,33 @@
   $pembayaran = $fd->pembayaran;
 }
 
-// foreach ($status_data as $sd) {
-//   $nik = $sd->dk_nik;
-//   $tanggal = $sd->tanggal;
-//   $anamnesa = $sd->anamnesa;
-//   $td = $sd->td;
-//   $rr = $sd->rr;
-//   $nadi = $sd->nadi;
-//   $suhu = $sd->suhu;
-//   $hasil_pemeriksaan_penunjang = $sd->hasil_pemeriksaan_penunjang;
-//   $diagnosa = $sd->diagnosa;
-//   $terapi = $sd->terapi;
-//   $paraf = $sd->paraf;
-// }
+if (empty($edit_status)) {
+  $id_status_pasien = "";
+  $nik = "";
+  $anamnesa = "";
+  $td = "";
+  $rr = "";
+  $nadi = "";
+  $suhu = "";
+  $hasil_pemeriksaan_penunjang = "";
+  $diagnosa = "";
+  $terapi = "";
+} else {
+  foreach ($edit_status as $es) {
+    $id_status_pasien = $es->id_status_pasien;
+    $nik = $es->dk_nik;
+    $anamnesa = $es->anamnesa;
+    $td = $es->td;
+    $rr = $es->rr;
+    $nadi = $es->nadi;
+    $suhu = $es->suhu;
+    $hasil_pemeriksaan_penunjang = $es->hasil_pemeriksaan_penunjang;
+    $diagnosa = $es->diagnosa;
+    $terapi = $es->terapi;
+  }
+}
+
+
 
 foreach ($pasien_data as $pd) {
   $nama = $pd->nama;
@@ -34,8 +48,10 @@ foreach ($pasien_data as $pd) {
   $pekerjaan = $pd->pekerjaan;
 }
 
-foreach ($health_data as $hd) {
   $riwayat_sakit = "";
+  $alergi_obat = "";
+
+foreach ($health_data as $hd) {
   if (!empty($hd->org_batuk)) {
     $riwayat_sakit =  $riwayat_sakit."batuk, ";
   }

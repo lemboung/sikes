@@ -35,6 +35,8 @@
         <!-- Main content -->
         <section class="content">
           <div class="row">
+            <span id="pesan-flash"><?php echo $this->session->flashdata('sukses'); ?></span>
+            <span id="pesan-error-flash"><?php echo $this->session->flashdata('alert'); ?></span>
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
@@ -66,15 +68,8 @@
                         <td><?php echo $wh->bobot_aktivitas; ?></td>
                         <td>
                           <div class="btn-group">
-                            <button type="button" class="btn btn-danger">Action</button>
-                            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-                              <span class="caret"></span>
-                              <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                              <li><a href="<?php echo base_url()."Admin/edit_riwayat_pekerjaan/".$wh->dk_nik; ?>">edit</a></li>
-                              <li><a href="<?php echo base_url()."Admin/hapus_riwayat_pekerjaan/".$wh->dk_nik;  ?>">hapus</a></li>
-                            </ul>
+                            <a class="btn btn-warning btn-sm" href="<?php echo base_url()."Riwayat_pekerjaan/edit/".$idkk."/".$wh->dk_nik."/".$wh->id_riwayat_pekerjaan; ?>"><i class="fa fa-pencil"></i></a>
+                            <a onclick="return confirm('Hapus data??');" class="btn btn-danger btn-sm"href="<?php echo base_url()."Riwayat_pekerjaan/hapus/".$idkk."/".$wh->dk_nik."/".$wh->id_riwayat_pekerjaan;  ?>"><i class="fa fa-trash"></i></a>
                           </div>
                         </td>
                         </tr>
@@ -101,6 +96,7 @@
           <section class="col-lg-6">
             <!-- Chat box -->
             <?php if(empty($edit_history)){
+              $id_riwayat_pekerjaan = '';
               $divisi = '';
               $sub_divisi = '';
               $lama_kerja = '';
@@ -109,9 +105,10 @@
             }
             else {
               foreach ($edit_history as $eh) {
+                $id_riwayat_pekerjaan = $eh->id_riwayat_pekerjaan;
                 $divisi = $eh->divisi;
                 $sub_divisi = $eh->sub_divisi;
-                $lama_kerja = $eh->lama_kerjat;
+                $lama_kerja = $eh->lama_kerja;
                 $jenis_aktivitas = $eh->jenis_aktivitas;
                 $bobot_aktivitas = $eh->bobot_aktivitas;
               }
@@ -131,6 +128,7 @@
                   }?>
                   <input type="hidden" name="dk_nik" value="<?php echo $nik; ?>" />
                     <input type="hidden" name="idkk" value="<?php echo $idkk; ?>" />
+                    <input type="hidden" name="id_riwayat_pekerjaan" value="<?php echo $id_riwayat_pekerjaan; ?>" />
                     <div class="form-group">
                       <label>Divisi</label></br>
                       <input type="text" class="form-control" value="<?php echo $divisi; ?>" placeholder="divisi" name="divisi" required>
@@ -149,17 +147,30 @@
                     </div>
                     <div class="form-group">
                       <label>Bobot Aktivitas</label>
-                      <select class="select2" style="width:100%;" data-placeholder="Pilih Bobot" value="<?php echo $bobot_aktivitas; ?>"  name="bobot_aktivitas" required>
-                        <option value="Ringan">Ringan</option>
-                        <option value="Sedang">Sedang</option>
-                        <option value="Berat">Berat</option>
+                      <select class="select2" style="width:100%;" data-placeholder="Pilih Bobot"  name="bobot_aktivitas" required>
+                        <?php if ($bobot_aktivitas == "Ringan") {
+                          echo "<option value='Ringan' selected=''>Ringan</option>";
+                        } else {
+                          echo "<option value='Ringan'>Ringan</option>";
+                        }
+                        if ($bobot_aktivitas == "Sedang") {
+                          echo "<option value='Sedang' selected=''>Sedang</option>";
+                        } else {
+                          echo "<option value='Sedang'>Sedang</option>";
+                        }
+                        if ($bobot_aktivitas == "Berat") {
+                          echo "<option value='Berat' selected=''>Berat</option>";
+                        } else {
+                          echo "<option value='Berat'>Berat</option>";
+                        }
+                        ?>
                       </select>
                     </div>
                     <div class>
                       <button type="submit" class="btn btn-primary btn-block btn-flat">Simpan</button>
                       <?php if($status == "baru"){ echo '<button type="reset" class="btn btn-warning btn-block btn-flat">Batal</button>';?>
                       <?php } else { ?>
-                      <a href="<?php echo base_url("admin/riwayat_pekerjaan/").$idkk."/".$nik; ?>" class="btn btn-warning btn-block btn-flat">Kembali</a>
+                      <a href="<?php echo base_url("Riwayat_pekerjaan/tabel/").$idkk."/".$nik; ?>" class="btn btn-warning btn-block btn-flat">Kembali</a>
                       <?php } ?>
                     </div><!-- /.col -->
                   </form>

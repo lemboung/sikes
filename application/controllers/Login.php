@@ -48,6 +48,7 @@ class Login extends CI_Controller {
 		$array_items = array(
 		'id_user' => $account->id_user,
 		'username' => $account->username,
+		'fktp' => $account->fktp,
 		'logged_in' => true,
 		'tipe' => $account->tipe
 		);

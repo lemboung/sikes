@@ -145,6 +145,7 @@
           <!-- Left col -->
           <div class="col-md-6">
             <!-- Chat box -->
+
             <div class="box">
               <div class="box-header">
                 <i class="fa fa-plus"></i>
@@ -153,39 +154,46 @@
               <div class="box-body chat" id="chat-box">
                 <!-- chat item -->
                 <div class="item">
+                  <?php if ($status == "baru") {
+                    echo "<form action='".base_url("Pemeriksaan/insert_data_kesehatan")."' method='post'>";
+                  } elseif ($status == "edit") {
+                    echo "<form action='".base_url("Pemeriksaan/update_data_kesehatan/")."' method='post'>";
+                  }
+                  ?>
                   <form action="<?php echo base_url("Pemeriksaan/insert_data_kesehatan"); ?>" method="post">
                     <input type="hidden" class="form-control" value="<?php echo $nik; ?>" name="nik">
+                    <input type="hidden" class="form-control" value="<?php echo $id_status_pasien; ?>" name="id_status_pasien">
                     <div class="form-group">
                       <label>Anamnesa</label>
                       <input type="text" class="form-control" placeholder="Masukkan Anamnesa" name="anamnesa" required>
                     </div>
                     <div class="form-group">
                       <label>Tekanan Darah</label>
-                      <input type="text" class="form-control" placeholder="Masukkan Tekanan Darah" name="td" required>
+                      <input type="text" class="form-control" value="<?php echo $td; ?>" placeholder="Masukkan Tekanan Darah" name="td" required>
                     </div>
                     <div class="form-group">
                       <label>RR</label>
-                      <input type="text" class="form-control" placeholder="Masukkan rr"  name="rr" required>
+                      <input type="text" class="form-control" value="<?php echo $rr; ?>" placeholder="Masukkan rr"  name="rr" required>
                     </div>
                     <div class="form-group">
                       <label>Nadi</label>
-                      <input type="number" class="form-control"  placeholder="Masukkan Nadi" name="nadi" required>
+                      <input type="number" class="form-control" value="<?php echo $nadi; ?>" placeholder="Masukkan Nadi" name="nadi" required>
                     </div>
                     <div class="form-group">
                       <label>Suhu</label>
-                      <input type="number" class="form-control" placeholder="Masukkan Suhu" name="suhu" required>
+                      <input type="number" class="form-control" value="<?php echo $suhu; ?>" placeholder="Masukkan Suhu" name="suhu" required>
                     </div>
                     <div class="form-group">
                       <label>Hasil Pemeriksaan Penunjang</label>
-                      <input type="text" class="form-control" placeholder="Hasil Pemeriksaan Penunjang" name="hasil_pemeriksaan_penunjang">
+                      <input type="text" class="form-control" value="<?php echo $hasil_pemeriksaan_penunjang; ?>" placeholder="Hasil Pemeriksaan Penunjang" name="hasil_pemeriksaan_penunjang">
                     </div>
                     <div class="form-group">
                       <label>Diagnosa</label>
-                      <input type="text" class="form-control" placeholder="Diagnosa" name="diagnosa">
+                      <input type="text" class="form-control" value="<?php echo $diagnosa; ?>" placeholder="Diagnosa" name="diagnosa">
                     </div>
                     <div class="form-group">
                       <label>Terapi</label>
-                      <input type="text" class="form-control" placeholder="Terapi" name="terapi">
+                      <input type="text" class="form-control" value="<?php echo $terapi; ?>" placeholder="Terapi" name="terapi">
                     </div>
                     <input type="hidden" value="<?php echo $paraf; ?>"  name="paraf">
                     <div class>

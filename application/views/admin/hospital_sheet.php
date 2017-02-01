@@ -33,6 +33,8 @@
         <!-- Main content -->
         <section class="content">
           <div class="row">
+            <span id="pesan-flash"><?php echo $this->session->flashdata('sukses'); ?></span>
+            <span id="pesan-error-flash"><?php echo $this->session->flashdata('alert'); ?></span>
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
@@ -44,6 +46,7 @@
                       <tr>
                         <th>No</th>
                         <th>Tanggal</th>
+                        <th>Nama</th>
                         <th>Umur</th>
                         <th>Jenis Kelamin</th>
                         <th>Jenis Sakit, Kecelakaan, Meninggal</th>
@@ -57,6 +60,7 @@
                       <tr>
                         <td><?php echo $i; ?></td>
                         <td><?php echo $fs->tanggal; ?></td>
+                        <td><?php echo $fs->nama; ?></td>
                         <td><?php $bday = new DateTime ($fs->tanggal_lahir);
                                   $today = new DateTime();
                                   $umur = $today->diff($bday);
@@ -71,8 +75,8 @@
                         <td><?php echo $fs->jenis_sakit; ?></td>
                         <td>
                           <div class="btn-group">
-                            <a class="btn btn-warning btn-sm" href="<?php echo base_url()."Admin/edit_riwayat_penyakit/".$idkk."/".$fs->dk_nik; ?>"><i class="fa fa-pencil"></i></a>
-                            <a onclick="return confirm('Hapus data??');" class="btn btn-danger btn-sm"href="<?php echo base_url()."Admin/hapus_riwayat_penyakit/".$idkk."/".$fs->dk_nik;  ?>"><i class="fa fa-trash"></i></a>
+                            <a class="btn btn-warning btn-sm" href="<?php echo base_url()."Riwayat_penyakit/edit/".$idkk."/".$fs->dk_nik; ?>"><i class="fa fa-pencil"></i></a>
+                            <a onclick="return confirm('Hapus data??');" class="btn btn-danger btn-sm"href="<?php echo base_url()."Riwayat_penyakit/hapus/".$idkk."/".$fs->id_riwayat_penyakit;  ?>"><i class="fa fa-trash"></i></a>
                           </div>
                         </td>
                         </tr>
@@ -82,6 +86,7 @@
                       <tr>
                         <th>No</th>
                         <th>Tanggal</th>
+                        <th>Nama</th>
                         <th>Umur</th>
                         <th>Jenis Kelamin</th>
                         <th>Jenis Sakit, Kecelakaan, Meninggal</th>
@@ -98,12 +103,14 @@
           <section class="col-lg-6">
             <!-- Chat box -->
             <?php if(empty($sick)){
+              $id_riwayat_penyakit = '';
               $dknik = '';
               $tanggal = '';
               $jenis_sakit = '';
             }
             else {
               foreach ($sick as $s) {
+                $id_riwayat_penyakit = $s->id_riwayat_penyakit;
                 $dknik = $s->dk_nik;
                 $tanggal = $s->tanggal;
                 $jenis_sakit = $s->jenis_sakit;
@@ -117,13 +124,24 @@
               <div class="box-body chat" id="chat-box">
                 <!-- chat item -->
                 <div class="item">
-                  <form action="<?php echo base_url(); ?>Admin/insert_data_penyakit" method="post">
+                  <?php if ($status == "baru") {
+                    echo "<form action='".base_url("Riwayat_penyakit/insert_data_penyakit")."' method='post'>";
+                  } elseif ($status == "edit") {
+                    echo "<form action='".base_url("Riwayat_penyakit/update_data_penyakit")."' method='post'>";
+                  }
+                  ?>
+                    <input type="hidden" name="id_rp" value="<?php echo $id_riwayat_penyakit; ?>" />
                     <input type="hidden" name="idkk" value="<?php echo $idkk; ?>" />
                     <div class="form-group">
                       <label>Anggota Keluarga</label></br>
                       <select class="select2" style="width:100%;" data-placeholder="Pilih Anggota Keluarga"  name="dk_nik" required>
                         <?php foreach ($family as $f) {
-                          echo "<option value='$f->nik'>$f->nama</option>";
+                          if (strpos($dknik, $f->nik) !== false) {
+                            echo "<option value='$f->nik' selected=''>$f->nama</option>";
+                            # code...
+                          }else {
+                            echo "<option value='$f->nik'>$f->nama</option>";
+                          }
                         } ?>
                       </select>
                     </div>
@@ -140,7 +158,7 @@
                       <button type="submit" class="btn btn-primary btn-block btn-flat">Simpan</button>
                       <?php if($status == "baru"){ echo '<button type="reset" class="btn btn-warning btn-block btn-flat">Batal</button>';?>
                       <?php } else { ?>
-                      <a href="<?php echo base_url()."admin/riwayat_sakit_keluarga/".$idkk; ?>" class="btn btn-warning btn-block btn-flat">Kembali</a>
+                      <a href="<?php echo base_url()."Riwayat_penyakit/riwayat_sakit_keluarga/".$idkk; ?>" class="btn btn-warning btn-block btn-flat">Kembali</a>
                       <?php } ?>
                     </div><!-- /.col -->
                   </form>
