@@ -113,8 +113,8 @@ class Data_keluarga extends CI_Controller {
 		$data['kecamatan'] = $this->input->post('kecamatan');
 		$data['kota'] = $this->input->post('kota');
 		$data['pembayaran'] = $this->input->post('pembayaran');
-		$error = $this->Model->insertkk('data_kepala_keluarga', $data);
-		if($error != null){
+		$result = $this->Model->insertkk('data_kepala_keluarga', $data);
+		if($result != null){
 			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");
 			header('location:'.base_url().'Data_keluarga/anggota_keluarga/'.$result);
 		}else{
