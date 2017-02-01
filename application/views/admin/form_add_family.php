@@ -21,7 +21,9 @@
             echo "<h1>Edit Data Keluarga</h1>";
           }?>
 
-          <?php $idkk = $this->uri->segment(3); ?>
+          <?php  if ($status == "edit") {
+            $idkk = $this->uri->segment(3);
+          } ?>
           <ol class="breadcrumb">
             <li><a href="<?php echo base_url()."Admin";?>"><i class="fa fa-home"></i> Home</a></li>
             <?php if ($status == 'baru') {
@@ -71,9 +73,10 @@
                   echo form_open_multipart('Data_keluarga/insert_keluarga');
                 } elseif ($status == 'edit') {
                   echo form_open_multipart('Data_keluarga/update_keluarga');
+                  echo "<input type='hidden' class='form-control'  value='".$idkk."' name='idkk'>";
                 }
                 ?>
-                <input type="hidden" class="form-control"  value="<?php echo $idkk; ?>" name="idkk">
+
                   <div class="box-body">
                     <div class="form-group">
                       <label>alamat</label>
