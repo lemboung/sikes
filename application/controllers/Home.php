@@ -25,9 +25,9 @@ class Home extends CI_Controller {
 
 	public function index(){
 		$tipe = $this->session->userdata('tipe');
-		if ($tipe =="admin") {
+		if ($tipe =="Staf Administrasi" || $tipe =="Dokter") {
 			$this->load->view("admin/dashboard");
-		} elseif ($tipe =="perawat" || $tipe =="dokter") {
+		} elseif ($tipe == "Perawat" ) {
 			redirect(site_url('Pemeriksaan'));
 		}
 		else {

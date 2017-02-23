@@ -29,8 +29,8 @@ class Riwayat_penyakit extends CI_Controller {
 
 	public function riwayat_sakit_keluarga($idkk){
 		if ($this->session->userdata('logged_in')) {
-			$data['family'] = $this->Model->select_family_member($idkk)->result();
-			$data['family_sick'] = $this->Model->select_riwayat_sakit_keluarga($idkk)->result();
+			$data['family'] = $this->Model_data_keluarga->select_family_member($idkk)->result();
+			$data['family_sick'] = $this->Model_riwayat_penyakit->select_riwayat_sakit_keluarga($idkk)->result();
 			$data['status'] = 'baru';
 			$this->load->view('Admin/hospital_sheet',$data);
 		}
@@ -41,9 +41,9 @@ class Riwayat_penyakit extends CI_Controller {
 
 	public function edit($idkk, $id){
 		if ($this->session->userdata('logged_in')) {
-			$data['family'] = $this->Model->select_family_member($idkk)->result();
-			$data['family_sick'] = $this->Model->select_riwayat_sakit_keluarga($idkk)->result();
-			$data['sick'] = $this->Model->select_riwayat_sakit($id)->result();
+			$data['family'] = $this->Model_data_keluarga->select_family_member($idkk)->result();
+			$data['family_sick'] = $this->Model_riwayat_penyakit->select_riwayat_sakit_keluarga($idkk)->result();
+			$data['sick'] = $this->Model_riwayat_penyakit->select_riwayat_sakit($id)->result();
 			$data['status'] = 'edit';
 			$this->load->view('Admin/hospital_sheet',$data);
 		}
@@ -58,7 +58,7 @@ class Riwayat_penyakit extends CI_Controller {
 		$data['tanggal'] = $this->input->post('tanggal');
 		$data['jenis_sakit'] = $this->input->post('jenis_sakit');
 
-		$error = $this->Model->insert('riwayat_penyakit', $data);
+		$error = $this->Model_riwayat_penyakit->insert('riwayat_penyakit', $data);
 		if($error == null){
 			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");
 			header('location:'.base_url().'Riwayat_penyakit/riwayat_sakit_keluarga/'.$idkk);
@@ -76,7 +76,7 @@ class Riwayat_penyakit extends CI_Controller {
 		$data['tanggal'] = $this->input->post('tanggal');
 		$data['jenis_sakit'] = $this->input->post('jenis_sakit');
 
-		$result = $this->Model->update('riwayat_penyakit', $data, $id_rp, $where);
+		$result = $this->Model_riwayat_penyakit->update('riwayat_penyakit', $data, $id_rp, $where);
 		if($result != null){
 			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");
 			header('location:'.base_url().'Riwayat_penyakit/riwayat_sakit_keluarga/'.$idkk);
@@ -88,7 +88,7 @@ class Riwayat_penyakit extends CI_Controller {
 
 	public function hapus($idkk, $id_rp){
 		$where = "dk_nik";
-		$result = $this->Model->delete('riwayat_penyakit', $where, $id_rp);
+		$result = $this->Model_riwayat_penyakit->delete('riwayat_penyakit', $where, $id_rp);
 		if($result != null){
 			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");
 			header('location:'.base_url().'Riwayat_penyakit/riwayat_sakit_keluarga/'.$idkk);

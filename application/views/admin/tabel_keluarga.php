@@ -9,7 +9,6 @@
         <div class="wrapper">
 
       <?php include("header.php"); ?>
-      <!-- Left side column. contains the logo and sidebar -->
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -46,37 +45,26 @@
                         <th>id</th>
                         <th>Nama</th>
                         <th>Alamat</th>
-                        <th>Umur</th>
-                        <th>Pekerjaan</th>
+                        <th>kecamatan</th>
+                        <th>kelurahan</th>
                         <th>Status Kes Primer</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php foreach ($pasien as $p) {
-                        # code...
                        ?>
                       <tr>
                         <td><?php echo $p->id_kepala_keluarga; ?></td>
                         <td><?php echo $p->nama; ?></td>
                         <td><?php echo $p->alamat; ?></td>
-                        <td><?php $bday = new DateTime ($p->tanggal_lahir);
-                                  $today = new DateTime();
-                                  $umur = $today->diff($bday);
-                                  echo $umur->y." Th"; ?></td>
-                        <td><?php echo $p->pekerjaan; ?></td>
+                        <td><?php echo $p->kecamatan ?></td>
+                        <td><?php echo $p->kelurahan ?></td>
                         <td><?php echo $p->status_kes_primer; ?></td>
                         <td>
                           <div class="btn-group">
-                            <button type="button" class="btn btn-danger btn-sm">Action</button>
-                            <button type="button" class="btn btn-danger dropdown-toggle btn-sm" data-toggle="dropdown">
-                              <span class="caret"></span>
-                              <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                              <li><a href="<?php echo base_url()."Data_keluarga/anggota_keluarga/".$p->id_kepala_keluarga; ?>">anggota keluarga</a></li>
-                              <li><a href="<?php echo base_url()."Data_keluarga/edit_data/".$p->id_kepala_keluarga;  ?>">edit data keluarga</a></li>
-                            </ul>
+                            <a class="btn btn-primary btn-sm"  href="<?php echo base_url()."Data_keluarga/anggota_keluarga/".$p->id_kepala_keluarga; ?>"><i class="fa fa-users"></i></a>
+                            <a class="btn btn-warning btn-sm"  href="<?php echo base_url()."Data_keluarga/edit_data/".$p->id_kepala_keluarga;  ?>"><i class="fa fa-pencil"></i></a>
                           </div>
                         </td>
                         </tr>
@@ -88,8 +76,8 @@
                           <th>id</th>
                           <th>Nama</th>
                           <th>Alamat</th>
-                          <th>Umur</th>
-                          <th>Pekerjaan</th>
+                          <th>kecamatan</th>
+                          <th>kelurahan</th>
                           <th>Status Kes Primer</th>
                           <th>Action</th>
                         </tr>
@@ -103,18 +91,8 @@
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
-        <!-- <div class="pull-right hidden-xs">
-          <b>Version</b> 2.3.0
-        </div> -->
-        <!-- <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved. -->
         <b>Information System Research Group Filkom 2016</b>
       </footer>
-
-      <!-- Control Sidebar -->
-
-      <!-- Add the sidebar's background. This div must be placed
-           immediately after the control sidebar -->
-      <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->
 
     <!-- jQuery 2.1.4 -->
@@ -130,8 +108,6 @@
     <script src="<?php echo base_url()."style/admin/" ?>plugins/fastclick/fastclick.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo base_url()."style/admin/" ?>dist/js/app.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="<?php echo base_url()."style/admin/" ?>dist/js/demo.js"></script>
     <!-- page script -->
     <script>
       $(function () {

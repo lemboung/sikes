@@ -29,7 +29,7 @@ class Riwayat_pekerjaan extends CI_Controller {
 
 	public function tabel($idkk, $nik){
 		if ($this->session->userdata('logged_in')) {
-			$data['work_history'] = $this->Model->select_riwayat_pekerjaan($nik)->result();
+			$data['work_history'] = $this->Model_riwayat_pekerjaan->select_riwayat_pekerjaan($nik)->result();
 			$data['status'] = 'baru';
 			$this->load->view('Admin/work_history',$data);
 		}
@@ -40,8 +40,8 @@ class Riwayat_pekerjaan extends CI_Controller {
 
 	public function edit($idkk, $nik, $id){
 		if ($this->session->userdata('logged_in')) {
-			$data['work_history'] = $this->Model->select_riwayat_pekerjaan($nik)->result();
-			$data['edit_history'] = $this->Model->edit_riwayat_pekerjaan($id)->result();
+			$data['work_history'] = $this->Model_riwayat_pekerjaan->select_riwayat_pekerjaan($nik)->result();
+			$data['edit_history'] = $this->Model_riwayat_pekerjaan->edit_riwayat_pekerjaan($id)->result();
 			$data['status'] = 'edit';
 			$this->load->view('Admin/work_history',$data);
 		}
@@ -60,7 +60,7 @@ class Riwayat_pekerjaan extends CI_Controller {
 		$data['bobot_aktivitas'] = $this->input->post('bobot_aktivitas');
 		$idkk = $this->input->post('idkk');
 
-		$error = $this->Model->insert('riwayat_pekerjaan', $data);
+		$error = $this->Model_riwayat_pekerjaan->insert('riwayat_pekerjaan', $data);
 		if($error == null){
 			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");
 			header('location:'.base_url().'Riwayat_pekerjaan/tabel/'.$idkk.'/'.$nik);
@@ -82,7 +82,7 @@ class Riwayat_pekerjaan extends CI_Controller {
 		$data['bobot_aktivitas'] = $this->input->post('bobot_aktivitas');
 		$idkk = $this->input->post('idkk');
 
-		$result = $this->Model->update('riwayat_pekerjaan', $data, $id, 'id_riwayat_pekerjaan');
+		$result = $this->Model_riwayat_pekerjaan->update('riwayat_pekerjaan', $data, $id, 'id_riwayat_pekerjaan');
 		if($result != null){
 			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");
 			header('location:'.base_url().'Riwayat_pekerjaan/tabel/'.$idkk.'/'.$nik);
@@ -94,7 +94,7 @@ class Riwayat_pekerjaan extends CI_Controller {
 
 	public function hapus($idkk, $nik, $id_rp){
 		$where = "id_riwayat_pekerjaan";
-		$result = $this->Model->delete('riwayat_pekerjaan', $where, $id_rp);
+		$result = $this->Model_riwayat_pekerjaan->delete('riwayat_pekerjaan', $where, $id_rp);
 		if($result != null){
 			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");
 			header('location:'.base_url().'Riwayat_pekerjaan/tabel/'.$idkk."/".$nik);

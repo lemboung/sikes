@@ -42,7 +42,7 @@ class Data_sosial extends CI_Controller {
 		if ($this->session->userdata('logged_in')) {
 			$data['idkk'] = $idkk;
 			$data['status'] = "edit";
-			$data['economic_data'] = $this->Model->select_economic_data($idkk)->result();
+			$data['economic_data'] = $this->Model_data_sosial->select_economic_data($idkk)->result();
 			$this->load->view('admin/form_add_economic', $data);
 		}
 		else {
@@ -64,7 +64,7 @@ class Data_sosial extends CI_Controller {
 	public function edit_data_perilaku($idkk){
 		if ($this->session->userdata('logged_in')) {
 			$data['idkk'] = $idkk;
-			$data['behavior_data'] = $this->Model->select_behav_data($idkk)->result();
+			$data['behavior_data'] = $this->Model_data_sosial->select_behav_data($idkk)->result();
 			$data['status'] = "baru";
 			$this->load->view('Admin/form_add_behavior',$data);
 		}
@@ -76,8 +76,8 @@ class Data_sosial extends CI_Controller {
 	public function kelola_data_kesehatan($idkk){
 		if ($this->session->userdata('logged_in')) {
 			$data['idkk'] = $idkk;
-			$data['family'] = $this->Model->select_family_member($idkk)->result();
-			$data['health'] = $this->Model->select_health_data($idkk)->result();
+			$data['family'] = $this->Model_data_keluarga->select_family_member($idkk)->result();
+			$data['health'] = $this->Model_data_sosial->select_health_data($idkk)->result();
 			$data['status'] = 'baru';
 			$this->load->view('Admin/form_add_health',$data);
 		}
@@ -90,9 +90,9 @@ class Data_sosial extends CI_Controller {
 		if ($this->session->userdata('logged_in')) {
 			$data['idkk'] = $idkk;
 			$data['id_dsk'] = $id_dsk;
-			$data['family'] = $this->Model->select_family_member($idkk)->result();
-			$data['health'] = $this->Model->select_health_data($idkk)->result();
-			$data['ahealth'] = $this->Model->select_a_health_data($id_dsk)->result();
+			$data['family'] = $this->Model_data_keuarga->select_family_member($idkk)->result();
+			$data['health'] = $this->Model_data_sosial->select_health_data($idkk)->result();
+			$data['ahealth'] = $this->Model_data_sosial->select_a_health_data($id_dsk)->result();
 			$data['status'] = 'edit';
 			$this->load->view('Admin/form_add_health',$data);
 		}
@@ -112,7 +112,7 @@ class Data_sosial extends CI_Controller {
 		$pe = $this->input->post('penopang_ekonomi');
 		$data['penopang_ekonomi'] = implode(", ",$pe);
 
-		$error = $this->Model->insert('data_ekonomi_keluarga', $data);
+		$error = $this->Model_data_sosial->insert('data_ekonomi_keluarga', $data);
 		if($error == null){
 			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");
 			header('location:'.base_url().'Data_keluarga/anggota_keluarga/'.$idkk);
@@ -133,7 +133,7 @@ class Data_sosial extends CI_Controller {
 		$pe = $this->input->post('penopang_ekonomi');
 		$data['penopang_ekonomi'] = implode(", ",$pe);
 
-		$result = $this->Model->update('data_ekonomi_keluarga', $data, $idkk, 'dkk_id_kepala_keluarga');
+		$result = $this->Model_data_sosial->update('data_ekonomi_keluarga', $data, $idkk, 'dkk_id_kepala_keluarga');
 		if($result != null){
 			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");
 			header('location:'.base_url().'Data_keluarga/anggota_keluarga/'.$idkk);
@@ -156,7 +156,7 @@ class Data_sosial extends CI_Controller {
 		$data['wc_kloset'] = $this->input->post('wc_kloset');
 		$data['kamar_mandi'] = $this->input->post('kamar_mandi');
 		$data['tempat_cuci_sendiri'] = $this->input->post('tempat_cuci_tersendiri');
-		$error = $this->Model->insert('perilaku_kesehatan', $data);
+		$error = $this->Model_data_sosial->insert('perilaku_kesehatan', $data);
 		if($error != null){
 			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");
 			header('location:'.base_url().'Data_keluarga/anggota_keluarga/'.$idkk);
@@ -179,7 +179,7 @@ class Data_sosial extends CI_Controller {
 		$data['wc_kloset'] = $this->input->post('wc_kloset');
 		$data['kamar_mandi'] = $this->input->post('kamar_mandi');
 		$data['tempat_cuci_sendiri'] = $this->input->post('tempat_cuci_tersendiri');
-		$result = $this->Model->update('perilaku_kesehatan', $data, $idkk, 'dkk_id_kepala_keluarga');
+		$result = $this->Model_data_sosial->update('perilaku_kesehatan', $data, $idkk, 'dkk_id_kepala_keluarga');
 		if($result != null){
 			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");
 			header('location:'.base_url().'Data_keluarga/anggota_keluarga/'.$idkk);
@@ -221,7 +221,7 @@ class Data_sosial extends CI_Controller {
 		$data['sepeda_motor'] = $this->input->post('sepeda_motor');
 		$data['alergi_obat'] = $this->input->post('alergi_obat');
 		$data['kosmetika_obat_luar'] = $this->input->post('kosmetika_obat_luar');
-		$error = $this->Model->insert('data_sosial_kesehatan', $data);
+		$error = $this->Model_data_sosial->insert('data_sosial_kesehatan', $data);
 		if($error == null){
 			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");
 			header('location:'.base_url().'Data_sosial/kelola_data_kesehatan/'.$idkk);
@@ -264,7 +264,7 @@ class Data_sosial extends CI_Controller {
 			$data['sepeda_motor'] = $this->input->post('sepeda_motor');
 			$data['alergi_obat'] = $this->input->post('alergi_obat');
 			$data['kosmetika_obat_luar'] = $this->input->post('kosmetika_obat_luar');
-			$result = $this->Model->update('data_sosial_kesehatan', $data, $id_dsk, 'id_dsk');
+			$result = $this->Model_data_sosial->update('data_sosial_kesehatan', $data, $id_dsk, 'id_dsk');
 			if($result != null){
 				$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");
 				header('location:'.base_url().'Data_sosial/kelola_data_kesehatan/'.$idkk);
@@ -277,7 +277,7 @@ class Data_sosial extends CI_Controller {
 		public function hapus_data_kesehatan($id, $id_dsk){
 			$where = "id_dsk";
 			$idkk = $id;
-			$result = $this->Model->delete('data_sosial_kesehatan', $where, $id_dsk);
+			$result = $this->Model_data_sosial->delete('data_sosial_kesehatan', $where, $id_dsk);
 			if($result != null){
 				$this->session->set_flashdata("sukses", "<div class='alert alert-warning'><strong>Hapus data BERHASIL dilakukan</strong></div>");
 				header('location:'.base_url().'Data_sosial/kelola_data_kesehatan/'.$idkk);

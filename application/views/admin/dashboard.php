@@ -47,11 +47,27 @@
                   <p><b>Keluarga Terdaftar</b></p>
                 </div>
                 <div class="icon">
-                  <i class="fa fa-photo"></i>
+                  <i class="fa fa-users"></i>
                 </div>
                 <a href="<?php echo base_url("Data_keluarga"); ?>" class="small-box-footer">Lihat detail <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
+            <?php if($this->session->userdata('tipe') == 'Dokter'){?>
+              <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-yellow">
+                  <div class="inner">
+                    <h3>143</h3>
+                    <p><b>Pasien Terdaftar</b></p>
+                  </div>
+                  <div class="icon">
+                    <i class="fa fa-user"></i>
+                  </div>
+                  <a href="<?php echo base_url("Pemeriksaan"); ?>" class="small-box-footer">Daftar Pasien <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+            
+            <?php } ?>
           </div><!-- /.row -->
           <!-- Main row -->
 

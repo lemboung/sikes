@@ -3,7 +3,8 @@
   <head>
     <?php include("head.php"); ?>
     <!-- DataTables -->
-    <link rel="stylesheet" href="<?php echo base_url()."style/admin/" ?>plugins/datatables/dataTables.bootstrap.css">
+    <link rel="stylesheet" href="<?php echo base_url()."style/admin/"
+     ?>plugins/datatables/dataTables.bootstrap.css">
   </head>
   <body class="hold-transition skin-green sidebar-mini">
         <div class="wrapper">
@@ -22,7 +23,8 @@
 
           <ol class="breadcrumb">
             <li><a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i> Home</a></li>
-            <li><a href="<?php echo base_url("Data_keluarga"); ?>"><i class="fa fa-home"></i> Daftar Keluarga</a></li>
+            <li><a href="<?php echo base_url("Data_keluarga"); 
+            ?>"><i class="fa fa-home"></i> Daftar Keluarga</a></li>
             <li class="active"> Data dan Anggota keluarga</li>
           </ol>
         </section>
@@ -32,7 +34,7 @@
           <div class="row">
             <span id="pesan-flash"><?php echo $this->session->flashdata('sukses'); ?></span>
             <span id="pesan-error-flash"><?php echo $this->session->flashdata('alert'); ?></span>
-            <div class="col-lg-6">
+            <div class="col-sm-6">
               <div class="box box-primary">
                 <div class="box-header with-border">
                   <h3 class="box-title">Data Keluarga</h3>
@@ -65,10 +67,47 @@
                       </tr>
                     </tbody>
                   </table><br>
-                  <a href="<?php echo base_url("")."Data_keluarga/edit_data/".$idkk; ?>"><button type="submit" class="btn btn-warning"> Edit Data Keluarga</button></a></br></br>
+                  <a href="<?php echo base_url("")."Data_keluarga/edit_data/".$idkk; 
+                  ?>"><button type="submit" class="btn btn-warning"> Edit Data Keluarga</button></a></br></br>
                 </div>
               </div>
             </div>
+            <div class="col-sm-6">
+            <div class="box">
+              <div class="box-header">
+                <h3 class="box-title">Kelola Data Keluarga</h3>
+              </div>
+              <div class="box-body">
+                <?php if (empty($economic_data)) {
+                  echo "<input type='button' class='btn btn-primary' 
+                  onClick=\"parent.location='".base_url("Data_sosial/tambah_data_ekonomi/").$idkk
+                  ."'\" value=' + Data Ekonomi'>";
+
+                } else {
+                  echo "<input type='button' class='btn btn-warning' onClick=\"parent.location='"
+                  .base_url("Data_sosial/edit_data_ekonomi/").$idkk."'\" value='Edit Data Ekonomi'>";
+                }?>
+                <br></br>
+                <?php if (empty($behav_data)) {
+                  echo "<input type=\"button\" class=\"btn btn-primary\" onclick=\"parent.location='"
+                  .base_url("Data_sosial/tambah_data_perilaku/").$idkk."'\" value=\" + Data Perilaku Kesehatan\">";
+                } else {
+                  echo "<input type=\"button\" class=\"btn btn-warning\" onclick=\"parent.location='"
+                  .base_url("Data_sosial/edit_data_perilaku/").$idkk."'\" value=\"Edit Data Perilaku Kesehatan\">";
+                }?>
+                <br></br>
+                <a href="<?php echo base_url("")."Data_sosial/kelola_data_kesehatan/"
+                .$idkk; ?>"><button type="submit" class="btn btn-primary">kelola Data Sosial Kesehatan</button></a>
+                <br></br>
+                <a href="<?php echo base_url("")."Riwayat_penyakit/riwayat_sakit_keluarga/"
+                .$idkk; ?>"><button type="submit" class="btn btn-primary ">kelola Riwayat Penyakit Keluarga</button></a>
+                <br></br>
+                <a href="<?php echo base_url("")."Klasifikasi/hitung/".$idkk; 
+                ?>"><button type="submit" class="btn btn-success ">hitung Klasifikasi</button></a>
+                <br></br>
+              </div>
+            </div>
+          </div>
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
@@ -107,15 +146,12 @@
                         <td><?php echo $f->ket_domisili ?></td>
                         <td>
                           <div class="btn-group">
-                            <a class="btn btn-warning btn-sm"  href="<?php echo base_url()."Data_keluarga/edit_anggota_keluarga/".$idkk."/".$f->nik; ?>"><i class="fa fa-pencil"></i></a>
-                            <a onclick="return confirm('Hapus data??');" class="btn btn-danger btn-sm" href="<?php echo base_url()."Data_keluarga/hapus_anggota_keluarga/".$idkk."/".$f->nik; ?>"><i class="fa fa-trash"></i></a>
-                            <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown">
-                              <span class="caret"></span>
-                              <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                              <li><a href="<?php echo base_url()."Riwayat_pekerjaan/tabel/".$idkk."/".$f->nik;  ?>">Riwayat Pekerjaan</a></li>
-                            </ul>
+                            <a class="btn btn-primary btn-sm"  href="<?php echo base_url()
+                            ."Riwayat_pekerjaan/tabel/".$idkk."/".$f->nik;  ?>"><i class="fa fa-briefcase"></i></a>
+                            <a class="btn btn-warning btn-sm"  href="<?php echo base_url()
+                            ."Data_keluarga/edit_anggota_keluarga/".$idkk."/".$f->nik; ?>"><i class="fa fa-pencil"></i></a>
+                            <a onclick="return confirm('Hapus data??');" class="btn btn-danger btn-sm" href="<?php echo base_url()
+                            ."Data_keluarga/hapus_anggota_keluarga/".$idkk."/".$f->nik; ?>"><i class="fa fa-trash"></i></a>
                           </div>
                         </td>
                         </tr>
@@ -149,6 +185,7 @@
               $nama = '';
               $tgl_lahir = '';
               $pekerjaan = '';
+              $ket_domisili = '';
               $hub_kel = '';
               $status_kawin = '';
               $umur_kawin = '';
@@ -160,6 +197,7 @@
                 $tgl_lahir = $p->tanggal_lahir;
                 $pekerjaan = $p->pekerjaan;
                 $hub_kel = $p->hubungan_keluarga;
+                $ket_domisili = $p->ket_domisili;
                 $status_kawin = $p->status_kawin;
                 $umur_kawin = $p->umur_kawin;
               }
@@ -181,15 +219,18 @@
 
                     <div class="form-group">
                       <label>NIK</label>
-                      <input type="number" class="form-control" value="<?php echo $nik; ?>" placeholder="Masukkan NIK" name="nik" required>
+                      <input type="number" class="form-control" value="<?php echo $nik; 
+                      ?>" placeholder="Masukkan NIK" name="nik" required>
                     </div>
                     <div class="form-group">
                       <label>Nama</label>
-                      <input type="text" class="form-control" value="<?php echo $nama; ?>" placeholder="Masukkan Nama" name="nama" required>
+                      <input type="text" class="form-control" value="<?php echo $nama; 
+                      ?>" placeholder="Masukkan Nama" name="nama" required>
                     </div>
                     <div class="form-group">
                       <label>Tangal Lahir</label>
-                      <input type="date" class="form-control" value="<?php echo $tgl_lahir; ?>"  name="tgl" required>
+                      <input type="date" class="form-control" value="<?php echo $tgl_lahir; 
+                      ?>"  name="tgl" required>
                     </div>
                     <div class="form-group">
                       <label>Jenis Kelamin</label>
@@ -209,7 +250,8 @@
                     </div>
                     <div class="form-group">
                       <label>Pekerjaan</label>
-                      <input type="text" class="form-control" value="<?php echo $pekerjaan; ?>" placeholder="Masukkan Pekerjaan" name="pekerjaan" required>
+                      <input type="text" class="form-control" value="<?php echo $pekerjaan; 
+                      ?>" placeholder="Masukkan Pekerjaan" name="pekerjaan" required>
                     </div>
                     <div class="form-group">
                       <label>Hubungan Keluarga</label>
@@ -248,8 +290,30 @@
                       </select>
                     </div>
                     <div class="form-group">
+                      <label>Domisili</label>
+                      <select class="form-control"  placeholder="keterangan domisili" name="ket_domisili" required>
+                        <?php if ($ket_domisili == "Serumah") {
+                          echo "<option value='Serumah' selected>Serumah</option>";
+                        } else {
+                          echo "<option value='Serumah'>Serumah</option>";
+                        }
+                        if ($ket_domisili == "Tidak Serumah") {
+                          echo "<option value='Tidak Serumah' selected>Tidak Serumah</option>";
+                        } else {
+                          echo "<option value='Tidak Serumah'>Tidak Serumah</option>";
+                        }
+                        if ($ket_domisili == "Kadang-kadang") {
+                          echo "<option value='Kadang-kadang' selected>Kadang-kadang</option>";
+                        } else {
+                          echo "<option value='Kadang-kadang'>Kadang-kadang</option>";
+                        }
+                        ?>
+                      </select>
+                    </div>
+                    <div class="form-group">
                       <label>Status Kawin</label>
-                      <select class="form-control" value="<?php echo $status_kawin; ?>" placeholder="Status Kawin" name="status_kawin">
+                      <select class="form-control" value="<?php echo $status_kawin; 
+                      ?>" placeholder="Status Kawin" name="status_kawin">
                         <option value="0">Belum Menikah</option>
                         <option value="1">Menikah</option>
                       </select>
@@ -261,9 +325,11 @@
                     <input type="hidden" name="idkk" value="<?php echo $idkk; ?>" />
                     <div class>
                       <button type="submit" class="btn btn-primary btn-block btn-flat">Simpan</button>
-                      <?php if($status == "baru"){ echo '<button type="reset" class="btn btn-warning btn-block btn-flat">Batal</button>';?>
+                      <?php if($status == "baru"){ echo '<button type="reset" 
+                      class="btn btn-warning btn-block btn-flat">Batal</button>';?>
                       <?php } else { ?>
-                      <a href="<?php echo base_url()."Data_keluarga/anggota_keluarga/".$idkk; ?>" class="btn btn-warning btn-block btn-flat">Kembali</a>
+                      <a href="<?php echo base_url()."Data_keluarga/anggota_keluarga/".$idkk; 
+                      ?>" class="btn btn-warning btn-block btn-flat">Kembali</a>
                       <?php } ?>
                     </div><!-- /.col -->
                   </form>
@@ -271,54 +337,12 @@
               </div><!-- /.chat -->
             </div><!-- /.box (chat box) -->
           </div><!-- /.Left col -->
-          <div class="col-md-6">
-            <div class="box">
-              <div class="box-header">
-                <h3 class="box-title">Kelola Data Keluarga</h3>
-              </div>
-              <div class="box-body">
-                <?php if (empty($economic_data)) {
-                  echo "<input type='button' class='btn btn-primary' onClick=\"parent.location='".base_url("Data_sosial/tambah_data_ekonomi/").$idkk."'\" value=' + Data Ekonomi'>";
-
-                } else {
-                  echo "<input type='button' class='btn btn-warning' onClick=\"parent.location='".base_url("Data_sosial/edit_data_ekonomi/").$idkk."'\" value='Edit Data Ekonomi'>";
-                }?>
-                <br></br>
-                <?php if (empty($behav_data)) {
-                  echo "<input type=\"button\" class=\"btn btn-primary\" onclick=\"parent.location='".base_url("Data_sosial/tambah_data_perilaku/").$idkk."'\" value=\" + Data Perilaku Kesehatan\">";
-                } else {
-                  echo "<input type=\"button\" class=\"btn btn-warning\" onclick=\"parent.location='".base_url("Data_sosial/edit_data_perilaku/").$idkk."'\" value=\"Edit Data Perilaku Kesehatan\">";
-                }?>
-                <br></br>
-                <a href="<?php echo base_url("")."Data_sosial/kelola_data_kesehatan/".$idkk; ?>"><button type="submit" class="btn btn-primary">kelola Data Sosial Kesehatan</button></a>
-                <br></br>
-                <a href="<?php echo base_url("")."Riwayat_penyakit/riwayat_sakit_keluarga/".$idkk; ?>"><button type="submit" class="btn btn-primary ">kelola Riwayat Penyakit Keluarga</button></a>
-                <br></br>
-                <a href="<?php echo base_url("")."Klasifikasi/hitung/".$idkk; ?>"><button type="submit" class="btn btn-success ">hitung Klasifikasi</button></a>
-                <br></br>
-              </div>
-            </div>
-          </div>
-          <!-- right col (We are only adding the ID to make the widgets sortable)-->
-          <section class="col-lg-5 connectedSortable">
-
-          </section><!-- right col -->
         </div><!-- /.row (main row) -->
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
-        <!-- <div class="pull-right hidden-xs">
-          <b>Version</b> 2.3.0
-        </div> -->
-        <!-- <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved. -->
         <b>Information System Research Group Filkom 2016</b>
       </footer>
-
-      <!-- Control Sidebar -->
-
-      <!-- Add the sidebar's background. This div must be placed
-           immediately after the control sidebar -->
-      <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->
 
     <!-- jQuery 2.1.4 -->
@@ -328,14 +352,8 @@
     <!-- DataTables -->
     <script src="<?php echo base_url()."style/admin/" ?>plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url()."style/admin/" ?>plugins/datatables/dataTables.bootstrap.min.js"></script>
-    <!-- SlimScroll -->
-    <script src="<?php echo base_url()."style/admin/" ?>plugins/slimScroll/jquery.slimscroll.min.js"></script>
-    <!-- FastClick -->
-    <script src="<?php echo base_url()."style/admin/" ?>plugins/fastclick/fastclick.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo base_url()."style/admin/" ?>dist/js/app.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="<?php echo base_url()."style/admin/" ?>dist/js/demo.js"></script>
     <!-- page script -->
     <script>
       $(function () {

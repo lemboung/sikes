@@ -63,10 +63,11 @@
                         <td><?php echo $p->status_kes_primer; ?></td>
                         <td>
                           <div class="btn-group">
-                            <?php if ($this->session->userdata('tipe')=="perawat") {
-                              echo "<a href=\"".base_url("Pemeriksaan/input_status/").$p->nik."\"><button type=\"button\" class=\"btn btn-danger\">input status</button></a>";
-                            } elseif ($this->session->userdata('tipe')=="dokter") {
-                              echo "<a href=\"".base_url()."Pemeriksaan/periksa/".$p->nik."\"><button type=\"button\" class=\"btn btn-danger\">periksa</button></a>";
+                            <?php if ($this->session->userdata('tipe')=="Perawat") {
+                              echo "<a class=\"btn btn-danger\" href=\"".base_url("Pemeriksaan/input_status/").$p->nik."\"><i class='fa fa-heartbeat'></i></a>";
+                            } elseif ($this->session->userdata('tipe')=="Dokter") {
+                              echo "<a class=\"btn btn-danger\" href=\"".base_url("Pemeriksaan/input_status/").$p->nik."\"><i class='fa fa-heartbeat'></i></a>";
+                              echo "<a href=\"".base_url()."Pemeriksaan/periksa/".$p->nik."\"><button type=\"button\" class=\"btn btn-danger\"><i class='fa fa-plus-square' ></i></button></a>";
                             } else {
                               echo "<a href=\"".base_url()."Pemeriksaan/input_status/".$p->nik."\"><button type=\"button\" class=\"btn btn-danger\">input status</button></a>";
                               echo "<a href=\"".base_url()."Pemeriksaan/periksa/".$p->nik."\"><button type=\"button\" class=\"btn btn-danger\">periksa</button></a>";
