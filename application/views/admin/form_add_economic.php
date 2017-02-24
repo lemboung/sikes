@@ -133,7 +133,7 @@
                     <div class="form-group">
                       <label>Sumber Ekonomi</label></br>
                       <select class="select2" style="width:50%;" multiple="multiple"  data-placeholder="pilih sumber ekonomi"  name="sumber_ekonomi[]">
-                          <?php if ($sumber == "pegawai") {
+                          <?php if ($sumber == "Pegawai") {
                             echo "<option value='Pegawai' selected=''>Pegawai</option>";
                           }else {
                             echo "<option value='Pegawai'>Pegawai</option>";
@@ -177,7 +177,7 @@
                         } else {
                           echo "<option value='Anak'>Anak</option>";
                         }
-                        if (strpos($penopang == 'Lain') !== false) {
+                        if (strpos($penopang, 'Lain') !== false) {
                           echo "<option value='Lain' selected=''>Lain</option>";
                         } else {
                           echo "<option value='Lain'>Lain</option>";

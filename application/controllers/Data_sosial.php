@@ -90,7 +90,7 @@ class Data_sosial extends CI_Controller {
 		if ($this->session->userdata('logged_in')) {
 			$data['idkk'] = $idkk;
 			$data['id_dsk'] = $id_dsk;
-			$data['family'] = $this->Model_data_keuarga->select_family_member($idkk)->result();
+			$data['family'] = $this->Model_data_keluarga->select_family_member($idkk)->result();
 			$data['health'] = $this->Model_data_sosial->select_health_data($idkk)->result();
 			$data['ahealth'] = $this->Model_data_sosial->select_a_health_data($id_dsk)->result();
 			$data['status'] = 'edit';
@@ -157,7 +157,7 @@ class Data_sosial extends CI_Controller {
 		$data['kamar_mandi'] = $this->input->post('kamar_mandi');
 		$data['tempat_cuci_sendiri'] = $this->input->post('tempat_cuci_tersendiri');
 		$error = $this->Model_data_sosial->insert('perilaku_kesehatan', $data);
-		if($error != null){
+		if($error == null){
 			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");
 			header('location:'.base_url().'Data_keluarga/anggota_keluarga/'.$idkk);
 		}else{
