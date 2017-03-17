@@ -10,7 +10,6 @@
 
       <?php include("header.php") ?>
       <?php include('getDataPasien.php'); ?>
-      <!-- Left side column. contains the logo and sidebar -->
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -205,18 +204,12 @@
               </div><!-- /.chat -->
             </div><!-- /.box (chat box) -->
           </div><!-- /.Left col -->
-          <!-- right col (We are only adding the ID to make the widgets sortable)-->
-          <section class="col-lg-5 connectedSortable">
-
-          </section><!-- right col -->
         </div><!-- /.row (main row) -->
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
         <b>Information System Research Group Filkom 2016</b>
       </footer>
-      <div class="control-sidebar-bg"></div>
-    </div><!-- ./wrapper -->
 
     <!-- jQuery 2.1.4 -->
     <script src="<?php echo base_url()."style/admin/" ?>plugins/jQuery/jQuery-2.1.4.min.js"></script>
@@ -225,10 +218,6 @@
     <!-- DataTables -->
     <script src="<?php echo base_url()."style/admin/" ?>plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url()."style/admin/" ?>plugins/datatables/dataTables.bootstrap.min.js"></script>
-    <!-- SlimScroll -->
-    <script src="<?php echo base_url()."style/admin/" ?>plugins/slimScroll/jquery.slimscroll.min.js"></script>
-    <!-- FastClick -->
-    <script src="<?php echo base_url()."style/admin/" ?>plugins/fastclick/fastclick.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo base_url()."style/admin/" ?>dist/js/app.min.js"></script>
     <!-- page script -->

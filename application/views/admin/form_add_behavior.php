@@ -11,8 +11,6 @@
         <div class="wrapper">
 
           <?php include("header.php"); ?>
-      <!-- Left side column. contains the logo and sidebar -->
-
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -101,7 +99,7 @@
                           if ($prev_balita == "Rumah Sakit Spesialis") {
                             echo "<option value='Rumah Sakit Spesialis' selected=''>Rumah Sakit Spesialis</option>";
                           }else {
-                            echo "<option value='Dokter Praktek Umum'>Dokter Praktek Umum</option>";
+                            echo "<option value='Rumah Sakit Spesialis'>Rumah Sakit Spesialis</option>";
                           }
                           if ($prev_balita == "Lain") {
                             echo "<option value='Lain' selected=''>Lain</option>";
@@ -133,7 +131,7 @@
                           if ($pemeliharaan == "Rumah Sakit Spesialis") {
                             echo "<option value='Rumah Sakit Spesialis' selected=''>Rumah Sakit Spesialis</option>";
                           }else {
-                            echo "<option value='Dokter Praktek Umum'>Dokter Praktek Umum</option>";
+                            echo "<option value='Rumah Sakit Spesialis'>Rumah Sakit Spesialis</option>";
                           }
                           if ($pemeliharaan == "Lain") {
                             echo "<option value='Lain' selected=''>Lain</option>";
@@ -165,7 +163,7 @@
                           if ($pengobatan_diri == "Rumah Sakit Spesialis") {
                             echo "<option value='Rumah Sakit Spesialis' selected=''>Rumah Sakit Spesialis</option>";
                           }else {
-                            echo "<option value='Dokter Praktek Umum'>Dokter Praktek Umum</option>";
+                            echo "<option value='Rumah Sakit Spesialis'>Rumah Sakit Spesialis</option>";
                           }
                           if ($pengobatan_diri == "Lain") {
                             echo "<option value='Lain' selected=''>Lain</option>";
@@ -301,10 +299,6 @@
         <b>Information System Research Group Filkom 2016</b>
       </footer>
 
-      <!-- Control Sidebar -->
-      <div class="control-sidebar-bg"></div>
-    </div><!-- ./wrapper -->
-
     <!-- jQuery 2.1.4 -->
     <script src="<?php echo base_url()."style/admin/" ?>plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
@@ -312,16 +306,10 @@
     <!-- DataTables -->
     <script src="<?php echo base_url()."style/admin/" ?>plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url()."style/admin/" ?>plugins/datatables/dataTables.bootstrap.min.js"></script>
-    <!-- SlimScroll -->
-    <script src="<?php echo base_url()."style/admin/" ?>plugins/slimScroll/jquery.slimscroll.min.js"></script>
-    <!-- FastClick -->
-    <script src="<?php echo base_url()."style/admin/" ?>plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo base_url()."style/admin/" ?>dist/js/app.min.js"></script>
     <!-- select2 js -->
     <script src="<?php echo base_url()."style/" ?>js/select2.full.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="<?php echo base_url()."style/admin/" ?>dist/js/demo.js"></script>
     <!-- page script -->
     <script>
       $(function () {

@@ -11,7 +11,6 @@
         <div class="wrapper">
 
       <?php include("header.php"); ?>
-      <!-- Left side column. contains the logo and sidebar -->
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -122,7 +121,6 @@
                 <h3 class="box-title">Form Tambah/Edit Riwayat sakit</h3>
               </div>
               <div class="box-body chat" id="chat-box">
-                <!-- chat item -->
                 <div class="item">
                   <?php if ($status == "baru") {
                     echo "<form action='".base_url("Riwayat_penyakit/insert_data_penyakit")."' method='post'>";
@@ -138,7 +136,6 @@
                         <?php foreach ($family as $f) {
                           if (strpos($dknik, $f->nik) !== false) {
                             echo "<option value='$f->nik' selected=''>$f->nama</option>";
-                            # code...
                           }else {
                             echo "<option value='$f->nik'>$f->nama</option>";
                           }
@@ -167,27 +164,13 @@
               </div><!-- /.chat -->
             </div><!-- /.box (chat box) -->
           </section><!-- /.Left col -->
-          <!-- right col (We are only adding the ID to make the widgets sortable)-->
-          <section class="col-lg-5 connectedSortable">
-
-          </section><!-- right col -->
         </div><!-- /.row (main row) -->
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
-        <!-- <div class="pull-right hidden-xs">
-          <b>Version</b> 2.3.0
-        </div> -->
-        <!-- <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved. -->
-        <b>Information System Research Group Filkom 2016</b>
+       <b>Information System Research Group Filkom 2016</b>
       </footer>
 
-      <!-- Control Sidebar -->
-
-      <!-- Add the sidebar's background. This div must be placed
-           immediately after the control sidebar -->
-      <div class="control-sidebar-bg"></div>
-    </div><!-- ./wrapper -->
 
     <!-- jQuery 2.1.4 -->
     <script src="<?php echo base_url()."style/admin/" ?>plugins/jQuery/jQuery-2.1.4.min.js"></script>
@@ -196,16 +179,10 @@
     <!-- DataTables -->
     <script src="<?php echo base_url()."style/admin/" ?>plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url()."style/admin/" ?>plugins/datatables/dataTables.bootstrap.min.js"></script>
-    <!-- SlimScroll -->
-    <script src="<?php echo base_url()."style/admin/" ?>plugins/slimScroll/jquery.slimscroll.min.js"></script>
-    <!-- FastClick -->
-    <script src="<?php echo base_url()."style/admin/" ?>plugins/fastclick/fastclick.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo base_url()."style/admin/" ?>dist/js/app.min.js"></script>
     <!-- select2 js -->
     <script src="<?php echo base_url()."style/" ?>js/select2.full.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="<?php echo base_url()."style/admin/" ?>dist/js/demo.js"></script>
     <!-- page script -->
     <script>
       $(function () {
