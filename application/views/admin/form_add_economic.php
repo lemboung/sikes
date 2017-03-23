@@ -2,7 +2,7 @@
 <html>
   <head>
     <!-- DataTables -->
-    <link rel="stylesheet" href="<?php echo base_url()."style/admin/"?>plugins/datatables/dataTables.bootstrap.css">
+    <link rel="stylesheet" href="<?php echo base_url()."style/"?>css/dataTables.bootstrap.css">
     <!-- select2 plugins -->
     <link rel="stylesheet" href="<?php echo base_url()."style/"?>css/select2.min.css">
     <?php include("head.php"); ?>
@@ -198,23 +198,19 @@
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
-        <!-- <div class="pull-right hidden-xs">
-          <b>Version</b> 2.3.0
-        </div> -->
-        <!-- <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved. -->
         <b>Information System Research Group Filkom 2016</b>
       </footer>
 
 
     <!-- jQuery 2.1.4 -->
-    <script src="<?php echo base_url()."style/admin/" ?>plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <script src="<?php echo base_url()."style/" ?>js/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
-    <script src="<?php echo base_url()."style/admin/" ?>bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url()."style/" ?>js/bootstrap.min.js"></script>
     <!-- DataTables -->
-    <script src="<?php echo base_url()."style/admin/" ?>plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="<?php echo base_url()."style/admin/" ?>plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="<?php echo base_url()."style/" ?>js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo base_url()."style/" ?>js/dataTables.bootstrap.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="<?php echo base_url()."style/admin/" ?>dist/js/app.min.js"></script>
+    <script src="<?php echo base_url()."style/" ?>js/app.min.js"></script>
     <!-- select2 js -->
     <script src="<?php echo base_url()."style/" ?>js/select2.full.min.js"></script>
     <!-- page script -->

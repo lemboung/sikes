@@ -5,11 +5,11 @@
     <title>Halaman Login | SIKES</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
-    <link href="<?php echo base_url(); ?>style/admin/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url(); ?>style/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- FontAwesome 4.3.0 -->
     <link href="<?php echo base_url(); ?>style/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
-    <link href="<?php echo base_url(); ?>style/admin/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" /
+    <link href="<?php echo base_url(); ?>style/css/AdminLTE.css" rel="stylesheet" type="text/css" />
   </head>
   <body class="login-page">
     <div class="login-box">

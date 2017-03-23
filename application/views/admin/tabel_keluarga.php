@@ -3,7 +3,7 @@
   <head>
     <?php include("head.php"); ?>
     <!-- DataTables -->
-    <link rel="stylesheet" href="<?php echo base_url()."style/admin/" ?>plugins/datatables/dataTables.bootstrap.css">
+    <link rel="stylesheet" href="<?php echo base_url()."style/" ?>css/dataTables.bootstrap.css">
   </head>
   <body class="hold-transition skin-green sidebar-mini">
         <div class="wrapper">
@@ -96,14 +96,14 @@
     </div><!-- ./wrapper -->
 
     <!-- jQuery 2.1.4 -->
-    <script src="<?php echo base_url()."style/admin/" ?>plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <script src="<?php echo base_url()."style/" ?>/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
-    <script src="<?php echo base_url()."style/admin/" ?>bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url()."style/" ?>js/bootstrap.min.js"></script>
     <!-- DataTables -->
-    <script src="<?php echo base_url()."style/admin/" ?>plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="<?php echo base_url()."style/admin/" ?>plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="<?php echo base_url()."style/" ?>js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo base_url()."style/" ?>js/dataTables.bootstrap.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="<?php echo base_url()."style/admin/" ?>dist/js/app.min.js"></script>
+    <script src="<?php echo base_url()."style/" ?>js/app.min.js"></script>
     <!-- page script -->
     <script>
       $(function () {
