@@ -64,9 +64,10 @@ class Model_data_keluarga extends CI_Model {
 	 function tabel_kepala_keluarga(){
 		$fktp = $this->session->userdata('fktp');
 		$this->db->select('*');
-		$this->db->from('data_kepala_keluarga');
-		$this->db->join('data_kependudukan', 'id_kepala_keluarga = dkk_id_kepala_keluarga', 'left');
+		$this->db->from('data_kependudukan');
+		$this->db->join('data_kepala_keluarga', 'dkk_id_kepala_keluarga = id_kepala_keluarga', 'left');
 		$this->db->where('fktp_terdaftar', $fktp);
+		$this->db->where('hubungan_keluarga', 'Kepala keluarga');
 		return $this->db->get();
 	 }
 

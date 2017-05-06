@@ -20,11 +20,14 @@ class Model_klasifikasi extends CI_Model {
 	 }
 
 	 function count_riwayat_sakit_keluarga($id){
+		$ayear = strtotime('now -1 year');
+		$ayear = date("Y-m-d", $ayear);
 		$this->db->select('*');
  		$this->db->from('data_kependudukan');
 		$this->db->join('riwayat_penyakit', 'nik = dk_nik');
 		$this->db->join('data_kepala_keluarga', 'id_kepala_keluarga = dkk_id_kepala_keluarga');
 		$this->db->where('dkk_id_kepala_keluarga', $id);
+		$this->db->where('tanggal >', $ayear);
  		return $this->db->count_all_results();
 	 }
 

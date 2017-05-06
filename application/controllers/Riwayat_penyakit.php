@@ -87,7 +87,7 @@ class Riwayat_penyakit extends CI_Controller {
 	}
 
 	public function hapus($idkk, $id_rp){
-		$where = "dk_nik";
+		$where = "id_riwayat_penyakit";
 		$result = $this->Model_riwayat_penyakit->delete('riwayat_penyakit', $where, $id_rp);
 		if($result != null){
 			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");

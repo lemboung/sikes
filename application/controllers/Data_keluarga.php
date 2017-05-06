@@ -136,7 +136,7 @@ class Data_keluarga extends CI_Controller {
 		$result = $this->Model_data_keluarga->update_kk('data_kepala_keluarga', $data, $idkk);
 		if($result != null){
 			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");
-			header('location:'.base_url().'Data_keluarga/anggota_keluarga/'.$result);
+			header('location:'.base_url().'Data_keluarga/anggota_keluarga/'.$idkk);
 		}else{
 			$this->session->set_flashdata("alert", "<div class='alert alert-danger'><strong>Simpan data GAGAL di lakukan</strong></div>");
 			header('location:'.base_url().'Data_keluarga/daftar_keluarga');

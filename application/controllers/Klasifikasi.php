@@ -27,9 +27,23 @@ class Klasifikasi extends CI_Controller {
 
 	}
 
-	public function tes($idkk, $nik){
-		$rk = $this->Model_klasifikasi->count_rk($idkk, $nik);
-		echo $rk;
+	public function tes($idkk){
+		$kk_nik = $this->Model_data_keluarga->get_kk_nik($idkk);
+		$E_sick = $this->Model_klasifikasi->count_riwayat_sakit_keluarga($idkk);
+		$E_kel = $this->Model_klasifikasi->count_member($idkk);
+		$proporsi_sakit = ($E_sick / ($E_kel * 3)) * 40;
+		$pk = ($this->Model_klasifikasi->count_pk($idkk) * 6);
+		$rk = ($this->Model_klasifikasi->count_rk($idkk, $kk_nik) * 6);
+		$k = $proporsi_sakit + $pk + $rk;
+		$status = "";
+		if ($k>=0 && $k<=10) {
+			$status = "Rendah";
+		} elseif ($k>10 && $k<=50) {
+			$status = "Sedang";
+		} elseif ($k>50) {
+			$status = "Tinggi";
+		}
+		echo $E_sick." | ".$E_kel." || ".$proporsi_sakit." + ".$pk." + ".$rk." = ".$k." | Status = ".$status;
 	}
 
 	public function pengukur_stress($idkk){
@@ -50,11 +64,11 @@ class Klasifikasi extends CI_Controller {
 			$k = $proporsi_sakit + $pk + $rk;
 			$status = "";
 			if ($k>=0 && $k<=10) {
-				$status = "Ringan";
+				$status = "Rendah";
 			} elseif ($k>10 && $k<=50) {
 				$status = "Sedang";
 			} elseif ($k>50) {
-				$status = "berat";
+				$status = "Tinggi";
 			}
 			echo $E_sick." ".$E_kel." ".$proporsi_sakit." ".$pk." ".$rk." ".$k." ".$status;
 
