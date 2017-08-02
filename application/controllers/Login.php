@@ -34,9 +34,6 @@ class Login extends CI_Controller {
 
 	// memeriksa keberadaan akun username
 	public function login(){
-		if(!empty($this->session->userdata('username'))){
-			redirect(base_url());
-		}
 		$username = $this->input->post('username', 'true');
 		$p = $this->input->post('password', 'true');
 		$password = md5($p);
