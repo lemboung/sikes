@@ -94,6 +94,16 @@ class Data_keluarga extends CI_Controller {
 		}
 	}
 
+	public function tambah_kepala_keluarga(){
+		if ($this->session->userdata('logged_in')) {
+			$data['status'] = 'baru';
+			$this->load->view('Admin/form_add_headfamily', $data);
+		}
+		else {
+			redirect(site_url('login'));
+		}
+	}
+
 	public function edit_data($idkk){
 		if ($this->session->userdata('logged_in')) {
 			$data['family_data'] = $this->Model_data_keluarga->select_family_data($idkk)->result();
@@ -117,7 +127,7 @@ class Data_keluarga extends CI_Controller {
 		$result = $this->Model_data_keluarga->insertkk('data_kepala_keluarga', $data);
 		if($result != null){
 			$this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Simpan data BERHASIL dilakukan</strong></div>");
-			header('location:'.base_url().'Data_keluarga/anggota_keluarga/'.$result);
+			header('location:'.base_url().'Data_keluarga/tambah_kepala_keluarga/'.$result);
 		}else{
 			$this->session->set_flashdata("alert", "<div class='alert alert-danger'><strong>Simpan data GAGAL di lakukan</strong></div>");
 			header('location:'.base_url().'Data_keluarga/daftar_keluarga');
