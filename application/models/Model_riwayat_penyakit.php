@@ -37,7 +37,7 @@ class Model_riwayat_penyakit extends CI_Model {
 	 function select_riwayat_sakit($id){
 		$this->db->select('*');
  		$this->db->from('riwayat_penyakit');
-		$this->db->where('dk_nik', $id);
+		$this->db->where('id_riwayat_penyakit', $id);
  		return $this->db->get();
 	 }
 }

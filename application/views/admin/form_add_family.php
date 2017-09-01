@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <link rel="stylesheet" href="<?php echo base_url()."style/"?>css/select2.min.css">
     <?php include("head.php"); ?>
+    
   </head>
   <body class="hold-transition skin-green sidebar-mini">
         <div class="wrapper">
@@ -83,24 +86,41 @@
                       <input type="text" class="form-control" value="<?php echo $alamat; ?>" placeholder="Masukkan alamat" name="alamat" required>
                     </div>
                     <div class="form-group">
+                      <label>Provinsi</label>
+                      <select class="form-control" style="width:100%" name="provinsi" id="provinsi" required>
+                        <option selected value="">pilih provinsi</option>
+                        <?php 
+                        foreach ($prov as $p) {
+                          echo "<option value='$p->id'>$p->name</option>";
+                        } 
+                        ?>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Kota/Kabupaten</label>
+                      <select class="form-control" style="width:100%" id="kota" name="kota" required>
+                      <option value='0'>--pilih--</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Kecamatan</label>
+                      <select class="form-control" style="width:100%" id="kecamatan" name="kecamatan" required>
+                      <option value='0'>--pilih--</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Desa/Kelurahan</label>
+                      <select class="form-control" style="width:100%" id="kelurahan" name="kelurahan"  required>
+                      <option value='0'>--pilih--</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
                       <label>RT</label>
                       <input type="number" class="form-control"  value="<?php echo $RT; ?>" placeholder="00" name="rt" required>
                     </div>
                     <div class="form-group">
                       <label>RW</label>
                       <input type="number" class="form-control" value="<?php echo $RW; ?>" placeholder="00" name="rw" required>
-                    </div>
-                    <div class="form-group">
-                      <label>Desa/Kelurahan</label>
-                      <input type="text" class="form-control"  value="<?php echo $kelurahan; ?>" placeholder="Masukkan Desa/Kelurahan" name="kelurahan" required>
-                    </div>
-                    <div class="form-group">
-                      <label>Kecamatan</label>
-                      <input type="text" class="form-control" value="<?php echo $kecamatan; ?>" placeholder="Masukkan Kecamatan" name="kecamatan" required>
-                    </div>
-                    <div class="form-group">
-                      <label>Kota/Kabupaten</label>
-                      <input type="text" class="form-control" value="<?php echo $kota; ?>" placeholder="Masukkan Kota/Kabupaten" name="kota" required>
                     </div>
                     <div class="form-group">
                       <label>Pembayaran</label>
@@ -124,9 +144,9 @@
         <b>Information System Research Group Filkom 2016</b>
       </footer>
 
-
+    <!-- <script src="<?php echo base_url()."style/" ?>js/lokasi.js"></script> -->
     <!-- jQuery 2.1.4 -->
-    <script src="<?php echo base_url()."style/" ?>js/jQuery-2.1.4.min.js"></script>
+    <script src="<?php echo base_url()."style/" ?>js/jquery-2.0.0.js"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="<?php echo base_url()."style/" ?>js/bootstrap.min.js"></script>
     <!-- DataTables -->
@@ -135,21 +155,54 @@
     <!-- AdminLTE App -->
     <script src="<?php echo base_url()."style/" ?>js/app.min.js"></script>
     <!-- select2 js -->
-    <script src="<?php echo base_url()."style/" ?>js/select2.full.min.js"></script>
+    <!-- <script src="<?php echo base_url()."style/" ?>js/select2.full.min.js"></script> -->
     <!-- page script -->
     <script>
       $(function () {
-        $("#example1").DataTable();
-        $('#example2').DataTable({
-          "paging": true,
-          "lengthChange": false,
-          "searching": false,
-          "ordering": true,
-          "info": true,
-          "autoWidth": false
-        });
-        $(".select2").select2();
+      // $(".select2").select2();
+      $.ajaxSetup({
+        type:"POST",
+        url: "<?php echo base_url('Data_keluarga/select_lokasi') ?>",
+        cache: false,
       });
+
+      $("#provinsi").change(function(){
+        var value=$(this).val();
+        if(value>0){
+          $.ajax({
+          data:{modul:'kota',id:value},
+          success: function(respond){
+          $("#kota").html(respond);}
+          })
+        }
+      });
+
+      $("#kota").change(function(){
+        var value=$(this).val();
+        if(value>0){
+          $.ajax({
+          data:{modul:'kec',id:value},
+          success: function(respond){
+          $("#kecamatan").html(respond);},
+          error: function (jqXHR, textStatus, errorThrown)
+            {
+              alert('Error get data from ajax');
+            }
+          })
+        }
+      });
+
+      $("#kecamatan").change(function(){
+        var value=$(this).val();
+        if(value>0){
+          $.ajax({
+          data:{modul:'kelurahan',id:value},
+          success: function(respond){
+          $("#kelurahan").html(respond);}
+          })
+        } 
+      });
+    });  
     </script>
   </body>
 </html>

@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="<?php echo base_url()."style/" ?>css/dataTables.bootstrap.css">
   </head>
   <body class="hold-transition skin-green sidebar-mini">
-        <div class="wrapper">
+    <div class="wrapper">
 
       <?php include("header.php"); ?>
 
@@ -96,7 +96,7 @@
     </div><!-- ./wrapper -->
 
     <!-- jQuery 2.1.4 -->
-    <script src="<?php echo base_url()."style/" ?>/jQuery-2.1.4.min.js"></script>
+    <script src="<?php echo base_url()."style/" ?>js/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="<?php echo base_url()."style/" ?>js/bootstrap.min.js"></script>
     <!-- DataTables -->

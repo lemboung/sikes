@@ -54,8 +54,10 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php foreach ($work_history as $wh) {
-                        $i = 1;
+                      <?php 
+                      $i = 1;
+                      foreach ($work_history as $wh) {
+                        
                        ?>
                       <tr>
                         <td><?php echo $i; ?></td>

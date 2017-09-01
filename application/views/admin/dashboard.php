@@ -4,7 +4,7 @@
     <?php include("head.php"); ?>
   </head>
   <body class="hold-transition skin-green sidebar-mini">
-        <div class="wrapper">
+    <div class="wrapper">
 
       <?php include("header.php"); ?>
       <!-- Left side column. contains the logo and sidebar -->

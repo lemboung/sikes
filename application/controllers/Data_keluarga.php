@@ -68,6 +68,32 @@ class Data_keluarga extends CI_Controller {
 		}
 	}
 
+	public function select_lokasi($modul, $id){
+		$id = $this->input->post('id');
+		$modul = $this->input->post('modul');
+		if ($modul == "kota") {
+			$listKota = $this->Model_data_keluarga->get_kota($id)->result();
+			echo"<option selected value=''>Pilih Kota/Kab</option>";
+			foreach ($listKota as $r) {
+				echo "<option value='$r->id'>$r->name</option>";
+			}
+		}
+		elseif ($modul == "kec") {
+			$listKec = $this->Model_data_keluarga->get_kecamatan($id)->result();
+			echo"<option selected value=''>Pilih Kecamatan</option>";
+			foreach ($listKec as $d) {
+				echo "<option value='$d->id'>$d->name</option>";
+			}
+		}
+		elseif ($modul == "kelurahan") {
+			$listKel = $this->Model_data_keluarga->get_kelurahan($id)->result();
+			echo"<option selected value=''>Pilih Desa/Kelurahan</option>";
+			foreach ($listKel as $v) {
+				echo "<option value='$v->id'>$v->name</option>";
+			}
+		}
+	}
+
 	public function edit_anggota_keluarga($idkk, $nik){
 		if ($this->session->userdata('logged_in')) {
 			$data['family_data'] = $this->Model_data_keluarga->select_family_data($idkk)->result();
@@ -87,6 +113,7 @@ class Data_keluarga extends CI_Controller {
 	public function tambah_keluarga(){
 		if ($this->session->userdata('logged_in')) {
 			$data['status'] = 'baru';
+			$data['prov'] = $this->Model_data_keluarga->get_provinsi()->result();
 			$this->load->view('Admin/form_add_family', $data);
 		}
 		else {
@@ -108,6 +135,7 @@ class Data_keluarga extends CI_Controller {
 		if ($this->session->userdata('logged_in')) {
 			$data['family_data'] = $this->Model_data_keluarga->select_family_data($idkk)->result();
 			$data['status'] = 'edit';
+			$data['prov'] = $this->Model_data_keluarga->get_provinsi()->result();
 			$this->load->view('Admin/form_add_family',$data);
 		}
 		else {

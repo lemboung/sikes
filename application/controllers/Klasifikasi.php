@@ -28,7 +28,12 @@ class Klasifikasi extends CI_Controller {
 		} elseif ($k>50) {
 			$status = "Tinggi";
 		}
-		echo $E_sick." | ".$E_kel." || ".$proporsi_sakit." + ".$pk." + ".$rk." = ".$k." | Status = ".$status;
+		echo $E_sick." | ".$E_kel." || ".$proporsi_sakit." + ".$pk." + ".$rk." = ".$k." | Status = ".$status. $k;
+	}
+
+	public function coba($id){
+		$hasil = $this->Model_klasifikasi->count_riwayat_sakit_keluarga($id);
+		echo $hasil;
 	}
 
 	public function pengukur_stress($idkk){

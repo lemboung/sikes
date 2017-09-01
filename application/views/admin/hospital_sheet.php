@@ -8,7 +8,7 @@
     <?php include("head.php"); ?>
   </head>
   <body class="hold-transition skin-green sidebar-mini">
-        <div class="wrapper">
+    <div class="wrapper">
 
       <?php include("header.php"); ?>
 
@@ -53,8 +53,10 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php foreach ($family_sick as $fs) {
-                        $i = 1;
+                      <?php 
+                      $i = 1;
+                      foreach ($family_sick as $fs) {
+                        
                        ?>
                       <tr>
                         <td><?php echo $i; ?></td>
@@ -65,6 +67,7 @@
                                   $umur = $today->diff($bday);
                                   echo $umur->y." Th"; ?></td>
                         <td><?php
+                        $i++;
                         if ($fs->jenis_kelamin==1) {
                           echo "laki-laki";
                         }
@@ -74,12 +77,12 @@
                         <td><?php echo $fs->jenis_sakit; ?></td>
                         <td>
                           <div class="btn-group">
-                            <a class="btn btn-warning btn-sm" href="<?php echo base_url()."Riwayat_penyakit/edit/".$idkk."/".$fs->dk_nik; ?>"><i class="fa fa-pencil"></i></a>
+                            <a class="btn btn-warning btn-sm" href="<?php echo base_url()."Riwayat_penyakit/edit/".$idkk."/".$fs->id_riwayat_penyakit; ?>"><i class="fa fa-pencil"></i></a>
                             <a onclick="return confirm('Hapus data??');" class="btn btn-danger btn-sm"href="<?php echo base_url()."Riwayat_penyakit/hapus/".$idkk."/".$fs->id_riwayat_penyakit;  ?>"><i class="fa fa-trash"></i></a>
                           </div>
                         </td>
                         </tr>
-                        <?php $i++; } ?>
+                        <?php } ?>
                     </tbody>
                     <tfoot>
                       <tr>

@@ -54,6 +54,37 @@ class Model_data_keluarga extends CI_Model {
 		 return $data[0]['nik'];
 	 }
 
+	 function get_provinsi(){
+		$this->db->select('*');
+		$this->db->from('provinces');
+		$this->db->order_by('name', 'ASC');
+	   return $this->db->get();
+	}
+
+	 function get_kota($id){
+		 $this->db->select('*');
+		 $this->db->from('regencies');
+		 $this->db->where('province_id', $id);
+		 $this->db->order_by('name', 'ASC');
+		return $this->db->get();
+	 }
+
+	 function get_kecamatan($id){
+		$this->db->select('*');
+		$this->db->from('districts');
+		$this->db->where('regency_id', $id);
+		$this->db->order_by('name', 'ASC');
+	   return $this->db->get();
+	}
+
+	function get_kelurahan($id){
+		$this->db->select('*');
+		$this->db->from('villages');
+		$this->db->where('district_id', $id);
+		$this->db->order_by('name', 'ASC');
+	   return $this->db->get();
+	}
+
 	 function count_member($idkk){
 		 $this->db->select('nik');
 		 $this->db->from('data_kependudukan');
